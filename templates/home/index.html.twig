@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil
+{% endblock %}
+
+{% block body %}
+
+{# {% block header %}
+	{%  include 'header.html.twig' %}
+{% endblock %} #}
+
+
+
+
+	<div class="example-wrapper">
+		<div class="container mx-auto py-4 px-4 sm:py-8 sm:px-6 md:py-10 md:px-8">
+			<div class="relative mb-8">
+				<img src="{{ asset('img/home/ombre.png') }}" alt="Image 1" class="w-full h-auto">
+
+				<div class="absolute inset-0 flex items-center justify-end p-4 sm:p-6 md:p-10">
+					<div class="bg-white bg-opacity-50 p-1 rounded text-sm sm:text-base md:text-lg">
+						Laurennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+					</div>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 items-center">
+				<div>
+					<p class="text-gray-800 text-sm sm:text-base md:text-lg">
+						Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié.
+					</p>
+				</div>
+				<div>
+					<img src="{{ asset('img/home/img1.png') }}" alt="Image 2" class="w-full h-auto">
+				</div>
+				<div>
+					<img src="{{ asset('img/home/img2.png') }}" alt="Image 3" class="w-full h-auto">
+				</div>
+				<div>
+					<p class="text-gray-800 text-sm sm:text-base md:text-lg">
+						Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié.
+					</p>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 items-center mt-8">
+				<div>
+					<p class="text-gray-800 text-sm sm:text-base md:text-lg">
+						Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié.
+					</p>
+				</div>
+				<div>
+					<img src="{{ asset('img/home/img4.png') }}" alt="Image 4" class="w-full h-auto">
+				</div>
+				<div>
+					<img src="{{ asset('img/home/img5.png') }}" alt="Image 5" class="w-full h-auto">
+				</div>
+				<div>
+					<p class="text-gray-800 text-sm sm:text-base md:text-lg">
+						Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% block footer %}
+		{% include 'footer.html.twig' %}
+	{% endblock %}
+{% endblock %}
+
