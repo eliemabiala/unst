@@ -35,11 +35,11 @@ class Profile
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_of_birth = null;
 
-    #[ORM\Column(type: Types::BIGINT)]
-    private ?string $date_creation = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $date_creation = null;
 
-    #[ORM\Column(type: Types::BIGINT)]
-    private ?string $date_inscrit = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $date_inscrit = null;
 
     public function getId(): ?int
     {
@@ -123,31 +123,31 @@ class Profile
         return $this->date_of_birth;
     }
 
-    public function setDateOfBirth(\DateTimeInterface $date_of_birth): static
+    public function setDateOfBirth(?\DateTimeInterface $date_of_birth): static
     {
         $this->date_of_birth = $date_of_birth;
 
         return $this;
     }
 
-    public function getDateCreation(): ?string
+    public function getDateCreation(): ?\DateTimeInterface
     {
         return $this->date_creation;
     }
 
-    public function setDateCreation(string $date_creation): static
+    public function setDateCreation(?\DateTimeInterface $date_creation): static
     {
         $this->date_creation = $date_creation;
 
         return $this;
     }
 
-    public function getDateInscrit(): ?string
+    public function getDateInscrit(): ?\DateTimeInterface
     {
         return $this->date_inscrit;
     }
 
-    public function setDateInscrit(string $date_inscrit): static
+    public function setDateInscrit(?\DateTimeInterface $date_inscrit): static
     {
         $this->date_inscrit = $date_inscrit;
 

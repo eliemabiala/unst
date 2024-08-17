@@ -14,16 +14,16 @@ class Passport
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::BIGINT)]
-    private ?string $number_Passport = null;
-
-    #[ORM\Column(type: Types::BIGINT)]
-    private ?string $date_expira = null;
-
     #[ORM\Column(length: 100)]
-    private ?string $nationalité = null;
+    private ?string $number_passport = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $date_expiration = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $nationalite = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $profession = null;
 
     public function getId(): ?int
@@ -33,36 +33,36 @@ class Passport
 
     public function getNumberPassport(): ?string
     {
-        return $this->number_Passport;
+        return $this->number_passport;
     }
 
-    public function setNumberPassport(string $number_Passport): static
+    public function setNumberPassport(string $number_passport): static
     {
-        $this->number_Passport = $number_Passport;
+        $this->number_passport = $number_passport;
 
         return $this;
     }
 
-    public function getDateExpira(): ?string
+    public function getDateExpiration(): ?\DateTimeInterface
     {
-        return $this->date_expira;
+        return $this->date_expiration;
     }
 
-    public function setDateExpira(string $date_expira): static
+    public function setDateExpiration(?\DateTimeInterface $date_expiration): static
     {
-        $this->date_expira = $date_expira;
+        $this->date_expiration = $date_expiration;
 
         return $this;
     }
 
-    public function getNationalité(): ?string
+    public function getNationalite(): ?string
     {
-        return $this->nationalité;
+        return $this->nationalite;
     }
 
-    public function setNationalité(string $nationalité): static
+    public function setNationalite(?string $nationalite): static
     {
-        $this->nationalité = $nationalité;
+        $this->nationalite = $nationalite;
 
         return $this;
     }
@@ -72,7 +72,7 @@ class Passport
         return $this->profession;
     }
 
-    public function setProfession(string $profession): static
+    public function setProfession(?string $profession): static
     {
         $this->profession = $profession;
 

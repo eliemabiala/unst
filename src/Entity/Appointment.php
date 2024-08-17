@@ -14,26 +14,26 @@ class Appointment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $date_update = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $date_update = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $object = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $Creation_Date = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $creation_date = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateUpdate(): ?string
+    public function getDateUpdate(): ?\DateTimeInterface
     {
         return $this->date_update;
     }
 
-    public function setDateUpdate(string $date_update): static
+    public function setDateUpdate(?\DateTimeInterface $date_update): static
     {
         $this->date_update = $date_update;
 
@@ -54,12 +54,12 @@ class Appointment
 
     public function getCreationDate(): ?\DateTimeInterface
     {
-        return $this->Creation_Date;
+        return $this->creation_date;
     }
 
-    public function setCreationDate(\DateTimeInterface $Creation_Date): static
+    public function setCreationDate(?\DateTimeInterface $creation_date): static
     {
-        $this->Creation_Date = $Creation_Date;
+        $this->creation_date = $creation_date;
 
         return $this;
     }

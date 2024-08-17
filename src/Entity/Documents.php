@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\DocumentsRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DocumentsRepository::class)]
@@ -19,8 +20,8 @@ class Documents
     #[ORM\Column(length: 100)]
     private ?string $file_path = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $download_date = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $download_date = null;
 
     public function getId(): ?int
     {
@@ -51,12 +52,12 @@ class Documents
         return $this;
     }
 
-    public function getDownloadDate(): ?string
+    public function getDownloadDate(): ?\DateTimeInterface
     {
         return $this->download_date;
     }
 
-    public function setDownloadDate(string $download_date): static
+    public function setDownloadDate(?\DateTimeInterface $download_date): static
     {
         $this->download_date = $download_date;
 
