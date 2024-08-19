@@ -1,0 +1,63 @@
+{# templates/coachepage/list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Utilisateurs
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des Utilisateurs</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Date de Naissance</th>
+				<th>Sexe</th>
+				<th>Téléphone</th>
+				<th>Email</th>
+				<th>Rôle</th>
+				<th>Équipe</th>
+				<th>Numéro de Passeport</th>
+				<th>Date d'Expiration</th>
+				<th>Nationalité</th>
+				<th>Profession</th>
+				<th>Adresse</th>
+				<th>Statut des Démarches</th>
+				<th>Date de Création</th>
+				<th>Date d'Inscription</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.id }}</td>
+					<td>{{ user.name }}</td>
+					<td>{{ user.postname }}</td>
+					<td>{{ user.first_name }}</td>
+					<td>{{ user.date_of_birth|date('Y-m-d') }}</td>
+					<td>{{ user.sexe }}</td>
+					<td>{{ user.phone }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.role }}</td>
+					<td>{{ user.teams }}</td>
+					<td>{{ user.number_Passport }}</td>
+					<td>{{ user.date_expiration|date('Y-m-d') }}</td>
+					<td>{{ user.nationalite }}</td>
+					<td>{{ user.profession }}</td>
+					<td>{{ user.address }}</td>
+					<td>{{ user.status_demarches }}</td>
+					<td>{{ user.date_creation|date('Y-m-d H:i') }}</td>
+					<td>{{ user.date_inscrit|date('Y-m-d H:i') }}</td>
+					<td>
+						<a href="{{ path('user_edit', {id: user.id}) }}" class="btn btn-primary">Modifier</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
+

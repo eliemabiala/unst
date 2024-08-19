@@ -41,6 +41,13 @@ class Profile
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_inscrit = null;
 
+    #[ORM\OneToOne(mappedBy: 'profile', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
+    #[ORM\OneToOne(inversedBy: 'profile', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Passport $passport = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -150,6 +157,35 @@ class Profile
     public function setDateInscrit(?\DateTimeInterface $date_inscrit): static
     {
         $this->date_inscrit = $date_inscrit;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): static
+    {
+        // set the owning side of the relation if necessary
+        if ($user->getProfile() !== $this) {
+            $user->setProfile($this);
+        }
+
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPassport(): ?Passport
+    {
+        return $this->passport;
+    }
+
+    public function setPassport(Passport $passport): static
+    {
+        $this->passport = $passport;
 
         return $this;
     }

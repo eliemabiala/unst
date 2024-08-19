@@ -26,6 +26,9 @@ class Passport
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $profession = null;
 
+    #[ORM\OneToOne(mappedBy: 'passport', cascade: ['persist', 'remove'])]
+    private ?Profile $profile = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,23 @@ class Passport
     public function setProfession(?string $profession): static
     {
         $this->profession = $profession;
+
+        return $this;
+    }
+
+    public function getProfile(): ?Profile
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(Profile $profile): static
+    {
+        // set the owning side of the relation if necessary
+        if ($profile->getPassport() !== $this) {
+            $profile->setPassport($this);
+        }
+
+        $this->profile = $profile;
 
         return $this;
     }
