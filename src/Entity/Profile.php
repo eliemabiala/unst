@@ -24,8 +24,8 @@ class Profile
     #[ORM\Column(length: 100)]
     private ?string $firstname = null;
 
-    #[ORM\Column(length: 10)]
-    private ?string $sexe = null;
+    #[ORM\Column(type: Types::STRING, enumType: SexeEnum::class, nullable: true)]
+    private ?SexeEnum $genre = null;
 
     #[ORM\Column(length: 12)]
     private ?string $phone = null;
@@ -48,9 +48,6 @@ class Profile
     #[ORM\OneToOne(inversedBy: 'profile', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Passport $passport = null;
-
-    #[ORM\Column(enumType: SexeEnum::class)]
-    private ?SexeEnum $type = null;
 
     public function getId(): ?int
     {
@@ -93,14 +90,14 @@ class Profile
         return $this;
     }
 
-    public function getSexe(): ?string
+    public function getGenre(): ?SexeEnum
     {
-        return $this->sexe;
+        return $this->genre;
     }
 
-    public function setSexe(string $sexe): static
+    public function setGenre(?SexeEnum $genre): static
     {
-        $this->sexe = $sexe;
+        $this->genre = $genre;
 
         return $this;
     }
@@ -172,7 +169,6 @@ class Profile
 
     public function setUser(User $user): static
     {
-        // set the owning side of the relation if necessary
         if ($user->getProfile() !== $this) {
             $user->setProfile($this);
         }
@@ -190,18 +186,6 @@ class Profile
     public function setPassport(Passport $passport): static
     {
         $this->passport = $passport;
-
-        return $this;
-    }
-
-    public function getType(): ?SexeEnum
-    {
-        return $this->type;
-    }
-
-    public function setType(SexeEnum $type): static
-    {
-        $this->type = $type;
 
         return $this;
     }

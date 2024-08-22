@@ -5,16 +5,63 @@
 
 {% block body %}
 	<div class="container mx-auto px-4 py-6">
+		<div
+			class="grid grid-cols-3 gap-4 mb-4">
+			<!-- Admin Card -->
+			<div class="bg-gray-200 rounded-lg shadow-md p-2 flex items-center">
+				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
+
+					<img src="{{ asset('img/admin/iconadmin.png') }}" alt="Icon Admin" class="w-8 h-8">
+				</div>
+				<div class="ml-4">
+					<p class="text-sm font-medium">Effectif ADMIN</p>
+					<p class="text-3xl font-bold">{{ totalAdmin }}</p>
+				</div>
+			</div>
+
+			<!-- User Card -->
+			<div class="bg-gray-200 rounded-lg shadow-md p-2 flex items-center">
+				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
+
+					<img src="{{ asset('img/admin/iconuser.png') }}" alt="Icon User" class="w-8 h-8">
+				</div>
+				<div class="ml-4">
+					<p class="text-sm font-medium">Effectif USER</p>
+					<p class="text-3xl font-bold">{{ totalUser }}</p>
+				</div>
+			</div>
+
+			<!-- Coach Card -->
+			<div class="bg-gray-200 rounded-lg shadow-md p-2 flex items-center">
+				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
+
+					<img src="{{ asset('img/admin/iconcoache.png') }}" alt="Icon Coach" class="w-8 h-8">
+				</div>
+				<div class="ml-4">
+					<p class="text-sm font-medium">Effectif COACH</p>
+					<p class="text-3xl font-bold">{{ totalCoach }}</p>
+				</div>
+			</div>
+		</div>
+
+
 		<div class="flex justify-between items-center mb-4">
-			<h1 class="text-2xl font-bold">User List</h1>
-			<a href="{{ path('app_new') }}" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-				Ajouter
+			<h1 class="text-2xl font-bold">Liste des utilisateurs</h1>
+
+<a href="{{ path('app_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
+
+
+
+				Ajouter un utilisateurs
+
 			</a>
 		</div>
+
 		<div class="overflow-x-auto max-h-96">
 			<table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
 				<thead class="bg-gray-100 sticky top-0 z-10">
 					<tr class="border-b">
+						<th class="py-2 px-4 text-left text-gray-700">N°</th>
 						<th class="py-2 px-4 text-left text-gray-700">Nom</th>
 						<th class="py-2 px-4 text-left text-gray-700">Post Nom</th>
 						<th class="py-2 px-4 text-left text-gray-700">First Nom</th>
@@ -39,11 +86,13 @@
 						{% set profile = user.profile %}
 						{% set passport = profile.passport %}
 						<tr class="border-b hover:bg-gray-50">
+							<td class="py-2 px-4">{{ loop.index }}</td>
+							<!-- Adding the ID -->
 							<td class="py-2 px-4">{{ profile.name }}</td>
 							<td class="py-2 px-4">{{ profile.postname }}</td>
 							<td class="py-2 px-4">{{ profile.firstname }}</td>
 							<td class="py-2 px-4">{{ profile.dateOfBirth ? profile.dateOfBirth|date('Y-m-d') : '' }}</td>
-							<td class="py-2 px-4">{{ profile.sexe }}</td>
+							<td class="py-2 px-4">{{ profile.genre.value ?? '' }}</td>
 							<td class="py-2 px-4">{{ profile.phone }}</td>
 							<td class="py-2 px-4">{{ user.email }}</td>
 							<td class="py-2 px-4">{{ user.roles|join(', ') }}</td>
@@ -54,13 +103,14 @@
 							<td class="py-2 px-4">{{ passport.profession ?? '' }}</td>
 							<td class="py-2 px-4">{{ profile.address }}</td>
 							<td class="py-2 px-4">{{ passport.statusDemarches ?? 'Non renseigné' }}</td>
-							<td class="py-2 px-4">{{ profile.dateCreation ? profile.date_Creation|date('Y-m-d') : '' }}</td>
+							<td class="py-2 px-4">{{ profile.dateCreation ? profile.dateCreation|date('Y-m-d') : '' }}</td>
 							<td class="py-2 px-4">{{ profile.dateInscrit ? profile.dateInscrit|date('Y-m-d') : 'Non renseigné' }}</td>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
 		</div>
+
+
 	</div>
 {% endblock %}
-

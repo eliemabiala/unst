@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Profile;
 use App\Entity\User;
+use App\Enum\SexeEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -23,16 +24,16 @@ class ProfileType extends AbstractType
             ->add('name', TextType::class, ['label' => 'Nom'])
             ->add('postname', TextType::class, ['label' => 'Post nom'])
             ->add('firstname', TextType::class, ['label' => 'Prénom'])
-            ->add('sexe', ChoiceType::class, [
-                'label' => 'Sexe',
-                'choices' => [
-                    'M' => 'M',
-                    'F' => 'F',
-                    'Autres' => 'Autres',
-                ],
-                'expanded' => true,
-                'multiple' => false,
-            ])
+        ->add('genre', ChoiceType::class, [
+            'label' => 'Sexe',
+            'choices' => [
+                'M' => SexeEnum ::Male,
+                'F' => SexeEnum ::Female,
+                'Autre' => SexeEnum::Other,
+            ],
+            'expanded' => true,
+            'multiple' => false,
+        ])
             ->add('phone', TextType::class, ['label' => 'Téléphone'])
             ->add('address', TextType::class, ['label' => 'Adresse'])
             ->add('date_of_birth', DateType::class, [
