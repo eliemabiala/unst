@@ -1,20 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FaqController!{% endblock %}
+{% block title %}Faq
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('styles/faq.css') }}">
+{% endblock %}
+
+
+{% block importmap %}
+	{{ importmap(['app', 'faq']) }}
+{% endblock %}
+
+
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>D:/Code/symfony/unst/src/Controller/FaqController.php</code></li>
-        <li>Your template at <code>D:/Code/symfony/unst/templates/faq/index.html.twig</code></li>
-    </ul>
-</div>
+	<div class="faq-container">
+		<h1>FAQ - Domande Frequenti</h1>
+		<div class="faq-item">
+			<button class="faq-question">Qual è la politica di reso?</button>
+			<div class="faqAnswer">
+				<p>La nostra politica di reso prevede che tu possa restituire i prodotti entro 30 giorni dall'acquisto. Per maggiori dettagli, visita la nostra pagina di politica di reso.</p>
+			</div>
+		</div>
+		<div class="faq-item">
+			<button class="faq-question">Quali metodi di pagamento accettate?</button>
+			<div class="faqAnswer">
+				<p>Accettiamo vari metodi di pagamento, tra cui carte di credito, PayPal e bonifici bancari. Puoi trovare l'elenco completo alla cassa.</p>
+			</div>
+		</div>
+		<div class="faq-item">
+			<button class="faq-question">Come posso tracciare il mio ordine?</button>
+			<div class="faqAnswer">
+				<p>Una volta effettuato l'ordine, riceverai un'email con il numero di tracciamento. Puoi utilizzare questo numero sul nostro sito per seguire lo stato del tuo ordine.</p>
+			</div>
+		</div>
+	</div>
+{% block javascripts %}
+	<script src="{{ asset('js/faq.js') }}"></script>
 {% endblock %}
+
+
+
+
+{% endblock %}
+

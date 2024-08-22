@@ -26,6 +26,9 @@ class Passport
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $profession = null;
 
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $status_demarches = null;
+
     #[ORM\OneToOne(mappedBy: 'passport', cascade: ['persist', 'remove'])]
     private ?Profile $profile = null;
 
@@ -78,6 +81,18 @@ class Passport
     public function setProfession(?string $profession): static
     {
         $this->profession = $profession;
+
+        return $this;
+    }
+
+    public function getStatusDemarches(): ?string
+    {
+        return $this->status_demarches;
+    }
+
+    public function setStatusDemarches(?string $status_demarches): static
+    {
+        $this->status_demarches = $status_demarches;
 
         return $this;
     }

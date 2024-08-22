@@ -26,7 +26,7 @@ class RegistrationType extends AbstractType
                 'choices' => [
                     'Administrateur' => 'ROLE_ADMIN',
                     'Coach' => 'ROLE_COACH',
-                    'Utilisateur' => 'ROLE_USER',
+                    'Etudiant' => 'ROLE_USER',
                 ],
                 'placeholder' => '-- Sélectionnez un rôle --',
             ])

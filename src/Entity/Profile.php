@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\SexeEnum;
 use App\Repository\ProfileRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -47,6 +48,9 @@ class Profile
     #[ORM\OneToOne(inversedBy: 'profile', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Passport $passport = null;
+
+    #[ORM\Column(enumType: SexeEnum::class)]
+    private ?SexeEnum $type = null;
 
     public function getId(): ?int
     {
@@ -186,6 +190,18 @@ class Profile
     public function setPassport(Passport $passport): static
     {
         $this->passport = $passport;
+
+        return $this;
+    }
+
+    public function getType(): ?SexeEnum
+    {
+        return $this->type;
+    }
+
+    public function setType(SexeEnum $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }

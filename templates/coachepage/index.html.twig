@@ -1,63 +1,66 @@
-{# templates/coachepage/list.html.twig #}
-
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Utilisateurs
+{% block title %}User List
 {% endblock %}
 
 {% block body %}
-	<h1>Liste des Utilisateurs</h1>
-
-	<table class="table">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Nom</th>
-				<th>Prénom</th>
-				<th>Date de Naissance</th>
-				<th>Sexe</th>
-				<th>Téléphone</th>
-				<th>Email</th>
-				<th>Rôle</th>
-				<th>Équipe</th>
-				<th>Numéro de Passeport</th>
-				<th>Date d'Expiration</th>
-				<th>Nationalité</th>
-				<th>Profession</th>
-				<th>Adresse</th>
-				<th>Statut des Démarches</th>
-				<th>Date de Création</th>
-				<th>Date d'Inscription</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for user in users %}
-				<tr>
-					<td>{{ user.id }}</td>
-					<td>{{ user.name }}</td>
-					<td>{{ user.postname }}</td>
-					<td>{{ user.first_name }}</td>
-					<td>{{ user.date_of_birth|date('Y-m-d') }}</td>
-					<td>{{ user.sexe }}</td>
-					<td>{{ user.phone }}</td>
-					<td>{{ user.email }}</td>
-					<td>{{ user.role }}</td>
-					<td>{{ user.teams }}</td>
-					<td>{{ user.number_Passport }}</td>
-					<td>{{ user.date_expiration|date('Y-m-d') }}</td>
-					<td>{{ user.nationalite }}</td>
-					<td>{{ user.profession }}</td>
-					<td>{{ user.address }}</td>
-					<td>{{ user.status_demarches }}</td>
-					<td>{{ user.date_creation|date('Y-m-d H:i') }}</td>
-					<td>{{ user.date_inscrit|date('Y-m-d H:i') }}</td>
-					<td>
-						<a href="{{ path('user_edit', {id: user.id}) }}" class="btn btn-primary">Modifier</a>
-					</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+	<div class="container mx-auto px-4 py-6">
+		<div class="flex justify-between items-center mb-4">
+			<h1 class="text-2xl font-bold">User List</h1>
+			<a href="{{ path('app_new') }}" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+				Ajouter
+			</a>
+		</div>
+		<div class="overflow-x-auto max-h-96">
+			<table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
+				<thead class="bg-gray-100 sticky top-0 z-10">
+					<tr class="border-b">
+						<th class="py-2 px-4 text-left text-gray-700">Nom</th>
+						<th class="py-2 px-4 text-left text-gray-700">Post Nom</th>
+						<th class="py-2 px-4 text-left text-gray-700">First Nom</th>
+						<th class="py-2 px-4 text-left text-gray-700">Date de Naissance</th>
+						<th class="py-2 px-4 text-left text-gray-700">Sexe</th>
+						<th class="py-2 px-4 text-left text-gray-700">Téléphone</th>
+						<th class="py-2 px-4 text-left text-gray-700">Email</th>
+						<th class="py-2 px-4 text-left text-gray-700">Rôle</th>
+						<th class="py-2 px-4 text-left text-gray-700">Teams</th>
+						<th class="py-2 px-4 text-left text-gray-700">Numéro de Passeport</th>
+						<th class="py-2 px-4 text-left text-gray-700">Date d'Expiration</th>
+						<th class="py-2 px-4 text-left text-gray-700">Nationalité</th>
+						<th class="py-2 px-4 text-left text-gray-700">Profession</th>
+						<th class="py-2 px-4 text-left text-gray-700">Adresse</th>
+						<th class="py-2 px-4 text-left text-gray-700">Status du Démarches</th>
+						<th class="py-2 px-4 text-left text-gray-700">Date de Création</th>
+						<th class="py-2 px-4 text-left text-gray-700">Date d'Inscrit</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						{% set profile = user.profile %}
+						{% set passport = profile.passport %}
+						<tr class="border-b hover:bg-gray-50">
+							<td class="py-2 px-4">{{ profile.name }}</td>
+							<td class="py-2 px-4">{{ profile.postname }}</td>
+							<td class="py-2 px-4">{{ profile.firstname }}</td>
+							<td class="py-2 px-4">{{ profile.dateOfBirth ? profile.dateOfBirth|date('Y-m-d') : '' }}</td>
+							<td class="py-2 px-4">{{ profile.sexe }}</td>
+							<td class="py-2 px-4">{{ profile.phone }}</td>
+							<td class="py-2 px-4">{{ user.email }}</td>
+							<td class="py-2 px-4">{{ user.roles|join(', ') }}</td>
+							<td class="py-2 px-4">{{ user.teams }}</td>
+							<td class="py-2 px-4">{{ passport.numberPassport ?? '' }}</td>
+							<td class="py-2 px-4">{{ passport.dateExpiration ? passport.dateExpiration|date('Y-m-d') : '' }}</td>
+							<td class="py-2 px-4">{{ passport.nationalite ?? '' }}</td>
+							<td class="py-2 px-4">{{ passport.profession ?? '' }}</td>
+							<td class="py-2 px-4">{{ profile.address }}</td>
+							<td class="py-2 px-4">{{ passport.statusDemarches ?? 'Non renseigné' }}</td>
+							<td class="py-2 px-4">{{ profile.dateCreation ? profile.date_Creation|date('Y-m-d') : '' }}</td>
+							<td class="py-2 px-4">{{ profile.dateInscrit ? profile.dateInscrit|date('Y-m-d') : 'Non renseigné' }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
 {% endblock %}
 

@@ -6,26 +6,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\{TextType, EmailType, PasswordType, ChoiceType, DateType, TextareaType, FileType};
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use App\Entity\{User, Profile, Passport, Documents, Appointment};
-use App\Form\RegistrationType;
-use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use App\Entity\User;
+use App\Form\RegistrationType;
+use Doctrine\ORM\EntityManagerInterface;
 
 class NewController extends AbstractController
 {
     #[Route('/new', name: 'app_new')]
-    #[IsGranted('ROLE_COACH'),]
-    public function index(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasherInterface): Response
+    #[IsGranted('ROLE_ADMIN')]
+    public function index(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
         $user = new User();
-        // Create a form builder
         $form = $this->createForm(RegistrationType::class, $user);
 
-        // Handle form submission
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -35,7 +32,7 @@ class NewController extends AbstractController
                     $user,
                     $form->get('password')->getData()
                 )
-                );
+            );
 
             // // Handle file upload
             // $file = $form->get('file_upload')->getData();
@@ -50,7 +47,18 @@ class NewController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_service');
+            $email = (new Email())
+                ->from('mabialaelie4@gmail.com')
+                ->to('endiepro4@gmail.com') 
+                ->subject('Nouveau utilisateur ajouté')
+                ->html(
+                    $this->renderView('emails/notification.html.twig', [
+                        'user' => $user
+                    ])
+                );
+            $mailer->send($email);
+
+            return $this->redirectToRoute('app_coachepage');
         }
 
         return $this->render('new/index.html.twig', [

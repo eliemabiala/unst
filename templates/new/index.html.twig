@@ -1,11 +1,14 @@
-{# templates/new/index.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button type="submit">Submit</button>
-{{ form_end(form) }}
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Submit</button>
+	{{ form_end(form) }}
 
-
+	<!-- Back to Coachepage button -->
+	<a href="{{ path('app_coachepage') }}" class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 mt-4 inline-block">
+		Annuler
+	</a>
 {% endblock %}
+
