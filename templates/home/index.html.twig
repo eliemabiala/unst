@@ -7,16 +7,25 @@
 
 
 	<div class="example-wrapper">
-		<div class="container ">
-			<div class="relative mb-8">
-				<img src="{{ asset('img/home/ombre.png') }}" alt="Image 1" class="w-full h-auto">
+<div
+	class="container relative mb-8">
+	<!-- Conteneur de l'image GIF -->
+	<div class="relative">
+		<img src="{{ asset('img/home/ombre.gif') }}" alt="GIF animé" class="w-full h-auto">
+	</div>
 
-				<div class="absolute inset-0 flex items-center justify-end p-4 sm:p-6 md:p-10">
-					<div class="bg-white bg-opacity-50 p-1 rounded text-sm sm:text-base md:text-lg">
-						Laurennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
-					</div>
-				</div>
-			</div>
+	<!-- Conteneur pour le texte centré -->
+	<div class="absolute inset-0 flex items-center justify-center p-4 sm:p-6 md:p-10">
+		<div class="bg-white bg-opacity-50 p-4 rounded text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+			Profitez d’un accompagnement efficace et d’un<br>
+			coaching sur-mesure qui vous font prendre des ailes.
+		</div>
+	</div>
+</div>
+
+
+
+
 
 			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 items-center">
 				<div>

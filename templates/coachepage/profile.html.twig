@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de l'utilisateur
+{% endblock %}
+
+{% block body %}
+	<div class="container mx-auto px-4 py-6">
+		<h1 class="text-2xl font-bold mb-4">Profil de l'utilisateur</h1>
+
+		<div class="bg-gray-100 p-6 rounded-lg shadow-lg">
+			<p>
+				<strong>Nom :</strong>
+				{{ user.profile.name }}</p>
+			<p>
+				<strong>Post Nom :</strong>
+				{{ user.profile.postname }}</p>
+			<p>
+				<strong>Prénom :</strong>
+				{{ user.profile.firstname }}</p>
+			<p>
+				<strong>Date de naissance :</strong>
+				{{ user.profile.dateOfBirth ? user.profile.dateOfBirth|date('Y-m-d') : 'Non renseigné' }}</p>
+			<p>
+				<strong>Sexe :</strong>
+				{{ user.profile.genre.value ?? 'Non renseigné' }}</p>
+			<p>
+				<strong>Téléphone :</strong>
+				{{ user.profile.phone }}</p>
+			<p>
+				<strong>Email :</strong>
+				{{ user.email }}</p>
+			<p>
+				<strong>Rôle :</strong>
+				{{ user.roles|join(', ') }}</p>
+			<p>
+				<strong>Équipe :</strong>
+				{{ user.teams.team }}</p>
+			<p>
+				<strong>Numéro de Passeport :</strong>
+				{{ user.profile.passport.numberPassport ?? 'Non renseigné' }}</p>
+			<p>
+				<strong>Date d'expiration :</strong>
+				{{ user.profile.passport.dateExpiration ? user.profile.passport.dateExpiration|date('Y-m-d') : 'Non renseigné' }}</p>
+			<p>
+				<strong>Nationalité :</strong>
+				{{ user.profile.passport.nationalite ?? 'Non renseigné' }}</p>
+			<p>
+				<strong>Profession :</strong>
+				{{ user.profile.passport.profession ?? 'Non renseigné' }}</p>
+			<p>
+				<strong>Adresse :</strong>
+				{{ user.profile.address }}</p>
+			<p>
+				<strong>Status des démarches :</strong>
+				{{ user.profile.passport.statusDemarches ?? 'Non renseigné' }}</p>
+			<p>
+				<strong>Date de création :</strong>
+				{{ user.profile.dateCreation ? user.profile.dateCreation|date('Y-m-d') : 'Non renseigné' }}</p>
+			<p>
+				<strong>Date d'inscription :</strong>
+				{{ user.profile.dateInscrit ? user.profile.dateInscrit|date('Y-m-d') : 'Non renseigné' }}</p>
+		</div>
+
+		<div class="mt-4">
+			<a href="{{ path('app_coachepage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">Retour à la liste des utilisateurs</a>
+		</div>
+	</div>
+{% endblock %}
+

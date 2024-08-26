@@ -1,5 +1,5 @@
 <?php
-
+// src/Entity/User.php
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -18,17 +18,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
     /**
      * @var list<string> The user roles
      */
-    #[ORM\Column]
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
-
-    #[ORM\Column(length: 100)]
-    private ?string $teams = null;
 
     /**
      * @var string The hashed password
@@ -45,6 +42,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\OneToMany(targetEntity: Appointment::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $appointments;
+
+    // Updated property name from $team to $teams
+    #[ORM\ManyToOne(targetEntity: Teams::class, inversedBy: 'users')]
+    private ?Teams $teams = null;
 
     public function __construct()
     {
@@ -64,7 +65,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -84,7 +84,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -96,19 +95,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): static
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    public function getTeams(): ?string
-    {
-        return $this->teams;
-    }
-
-    public function setTeams(string $teams): static
-    {
-        $this->teams = $teams;
-
         return $this;
     }
 
@@ -126,7 +112,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setProfile(Profile $profile): static
     {
         $this->profile = $profile;
-
         return $this;
     }
 
@@ -157,6 +142,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             }
         }
 
+        return $this;
+    }
+
+    // Updated getter method from getTeam() to getTeams()
+    public function getTeams(): ?Teams
+    {
+        return $this->teams;
+    }
+
+    // Updated setter method from setTeam() to setTeams()
+    public function setTeams(?Teams $teams): static
+    {
+        $this->teams = $teams;
         return $this;
     }
 }

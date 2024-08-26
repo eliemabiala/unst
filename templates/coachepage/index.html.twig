@@ -81,33 +81,40 @@
 						<th class="py-2 px-4 text-left text-gray-700">Date d'Inscrit</th>
 					</tr>
 				</thead>
-				<tbody>
-					{% for user in users %}
-						{% set profile = user.profile %}
-						{% set passport = profile.passport %}
-						<tr class="border-b hover:bg-gray-50">
-							<td class="py-2 px-4">{{ loop.index }}</td>
-							<!-- Adding the ID -->
-							<td class="py-2 px-4">{{ profile.name }}</td>
-							<td class="py-2 px-4">{{ profile.postname }}</td>
-							<td class="py-2 px-4">{{ profile.firstname }}</td>
-							<td class="py-2 px-4">{{ profile.dateOfBirth ? profile.dateOfBirth|date('Y-m-d') : '' }}</td>
-							<td class="py-2 px-4">{{ profile.genre.value ?? '' }}</td>
-							<td class="py-2 px-4">{{ profile.phone }}</td>
-							<td class="py-2 px-4">{{ user.email }}</td>
-							<td class="py-2 px-4">{{ user.roles|join(', ') }}</td>
-							<td class="py-2 px-4">{{ user.teams }}</td>
-							<td class="py-2 px-4">{{ passport.numberPassport ?? '' }}</td>
-							<td class="py-2 px-4">{{ passport.dateExpiration ? passport.dateExpiration|date('Y-m-d') : '' }}</td>
-							<td class="py-2 px-4">{{ passport.nationalite ?? '' }}</td>
-							<td class="py-2 px-4">{{ passport.profession ?? '' }}</td>
-							<td class="py-2 px-4">{{ profile.address }}</td>
-							<td class="py-2 px-4">{{ passport.statusDemarches ?? 'Non renseigné' }}</td>
-							<td class="py-2 px-4">{{ profile.dateCreation ? profile.dateCreation|date('Y-m-d') : '' }}</td>
-							<td class="py-2 px-4">{{ profile.dateInscrit ? profile.dateInscrit|date('Y-m-d') : 'Non renseigné' }}</td>
-						</tr>
-					{% endfor %}
-				</tbody>
+<tbody>
+	{% for user in users %}
+		{% set profile = user.profile %}
+		{% set passport = profile.passport %}
+		<tr class="border-b hover:bg-gray-50">
+			<td class="py-2 px-4">{{ loop.index }}</td>
+			<td class="py-2 px-4">{{ profile.name }}</td>
+			<td class="py-2 px-4">{{ profile.postname }}</td>
+			<td class="py-2 px-4">{{ profile.firstname }}</td>
+			<td class="py-2 px-4">{{ profile.dateOfBirth ? profile.dateOfBirth|date('Y-m-d') : '' }}</td>
+			<td class="py-2 px-4">{{ profile.genre.value ?? '' }}</td>
+			<td class="py-2 px-4">{{ profile.phone }}</td>
+			<td class="py-2 px-4">{{ user.email }}</td>
+			<td class="py-2 px-4">{{ user.roles|join(', ') }}</td>
+			<td class="py-2 px-4">{{ user.teams.team }}</td>
+			<td class="py-2 px-4">{{ passport.numberPassport ?? '' }}</td>
+			<td class="py-2 px-4">{{ passport.dateExpiration ? passport.dateExpiration|date('Y-m-d') : '' }}</td>
+			<td class="py-2 px-4">{{ passport.nationalite ?? '' }}</td>
+			<td class="py-2 px-4">{{ passport.profession ?? '' }}</td>
+			<td class="py-2 px-4">{{ profile.address }}</td>
+			<td class="py-2 px-4">{{ passport.statusDemarches ?? 'Non renseigné' }}</td>
+			<td class="py-2 px-4">{{ profile.dateCreation ? profile.dateCreation|date('Y-m-d') : '' }}</td>
+			<td class="py-2 px-4">{{ profile.dateInscrit ? profile.dateInscrit|date('Y-m-d') : 'Non renseigné' }}</td>
+			<!-- Ajouter le bouton pour voir le profil -->
+			<td class="py-2 px-4">
+				<a href="{{ path('app_user_profile', { id: user.id }) }}" class="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700">
+					Voir le profil
+				</a>
+			</td>
+		</tr>
+	{% endfor %}
+</tbody>
+
+
 			</table>
 		</div>
 

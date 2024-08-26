@@ -3,16 +3,14 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\Teams;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class RegistrationType extends AbstractType
 {
@@ -30,7 +28,12 @@ class RegistrationType extends AbstractType
                 ],
                 'placeholder' => '-- Sélectionnez un rôle --',
             ])
-            ->add('teams', TextType::class, ['label' => 'Teams'])
+            ->add('teams', EntityType::class, [
+                'class' => Teams::class,
+                'choice_label' => 'team', // Assuming 'team' is the property in Teams entity
+                'label' => 'Team',
+                'placeholder' => '-- Sélectionnez une équipe --',
+            ])
             ->add('password', PasswordType::class, ['label' => 'Mot de passe'])
             ->add('profile', ProfileType::class)
         ;

@@ -2,16 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class CoachepageController extends AbstractController
 {
     #[Route('/coachepage', name: 'app_coachepage')]
-    #[IsGranted('ROLE_ADMIN')]
     public function index(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
@@ -39,6 +38,14 @@ class CoachepageController extends AbstractController
             'totalAdmin' => $totalAdmin,
             'totalUser' => $totalUser,
             'totalCoach' => $totalCoach,
+        ]);
+    }
+
+    #[Route('/coachepage/profile/{id}', name: 'app_user_profile')]
+    public function show(User $user): Response
+    {
+        return $this->render('coachepage/profile.html.twig', [
+            'user' => $user,
         ]);
     }
 }
