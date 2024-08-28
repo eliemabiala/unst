@@ -21,30 +21,29 @@
 					<a class="text-white hover:text-[#b49047]" href="{{ path('app_contact') }}">Contact</a>
 				</li>
 
-				{% if app.user %}
-					{% if 'ROLE_ADMIN' in app.user.roles %}
-						<li>
-							<a class="text-white hover:text-[#b49047]" href="{{ path('app_adminpage') }}">Espace Admin</a>
+{% if app.user %}
+	{% if 'ROLE_ADMIN' in app.user.roles %}
+		<li>
+			<a class="text-white hover:text-[#b49047]" href="{{ path('app_adminpage') }}">Espace Admin</a>
+		</li>
+	{% elseif 'ROLE_COACH' in app.user.roles %}
+		<li>
+<a class="text-white hover:text-[#b49047]" href="{{ path('app_coachepage') }}">Espace COACH</a>
 
-						</li>
-					{% elseif 'ROLE_USER' in app.user.roles %}
-						<li>
-							<a class="text-white hover:text-[#b49047]" href="{{ path('app_student') }}">Espace Étudiant</a>
+		</li>
+	{% elseif 'ROLE_USER' in app.user.roles %}
+		<li>
+			<a class="text-white hover:text-[#b49047]" href="{{ path('app_student') }}">Espace Étudiant</a>
+		</li>
+	{% endif %}
+	<li>
+		<a class="text-white hover:text-[#b49047]" href="{{ path('app_logout') }}">Déconnexion</a>
+	</li>
+{% else %}
+	<li>
+		<a class="text-white hover:text-[#b49047]" href="{{ path('app_login') }}">Se connecter</a>
+	</li>
+{% endif %}
+</ul></div></nav></header>
 
-						</li>
-					{% endif %}
 
-
-					<li>
-						<a class="text-white hover:text-[#b49047]" href="{{ path('app_logout') }}">Déconnexion</a>
-					</li>
-				{% else %}
-
-					<li>
-						<a class="text-white hover:text-[#b49047]" href="{{ path('app_login') }}">Se connecter</a>
-					</li>
-				{% endif %}
-			</ul>
-		</div>
-	</nav>
-</header>
