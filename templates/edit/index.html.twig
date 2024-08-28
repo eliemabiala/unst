@@ -36,6 +36,21 @@
 		{{ form_widget(form.profile, {'attr': {'class': 'w-full border border-gray-300 rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
 		{{ form_errors(form.profile) }}
 	</div>
+
+<div class="flex justify-between mt-6">
+
+<button type="submit" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]" ">Enregistrer les modifications</button>
+
+
+{{ form_end(form) }}
+
+<!-- Back to Coachepage button -->
+<a href="{{ path('app_coachepage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]" ">
+
+	Annuler
+</a>
+</div>
+
 </div>
 
 {% endblock %}

@@ -52,7 +52,7 @@ class EditController extends AbstractController
                 ->to('endiepro4@gmail.com')
                 ->subject('Utilisateur modifié')
                 ->html(
-                    $this->renderView('emails/notification.html.twig', [
+                    $this->renderView('emails/notificationmodif.html.twig', [
                         'user' => $user
                     ])
                 );
