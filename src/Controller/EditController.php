@@ -45,10 +45,10 @@ class EditController extends AbstractController
             );
 
             $entityManager->persist($user);
-            // $entityManager->flush();
+            $entityManager->flush();
             $this->addFlash('success', [
-                'title' => 'Success title',
-                'message'=> 'Utilisateur à étè modifié'
+                'title' => 'Votre',
+                'message'=> 'utilisateur a été modifié'
             ]);
 
             $email = (new Email())

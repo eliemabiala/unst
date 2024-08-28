@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	
 
 
 	<div class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
@@ -42,7 +41,7 @@
 
 		<div class="flex justify-between mt-6">
 
-<button type="submit" class=" send bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
+			<button type="submit" class=" send bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
 
 				Enregistrer les modifications
 			</button>
@@ -50,8 +49,8 @@
 
 			{{ form_end(form) }}
 
-			<!-- Back to Coachepage button -->
-			<a href="{{ path('app_coachepage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]" ">
+			<!-- Back to adminpage button -->
+			<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]" ">
 
 				Annuler
 			</a>

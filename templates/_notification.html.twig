@@ -1,4 +1,5 @@
-<div class="fixed top-4 right-4 max-w-sm w-full border{% if label == 'success' %} bg-green-100 border-green-400 text-green-700 {% else %}bg-red-100 border border-red-400 text-red-700 {% endif %} px-4 py-3 rounded shadow-lg" role="alert">
+<div class="fixed top-4 right-4 max-w-sm w-full border{% if label == 'success' %} bg-[#14213D] border-blue-400 text-white {% else %}bg-red-100 border border-red-400 text-red-700 {% endif %} px-4 py-3 rounded shadow-lg" role="alert">
+
 	<strong class="font-bold">{{ message.title }}</strong>
 	<span class="block sm:inline">{{ message.message }}</span>
 	<button type="button" class="absolute top-0 right-0 px-4 py-3" onclick="this.parentElement.style.display='none';">

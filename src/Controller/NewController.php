@@ -49,7 +49,7 @@ class NewController extends AbstractController
 
             $email = (new Email())
                 ->from('mabialaelie4@gmail.com')
-                ->to('endiepro4@gmail.com') 
+                ->to('endiepro4@gmail.com')
                 ->subject('Nouveau utilisateur ajouté')
                 ->html(
                     $this->renderView('emails/notification.html.twig', [
@@ -58,7 +58,7 @@ class NewController extends AbstractController
                 );
             $mailer->send($email);
 
-            return $this->redirectToRoute('app_coachepage');
+            return $this->redirectToRoute('app_adminpage');
         }
 
         return $this->render('new/index.html.twig', [

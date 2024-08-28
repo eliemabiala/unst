@@ -5,11 +5,12 @@
 
 {% block body %}
 
-{% for label, messages in app.flashes %}
-	{% for message in messages %}
-		{% include '_notification.html.twig' %}
+	{% for label, messages in app.flashes %}
+		{% for message in messages %}
+			{% include '_notification.html.twig' %}
 
-{% endfor %}{% endfor %}
+		{% endfor %}
+	{% endfor %}
 
 
 	<div class="container mx-auto px-4 py-6">
@@ -73,16 +74,14 @@
 
 		</div>
 
-<div class="mt-4 flex justify-between">
-	<a href="{{ path('app_coachepage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
-		Retour à Espace Admin
-	</a>
-	<a href="{{ path('app_edit', { id: user.id }) }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
-		Modifier le Profil
-	</a>
-</div>
-
-
+		<div class="mt-4 flex justify-between">
+			<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
+				Retour à Espace Admin
+			</a>
+			<a href="{{ path('app_edit', { id: user.id }) }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
+				Modifier le Profil
+			</a>
+		</div>
 
 
 	</div>

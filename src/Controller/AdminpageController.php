@@ -8,9 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CoachepageController extends AbstractController
+class AdminpageController extends AbstractController
 {
-    #[Route('/coachepage', name: 'app_coachepage')]
+    #[Route('/adminpage', name: 'app_adminpage')]
     public function index(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
@@ -33,7 +33,7 @@ class CoachepageController extends AbstractController
             }
         }
 
-        return $this->render('coachepage/index.html.twig', [
+        return $this->render('adminpage/index.html.twig', [
             'users' => $users,
             'totalAdmin' => $totalAdmin,
             'totalUser' => $totalUser,
@@ -41,10 +41,10 @@ class CoachepageController extends AbstractController
         ]);
     }
 
-    #[Route('/coachepage/profile/{id}', name: 'app_user_profile')]
+    #[Route('/adminpage/profile/{id}', name: 'app_user_profile')]
     public function show(User $user): Response
     {
-        return $this->render('coachepage/profile.html.twig', [
+        return $this->render('adminpage/profile.html.twig', [
             'user' => $user,
         ]);
     }
