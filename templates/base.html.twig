@@ -11,7 +11,11 @@
 
 		{% block javascripts %}
 			{% block importmap %}
+{{ importmap('faq') }}
+
 				{{ importmap('app') }}
+				
+
 			{% endblock %}
 		{% endblock %}
 	</head>

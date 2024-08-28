@@ -8,42 +8,64 @@
 {% endblock %}
 
 
-{% block importmap %}
-	{{ importmap(['app', 'faq']) }}
-{% endblock %}
-
-
-
 {% block body %}
 
 
 	<div class="faq-container">
-		<h1>FAQ - Domande Frequenti</h1>
+		<h1 class="titr">
+
+			Bienvenue sur notre page FAQ. Voici les questions les plus fréquentes sur nos services et notre mission. Nous espérons que vous y trouverez les réponses à vos questions.
+		</h1>
+
 		<div class="faq-item">
-			<button class="faq-question">Qual è la politica di reso?</button>
+			<button class="faq-question">Qu'est-ce que vous faites exactement pour accompagner la société via le numérique ?</button>
+
 			<div class="faqAnswer">
-				<p>La nostra politica di reso prevede che tu possa restituire i prodotti entro 30 giorni dall'acquisto. Per maggiori dettagli, visita la nostra pagina di politica di reso.</p>
-			</div>
-		</div>
-		<div class="faq-item">
-			<button class="faq-question">Quali metodi di pagamento accettate?</button>
-			<div class="faqAnswer">
-				<p>Accettiamo vari metodi di pagamento, tra cui carte di credito, PayPal e bonifici bancari. Puoi trovare l'elenco completo alla cassa.</p>
-			</div>
-		</div>
-		<div class="faq-item">
-			<button class="faq-question">Come posso tracciare il mio ordine?</button>
-			<div class="faqAnswer">
-				<p>Una volta effettuato l'ordine, riceverai un'email con il numero di tracciamento. Puoi utilizzare questo numero sul nostro sito per seguire lo stato del tuo ordine.</p>
-			</div>
+				<p>Nous accompagnons la société en proposant des outils et des ressources numériques qui facilitent
+																																																											                    l'accès à l'emploi pour les chômeurs et les personnes
+																																																											                    éloignées de la vie professionnelle. Nous vulgarisons les connaissances dans divers domaines pour
+																																																											                    rendre l'information accessible à tous.</p>
+			</p>
 		</div>
 	</div>
-{% block javascripts %}
-	<script src="{{ asset('js/faq.js') }}"></script>
-{% endblock %}
+	<div class="faq-item">
+		<button class="faq-question">Comment facilitez-vous l'accès à l'emploi pour les chômeurs et les personnes éloignées de la vie
+																																				                    professionnelle ?</button>
 
+		<div class="faqAnswer">
+			<p>Nous offrons des services tels que des ateliers de formation, des conseils en carrière, et des
+																																											                    ressources en ligne pour aider les chômeurs et les personnes
+																																											                    éloignées de la vie professionnelle à se réinsérer dans le marché du travail.
+			</p>
+		</div>
+	</div>
+	<div class="faq-item">
+		<button class="faq-question">Comment aidez-vous les étudiants à concrétiser leurs projets d’études en Europe ?</button>
 
+		<div class="faqAnswer">
+			<p>Nous aidons les étudiants à concrétiser leurs projets d’études en Europe en fournissant des conseils
+																																					                    sur les inscriptions universitaires,
+																																					                    l'obtention de visas, et en les guidant tout au long du processus de candidature.</p>
+		</div>
+	</div>
 
+	<div class="faq-item">
+		<button class="faq-question">Comment aidez-vous les étudiants à concrétiser leurs projets d’études en Europe ?</button>
 
-{% endblock %}
+		<div class="faqAnswer">
+			<p>Nous aidons les étudiants à concrétiser leurs projets d’études en Europe en fournissant des conseils
+																																								                    sur les inscriptions universitaires,
+																																								                    l'obtention de visas, et en les guidant tout au long du processus de candidature.</p>
+		</div>
+	</div>
+	<div class="faq-item">
+		<button class="faq-question">Comment aidez-vous les étudiants à concrétiser leurs projets d’études en Europe ?</button>
 
+		<div class="faqAnswer">
+			<p>Nous aidons les étudiants à concrétiser leurs projets d’études en Europe en fournissant des conseils
+																																								                    sur les inscriptions universitaires,
+																																								                    l'obtention de visas, et en les guidant tout au long du processus de candidature.</p>
+		</div>
+	</div>
+
+</div>{% endblock %}

@@ -6,7 +6,7 @@ return [
     ],
     'faq' => [
         'path' => './assets/js/faq.js',
-        'entrypoint' => false, // Dépend de si vous l'utilisez comme point d'entrée
+        'entrypoint' => true, 
     ],
 
     '@hotwired/stimulus' => [

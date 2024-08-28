@@ -10,7 +10,6 @@
 			<!-- Admin Card -->
 			<div class="bg-gray-200 rounded-lg shadow-md p-2 flex items-center">
 				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
-
 					<img src="{{ asset('img/admin/iconadmin.png') }}" alt="Icon Admin" class="w-8 h-8">
 				</div>
 				<div class="ml-4">
@@ -22,7 +21,6 @@
 			<!-- User Card -->
 			<div class="bg-gray-200 rounded-lg shadow-md p-2 flex items-center">
 				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
-
 					<img src="{{ asset('img/admin/iconuser.png') }}" alt="Icon User" class="w-8 h-8">
 				</div>
 				<div class="ml-4">
@@ -34,7 +32,6 @@
 			<!-- Coach Card -->
 			<div class="bg-gray-200 rounded-lg shadow-md p-2 flex items-center">
 				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
-
 					<img src="{{ asset('img/admin/iconcoache.png') }}" alt="Icon Coach" class="w-8 h-8">
 				</div>
 				<div class="ml-4">
@@ -44,16 +41,10 @@
 			</div>
 		</div>
 
-
 		<div class="flex justify-between items-center mb-4">
 			<h1 class="text-2xl font-bold">Liste des utilisateurs</h1>
-
-<a href="{{ path('app_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
-
-
-
-				Ajouter un utilisateurs
-
+			<a href="{{ path('app_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
+				Ajouter un utilisateur
 			</a>
 		</div>
 
@@ -64,60 +55,37 @@
 						<th class="py-2 px-4 text-left text-gray-700">N°</th>
 						<th class="py-2 px-4 text-left text-gray-700">Nom</th>
 						<th class="py-2 px-4 text-left text-gray-700">Post Nom</th>
-						<th class="py-2 px-4 text-left text-gray-700">First Nom</th>
+						<th class="py-2 px-4 text-left text-gray-700">Prénom</th>
 						<th class="py-2 px-4 text-left text-gray-700">Date de Naissance</th>
 						<th class="py-2 px-4 text-left text-gray-700">Sexe</th>
 						<th class="py-2 px-4 text-left text-gray-700">Téléphone</th>
 						<th class="py-2 px-4 text-left text-gray-700">Email</th>
-						<th class="py-2 px-4 text-left text-gray-700">Rôle</th>
-						<th class="py-2 px-4 text-left text-gray-700">Teams</th>
 						<th class="py-2 px-4 text-left text-gray-700">Numéro de Passeport</th>
-						<th class="py-2 px-4 text-left text-gray-700">Date d'Expiration</th>
-						<th class="py-2 px-4 text-left text-gray-700">Nationalité</th>
 						<th class="py-2 px-4 text-left text-gray-700">Profession</th>
-						<th class="py-2 px-4 text-left text-gray-700">Adresse</th>
-						<th class="py-2 px-4 text-left text-gray-700">Status du Démarches</th>
-						<th class="py-2 px-4 text-left text-gray-700">Date de Création</th>
-						<th class="py-2 px-4 text-left text-gray-700">Date d'Inscrit</th>
+						{# <th class="py-2 px-4 text-left text-gray-700">Adresse</th> #}
 					</tr>
 				</thead>
-<tbody>
-	{% for user in users %}
-		{% set profile = user.profile %}
-		{% set passport = profile.passport %}
-		<tr class="border-b hover:bg-gray-50">
-			<td class="py-2 px-4">{{ loop.index }}</td>
-			<td class="py-2 px-4">{{ profile.name }}</td>
-			<td class="py-2 px-4">{{ profile.postname }}</td>
-			<td class="py-2 px-4">{{ profile.firstname }}</td>
-			<td class="py-2 px-4">{{ profile.dateOfBirth ? profile.dateOfBirth|date('Y-m-d') : '' }}</td>
-			<td class="py-2 px-4">{{ profile.genre.value ?? '' }}</td>
-			<td class="py-2 px-4">{{ profile.phone }}</td>
-			<td class="py-2 px-4">{{ user.email }}</td>
-			<td class="py-2 px-4">{{ user.roles|join(', ') }}</td>
-			<td class="py-2 px-4">{{ user.teams.team }}</td>
-			<td class="py-2 px-4">{{ passport.numberPassport ?? '' }}</td>
-			<td class="py-2 px-4">{{ passport.dateExpiration ? passport.dateExpiration|date('Y-m-d') : '' }}</td>
-			<td class="py-2 px-4">{{ passport.nationalite ?? '' }}</td>
-			<td class="py-2 px-4">{{ passport.profession ?? '' }}</td>
-			<td class="py-2 px-4">{{ profile.address }}</td>
-			<td class="py-2 px-4">{{ passport.statusDemarches ?? 'Non renseigné' }}</td>
-			<td class="py-2 px-4">{{ profile.dateCreation ? profile.dateCreation|date('Y-m-d') : '' }}</td>
-			<td class="py-2 px-4">{{ profile.dateInscrit ? profile.dateInscrit|date('Y-m-d') : 'Non renseigné' }}</td>
-			<!-- Ajouter le bouton pour voir le profil -->
-			<td class="py-2 px-4">
-				<a href="{{ path('app_user_profile', { id: user.id }) }}" class="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-700">
-					Voir le profil
-				</a>
-			</td>
-		</tr>
-	{% endfor %}
-</tbody>
-
-
+				<body>
+					{% for user in users %}
+						{% set profile = user.profile %}
+						{% set passport = profile.passport %}
+						<tr class="border-b hover:bg-gray-50 cursor-pointer" role="button" tabindex="0" onclick="window.location='{{ path('app_user_profile', { id: user.id }) }}';">
+							<td class="py-2 px-4">{{ loop.index }}</td>
+							<td class="py-2 px-4">{{ profile.name }}</td>
+							<td class="py-2 px-4">{{ profile.postname }}</td>
+							<td class="py-2 px-4">{{ profile.firstname }}</td>
+							<td class="py-2 px-4">{{ profile.dateOfBirth ? profile.dateOfBirth|date('d-m-Y') : '' }}</td>
+							<td class="py-2 px-4">{{ profile.genre.value ?? '' }}</td>
+							<td class="py-2 px-4">{{ profile.phone }}</td>
+							<td class="py-2 px-4">{{ user.email }}</td>
+							<td class="py-2 px-4">{{ passport.numberPassport ?? '' }}</td>
+							<td class="py-2 px-4">{{ passport.profession ?? '' }}</td>
+							{# <td class="py-2 px-4">{{ profile.address }}</td> #}
+						</tr>
+					{% endfor %}
+				</body>
 			</table>
 		</div>
-
-
 	</div>
 {% endblock %}
+
