@@ -45,7 +45,11 @@ class EditController extends AbstractController
             );
 
             $entityManager->persist($user);
-            $entityManager->flush();
+            // $entityManager->flush();
+            $this->addFlash('success', [
+                'title' => 'Success title',
+                'message'=> 'Utilisateur à étè modifié'
+            ]);
 
             $email = (new Email())
                 ->from('mabialaelie4@gmail.com')
@@ -58,7 +62,7 @@ class EditController extends AbstractController
                 );
             $mailer->send($email);
 
-            return $this->redirectToRoute('app_coachepage');
+            return $this->redirectToRoute('app_user_profile', ['id' => $user->getId()]);
         }
 
         return $this->render('edit/index.html.twig', [

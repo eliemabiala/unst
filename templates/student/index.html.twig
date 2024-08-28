@@ -1,13 +1,8 @@
-{# templates/student/index.html.twig #}
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Mes Informations</title>
-		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-	</head>
-	<body class="bg-gray-100 font-sans flex items-center justify-center min-h-screen p-6">
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="bg-gray-100 font-sans flex items-center justify-center min-h-screen p-6">
 		<div class="w-full max-w-2xl bg-white shadow-lg rounded-lg overflow-hidden">
 			<div class="p-6">
 				<h1 class="text-3xl font-bold text-gray-900 mb-6 text-center">Mes Informations</h1>
@@ -56,6 +51,6 @@
 				</div>
 			</div>
 		</div>
-	</body>
-</html>
+	</div>
+{% endblock %}
 
