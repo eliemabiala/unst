@@ -20,6 +20,10 @@ class Step
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[ORM\ManyToOne(inversedBy: 'Step')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Documents $documents = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +49,18 @@ class Step
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDocuments(): ?Documents
+    {
+        return $this->documents;
+    }
+
+    public function setDocuments(?Documents $documents): static
+    {
+        $this->documents = $documents;
 
         return $this;
     }
