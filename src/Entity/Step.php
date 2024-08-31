@@ -20,9 +20,14 @@ class Step
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Step')]
-    #[ORM\JoinColumn(nullable: false)]
+    // #[ORM\ManyToOne(inversedBy: 'Step')]
+    // #[ORM\JoinColumn(nullable: false)]
+    // private ?Documents $documents = null;
+
+    #[ORM\ManyToOne(targetEntity: Documents::class, inversedBy: 'Step')]
+    #[ORM\JoinColumn(name: 'documents_id', nullable: true)] // Ajoutez `nullable: true`
     private ?Documents $documents = null;
+
 
     public function getId(): ?int
     {

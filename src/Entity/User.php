@@ -47,8 +47,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(targetEntity: Teams::class, inversedBy: 'users')]
     private ?Teams $teams = null;
 
-    #[ORM\ManyToOne(inversedBy: 'User')]
-    #[ORM\JoinColumn(nullable: false)]
+    // #[ORM\ManyToOne(inversedBy: 'User')]
+    // #[ORM\JoinColumn(nullable: false)]
+    // private ?Documents $documents = null;
+
+    #[ORM\ManyToOne(targetEntity: Documents::class, inversedBy: 'User')]
+    #[ORM\JoinColumn(name: 'documents_id', nullable: true)] // Ajoutez `nullable: true`
     private ?Documents $documents = null;
 
     public function __construct()
