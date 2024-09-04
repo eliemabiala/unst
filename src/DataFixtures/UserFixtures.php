@@ -48,11 +48,11 @@ class UserFixtures extends Fixture
                 throw new \RuntimeException('Profile reference not found for user with index ' . $i);
             }
 
-            // Créez et associez des documents à l'utilisateur
+            // Créez est associez des documents à l'utilisateur
             for ($j = 1; $j <= 3; $j++) {
                 $document = new Documents();
-                $document->setFileName('Document ' . $j . ' for user ' . $i); // Correction du nom de la méthode
-                $document->setFilePath('/path/to/document_' . $j . '_user_' . $i . '.txt'); // Exemple de chemin de fichier
+                $document->setFileName('Document ' . $j . ' for user ' . $i); 
+                $document->setFilePath('/path/to/document_' . $j . '_user_' . $i . '.txt'); //un chemin de fichier
                 $document->addUser($user); // Associez l'utilisateur au document
                 $manager->persist($document);
             }
