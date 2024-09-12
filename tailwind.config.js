@@ -5,7 +5,11 @@ module.exports = {
     "./templates/**/*.html.twig",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontSize: {
+        'xxs': '0.625rem', // Définir une taille de police encore plus petite
+      },
+    },
   },
   plugins: [],
 }

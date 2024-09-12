@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class AdminpageController extends AbstractController
 {
     #[Route('/adminpage', name: 'app_adminpage')]
-    #[IsGranted('ROLE_ADMIN')]
+    // #[IsGranted('ROLE_ADMIN')]
     public function index(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();

@@ -8,6 +8,8 @@ use App\Entity\Documents;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\TemporaryFile;
 
 class UserFixtures extends Fixture
 {
@@ -48,11 +50,18 @@ class UserFixtures extends Fixture
                 throw new \RuntimeException('Profile reference not found for user with index ' . $i);
             }
 
-            // Créez est associez des documents à l'utilisateur
+            // Créez et associez des documents à l'utilisateur
             for ($j = 1; $j <= 3; $j++) {
                 $document = new Documents();
-                $document->setFileName('Document ' . $j . ' for user ' . $i); 
-                $document->setFilePath('/path/to/document_' . $j . '_user_' . $i . '.txt'); //un chemin de fichier
+                $document->setFileName('Document ' . $j . ' for user ' . $i);
+
+                // Créez un fichier temporaire pour simuler un fichier téléchargé
+                $tempFile = tempnam(sys_get_temp_dir(), 'upload_');
+                file_put_contents($tempFile, 'This is the content of the file ' . $j);
+
+                $file = new File($tempFile); // Créez un objet File
+
+                $document->setFilePath($file); // Associez l'objet File au document
                 $document->addUser($user); // Associez l'utilisateur au document
                 $manager->persist($document);
             }
@@ -61,5 +70,10 @@ class UserFixtures extends Fixture
         }
 
         $manager->flush();
+
+        // Nettoyez les fichiers temporaires
+        foreach (glob(sys_get_temp_dir() . '/upload_*') as $file) {
+            unlink($file);
+        }
     }
 }

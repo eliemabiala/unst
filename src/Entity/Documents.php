@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use Symfony\Component\HttpFoundation\File\File;
 use App\Repository\DocumentsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+#[Vich\Uploadable()]
 #[ORM\Entity(repositoryClass: DocumentsRepository::class)]
 class Documents
 {
@@ -19,8 +22,8 @@ class Documents
     #[ORM\Column(length: 100)]
     private ?string $file_name = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $file_path = null;
+    #[Vich\UploadableField(mapping: "documents", fileNameProperty: "file_name")]
+    private ?File $file_path = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $download_date = null;
@@ -60,12 +63,12 @@ class Documents
         return $this;
     }
 
-    public function getFilePath(): ?string
+    public function getFilePath(): ?File
     {
         return $this->file_path;
     }
 
-    public function setFilePath(string $file_path): static
+    public function setFilePath(?File $file_path): static
     {
         $this->file_path = $file_path;
 
