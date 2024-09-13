@@ -4,68 +4,96 @@
 {% endblock %}
 
 {% block body %}
-<section class="bg-gray-100 p-8 mx-auto py-10 px-4">
-
-		<h1 class="text-3xl font-bold mb-4">NOTRE ESPACE</h1>
-		<p class="text-lg mb-4">
-			Nous sommes présents dans la région de Paris (en France) et à Kinshasa (en Rép. Démocratique du Congo). 
-						        Nous avons acquis un empan considérable grâce aux compétences et aux performances que nous avons démontrées 
-						        face à nos clients au fil des années...
-		</p>
-
-		<div class="bg-white p-6 rounded-lg shadow-md mb-8">
-			<h2 class="text-2xl font-semibold mb-2">Message de la Direction</h2>
-			<p>
-				Nous accompagnons la société via le numérique et facilitons l'accès à l'emploi pour les chômeurs et 
-								            les personnes éloignées de la vie professionnelle...
-			</p>
-		</div>
-
-		<div class="bg-white p-6 rounded-lg shadow-md">
-			<h2 class="text-2xl font-semibold mb-4">Vision et valeurs</h2>
-			<ul class="list-disc list-inside pl-5 space-y-2">
-				<li>Bienveillance</li>
-				<li>Respect</li>
-				<li>Responsabilité</li>
-				<li>Assiduité</li>
-				<li>Divertissement</li>
-			</ul>
-		</div>
-	</section>
-
-	<section class="p-8 bg-gray-50">
-		<h2 class="text-2xl font-bold mb-6">L'équipe</h2>
-		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-			<div class="bg-white p-4 rounded-lg shadow-md text-center">
-<img src="{{ asset('img/about/plamedy.png') }}" alt="Plamedy BAKU" class="w-24 h-24 object-cover mx-auto mb-2 rounded-full">
-
-
-
-				<p class="font-semibold">Plamedy BAKU</p>
-				<p>Président</p>
+	<section class="bg-gray-100 p-8 mx-auto py-10 px-4">
+		<section
+			class="container mx-auto p-8">
+			<!-- Title Section -->
+			<div class="text-center mb-8">
+				<h2 class="text-3xl font-bold">NOTRE ESPACE</h2>
+				<p class="text-lg mt-4">
+					Nous sommes présents dans la région de Paris (en France) et à Kinshasa (en Rép. Démocratique du Congo). 
+								            Nous avons acquis un empan considérable grâce aux compétences et aux performances qu’avons-nous démontrées 
+								            face à nos clients au fil des années. Nous vous assurons que vous ne serez déçus ni jamais vous nouez une 
+								            relation fiduciaire avec notre site. Certes, avec ferme assurance, nous espérons avoir un bon témoignage de 
+								            votre part après nous avoir fait confiance.
+				</p>
 			</div>
-			<div class="bg-white p-4 rounded-lg shadow-md text-center">
-<img src="{{ asset('img/about/olivier.png') }}" alt="Olivier SALA" class="w-24 h-24 object-cover mx-auto mb-2 rounded-full">
 
+			<!-- Image and Text Section -->
+			<div
+				class="grid grid-cols-1 md:grid-cols-2 gap-0">
+				<!-- Left Image -->
+				<div class="relative">
+					<img src="{{ asset('img/about/equipe.png') }}" alt="Directeur" class="w-full h-auto">
+				</div>
 
-
-				<p class="font-semibold">Olivier SALA</p>
-				<p>Directeur Général</p>
+				<!-- Right Text Content -->
+				<div class="flex flex-col justify-center bg-[#14213D] p-6  text-white">
+					<h3 class="text-xl font-bold mb-4">Message de la Direction</h3>
+					<p>
+						Nous accompagnons la société via le numérique et facilitons l'accès à l'emploi pour les chômeurs 
+										                et les personnes éloignées de la vie professionnelle. Nous vulgarisons les connaissances dans divers 
+										                domaines et aidons les étudiants à concrétiser leurs projets d'études en Europe. Nous offrons une 
+										                médiathèque et une librairie en ligne, ainsi qu'un Centre de Coaching d'études pour les inscriptions 
+										                universitaires et l'obtention de visas.
+					</p>
+				</div>
 			</div>
-			<div class="bg-white p-4 rounded-lg shadow-md text-center">
-<img src="{{ asset('img/about/julien.png') }}" alt="Julien KIALA" class="w-24 h-24 object-cover mx-auto mb-2 rounded-full">
 
+			<!-- Vision and Values Section -->
+			<div
+				class="grid grid-cols-1 md:grid-cols-2 gap-0 mt-8">
+				<!-- Vision and Values -->
+				<div class="flex flex-col justify-center bg-[#14213D] p-6 text-white">
+					<h3 class="text-xl font-bold mb-4">Vision et valeurs</h3>
+					<ul class="list-disc pl-5">
+						<li>Bienveillance</li>
+						<li>Respect</li>
+						<li>Responsabilité</li>
+						<li>Assiduité</li>
+						<li>Divertissement</li>
+					</ul>
+				</div>
 
-				<p class="font-semibold">Julien KIALA</p>
-				<p>DGD, Rlt et Adm</p>
+				<!-- Team Image -->
+				<div class="relative">
+					<img src="{{ asset('img/about/equipes.png') }}" alt="Équipe" class=" w-full h-auto">
+				</div>
 			</div>
-			<div class="bg-white p-4 rounded-lg shadow-md text-center">
-<img src="{{ asset('img/about/ephraim.png') }}" alt="Ephraim KABELUA" class="w-24 h-24 object-cover mx-auto mb-2 rounded-full">
+		</section>
 
 
-				<p class="font-semibold">Ephraim KABELUA</p>
-				<p>Technique et logistique</p>
+		<section class="p-8 bg-gray-50">
+			<h2 class="text-2xl font-bold mb-6">L'équipe</h2>
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+				<div class="bg-white p-4 rounded-lg shadow-md text-center">
+					<img src="{{ asset('img/about/plamedy.png') }}" alt="Plamedy BAKU" class="w-24 h-24 object-cover mx-auto mb-2 rounded-full">
+
+
+					<p class="font-semibold">Plamedy BAKU</p>
+					<p>Président</p>
+				</div>
+				<div class="bg-white p-4 rounded-lg shadow-md text-center">
+					<img src="{{ asset('img/about/olivier.png') }}" alt="Olivier SALA" class="w-24 h-24 object-cover mx-auto mb-2 rounded-full">
+
+
+					<p class="font-semibold">Olivier SALA</p>
+					<p>Directeur Général</p>
+				</div>
+				<div class="bg-white p-4 rounded-lg shadow-md text-center">
+					<img src="{{ asset('img/about/julien.png') }}" alt="Julien KIALA" class="w-24 h-24 object-cover mx-auto mb-2 rounded-full">
+
+
+					<p class="font-semibold">Julien KIALA</p>
+					<p>DGD, Rlt et Adm</p>
+				</div>
+				<div class="bg-white p-4 rounded-lg shadow-md text-center">
+					<img src="{{ asset('img/about/ephraim.png') }}" alt="Ephraim KABELUA" class="w-24 h-24 object-cover mx-auto mb-2 rounded-full">
+
+
+					<p class="font-semibold">Ephraim KABELUA</p>
+					<p>Technique et logistique</p>
+				</div>
 			</div>
-		</div>
-	</section>
-{% endblock %}
+		</section>
+	{% endblock %}
