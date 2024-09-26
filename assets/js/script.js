@@ -1,17 +1,14 @@
 let burger = document.querySelector(".burger");
-let navLinks = document.querySelector(".nav_links");
+let burgMenu = document.querySelector(".burg");
 
-let burg = document.querySelector(".burg")
-burg.style.display = "none";
+// Initialement, on cache le menu burger
+burgMenu.style.display = "none";
+
 burger.addEventListener('click', function () {
-    // console.log('hhhh');
-
-    if (burg.style.display === "none" ) {
-        burg.style.display = "block";
-        console.log('display_block');
+    // Toggle entre l'affichage et le masquage du menu
+    if (burgMenu.style.display === "none") {
+        burgMenu.style.display = "block";
     } else {
-        burg.style.display = "none";
-        console.log('display_non');
+        burgMenu.style.display = "none";
     }
-console.log('je bien cliquer');
 });
