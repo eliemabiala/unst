@@ -2,6 +2,13 @@
 
 {% block title %}Faq
 {% endblock %}
+{% block javascripts %}
+		{{ importmap('faq') }}
+{{ importmap('app') }}
+
+
+{% endblock %}
+
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('styles/faq.css') }}">

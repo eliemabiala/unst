@@ -9,11 +9,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
-    public function index(Request $request, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
         // Création d'un nouvel objet Contact
         $contact = new Contact();
@@ -26,11 +28,22 @@ class ContactController extends AbstractController
 
         // Vérification si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
-            // La date de création est déjà définie dans l'entité via le constructeur
-
             // Sauvegarde du contact en base de données
             $entityManager->persist($contact);
             $entityManager->flush();
+
+            // Création de l'email
+            $email = (new Email())
+                ->from('mabialaelie4@gmail.com')
+                ->to('endiepro4@gmail.com')
+                ->subject('Nouveau utilisateur ajouté')
+                ->text('Vous avez un nouveau message.')
+                ->html($this->renderView('emails\notificationcotact.html.twig', [
+                    'contact' => $contact
+                ]));
+
+            // Envoi de l'email
+            $mailer->send($email);
 
             // Ajout d'un message flash de succès
             $this->addFlash('success', 'Votre message a bien été envoyé.');

@@ -8,6 +8,15 @@ return [
         'path' => './assets/js/faq.js',
         'entrypoint' => true, 
     ],
+    'burger' => [
+        'path' => './assets/js/script.js',
+        'entrypoint' => true,
+    ],
+
+    'footer' => [
+        'path' => './assets/js/footer.js',
+        'entrypoint' => true,
+    ],
 
     '@hotwired/stimulus' => [
         'version' => '3.2.2',

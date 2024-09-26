@@ -2,10 +2,22 @@
 
 {% block title %}Accueil
 {% endblock %}
+{% block javascripts %}
+	{{ importmap('burger') }}
+
+	{{ importmap('app') }}
+
+{% endblock %}
+
+
+{# {% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('styles/faq.css') }}">
+{% endblock %} #}
+
 
 {% block body %}
 	<body
-		class="bg-gray-100 p-4 sm:p-8 md:px-2">
+		class="bg-gray-100 ">
 
 
 		<!-- GIF Section -->
@@ -48,7 +60,7 @@
 				</div>
 
 				<!-- Text Block -->
-<div class="flex flex-col justify-center text-left order-2 md:order-1">
+				<div class="flex flex-col justify-center text-left order-2 md:order-1">
 
 
 					<p class="text-base sm:text-lg mb-4">
