@@ -1,83 +1,91 @@
 <header class="header">
-	<nav id="nav_header" class="nav_header">
-		<div class="logo">
-			<img src="{{ asset('img/home/logo.png') }}" alt="Logo du site">
-		</div>
+    <nav id="nav_header" class="nav_header">
+        <div class="logo">
+            <img src="{{ asset('img/home/logo.png') }}" alt="Logo du site">
+        </div>
 
-		<div class="burger">
-			<img src="{{ asset('img/picture/burger.png') }}" alt="menu burger">
-		</div>
+        <div class="burger">
+            <img src="{{ asset('img/picture/burger.png') }}" alt="menu burger">
+        </div>
 
+        <div class="nav_links_container">
+            <ul id="main-nav" class="nav_links">
+                <li>
+                    <a class="nav_link" href="{{ path('home') }}">Accueil</a>
+                </li>
+                <li>
+                    <a class="nav_link" href="{{ path('app_service') }}">Services</a>
+                </li>
+                <li>
+                    <a class="nav_link" href="{{ path('app_about') }}">À propos</a>
+                </li>
+                <li>
+                    <a class="nav_link" href="{{ path('app_faq') }}">FAQ</a>
+                </li>
+                <li>
+                    <a class="nav_link" href="{{ path('app_contact') }}">Contact</a>
+                </li>
 
+                {% if app.user %}
+                    {% if 'ROLE_ADMIN' in app.user.roles %}
+                        <li>
+                            <a class="nav_link" href="{{ path('app_adminpage') }}">Espace Admin</a>
+                        </li>
+                    {% elseif 'ROLE_COACH' in app.user.roles %}
+                        <li>
+                            <a class="nav_link" href="{{ path('app_coachepage') }}">Espace COACH</a>
+                        </li>
+                    {% elseif 'ROLE_USER' in app.user.roles %}
+                        <li>
+                            <a class="nav_link" href="{{ path('app_student') }}">Espace Étudiant</a>
+                        </li>
+                    {% endif %}
+                    <button class="nav_button" onclick="window.location.href='{{ path('app_logout') }}'">Déconnexion</button>
+                {% else %}
+                    <button class="nav_button" onclick="window.location.href='{{ path('app_login') }}'">Se connecter</button>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
 
+    <nav class="burg">
+        <div class="burger-menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="{{ path('home') }}">Accueil</a>
+            </li>
+            <li>
+                <a href="{{ path('app_about') }}">À propos</a>
+            </li>
+            <li>
+                <a href="{{ path('app_service') }}">Services</a>
+            </li>
+            <li>
+                <a href="{{ path('app_contact') }}">Contact</a>
+            </li>
+{% if app.user %}
+	{% if 'ROLE_ADMIN' in app.user.roles %}
+		<li>
+			<a class="nav_link" href="{{ path('app_adminpage') }}">Espace Admin</a>
+		</li>
+	{% elseif 'ROLE_COACH' in app.user.roles %}
+		<li>
+			<a class="nav_link" href="{{ path('app_coachepage') }}">Espace COACH</a>
+		</li>
+	{% elseif 'ROLE_USER' in app.user.roles %}
+		<li>
+			<a class="nav_link" href="{{ path('app_student') }}">Espace Étudiant</a>
+		</li>
+	{% endif %}
+	<button class="nav_button" onclick="window.location.href='{{ path('app_logout') }}'">Déconnexion</button>
+{% else %}
+	<button class="nav_button" onclick="window.location.href='{{ path('app_login') }}'">Se connecter</button>
+{% endif %}</ul></div>
 
-
-
-		<div class="nav_links_container">
-			<ul id="main-nav" class="nav_links">
-				<li>
-					<a class="nav_link" href="{{ path('home') }}">Accueil</a>
-				</li>
-				<li>
-					<a class="nav_link" href="{{ path('app_service') }}">Services</a>
-				</li>
-				<li>
-					<a class="nav_link" href="{{ path('app_about') }}">À propos</a>
-				</li>
-				<li>
-					<a class="nav_link" href="{{ path('app_faq') }}">FAQ</a>
-				</li>
-				<li>
-					<a class="nav_link" href="{{ path('app_contact') }}">Contact</a>
-				</li>
-
-				{% if app.user %}
-					{% if 'ROLE_ADMIN' in app.user.roles %}
-						<li>
-							<a class="nav_link" href="{{ path('app_adminpage') }}">Espace Admin</a>
-						</li>
-					{% elseif 'ROLE_COACH' in app.user.roles %}
-						<li>
-							<a class="nav_link" href="{{ path('app_coachepage') }}">Espace COACH</a>
-						</li>
-					{% elseif 'ROLE_USER' in app.user.roles %}
-						<li>
-							<a class="nav_link" href="{{ path('app_student') }}">Espace Étudiant</a>
-						</li>
-					{% endif %}
-					<button class="nav_button" onclick="window.location.href='{{ path('app_logout') }}'">Déconnexion</button>
-				{% else %}
-					<button class="nav_button" onclick="window.location.href='{{ path('app_login') }}'">Se connecter</button>
-				{% endif %}
-			</ul>
-		</div>
-	</nav>
-
-
-
-
+        </ul>
+    </nav>
 </header>
-
-
-<nav class="burg">
-	<div class="burger-menu">
-		<div class="line"></div>
-		<div class="line"></div>
-		<div class="line"></div>
-	</div>
-	<ul class="nav-links">
-		<li>
-			<a href="#">Accueil</a>
-		</li>
-		<li>
-			<a href="#">À propos</a>
-		</li>
-		<li>
-			<a href="#">Services</a>
-		</li>
-		<li>
-			<a href="#">Contact</a>
-		</li>
-	</ul>
-</nav>
-

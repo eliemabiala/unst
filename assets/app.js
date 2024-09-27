@@ -9,4 +9,6 @@ import './styles/app.css';
 import './styles/header.css';
 import './styles/footer.css';
 
+import './js/faq.js'
+import './js/script.js'
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

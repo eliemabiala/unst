@@ -3,7 +3,6 @@
 {% block title %}Accueil
 {% endblock %}
 {% block javascripts %}
-	{{ importmap('burger') }}
 
 	{{ importmap('app') }}
 
@@ -22,10 +21,11 @@
 
 		<!-- GIF Section -->
 		<div
-			class="relative mb-8">
+			class="relative mb-20">
 			<!-- GIF Image -->
 			<div class="relative">
-				<img src="{{ asset('img/home/ombre.gif') }}" alt="GIF animé" class="w-full h-auto object-cover">
+<img src="{{ asset('img/home/ombre.png') }}" alt="GIF animé" class="w-full h-auto object-cover">
+
 			</div>
 
 			<!-- Centered Text on GIF -->

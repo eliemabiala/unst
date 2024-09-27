@@ -9,8 +9,10 @@ burger.addEventListener('click', function () {
     if (burg.style.display === "none" ) {
         burg.style.display = "block";
         console.log('display_block');
+        document.body.style.overflow = "hidden";
     } else {
         burg.style.display = "none";
+         document.body.style.overflow = "";
         console.log('display_non');
     }
 console.log('je bien cliquer');

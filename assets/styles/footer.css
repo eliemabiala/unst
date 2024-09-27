@@ -1,66 +1,76 @@
-body {
-    background-color: #f7fafc; /* bg-gray-100 */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+footer {
+    background-color: #0E1A32;
+    color: #fff;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
 }
 
-.footer {
-    background-color: rgba(20, 33, 61, 1); /* bg-[rgba(20,33,61,1)] */
-    color: white;
-    padding: 20px 5%;
-    text-align: center;
-    margin-top: auto; /* S'assure que le footer soit toujours en bas */
-}
-
-.container {
+.footer-container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin: auto;
+    text-align: left;
     max-width: 1200px;
-    padding: 20px 0;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.section {
-    margin-bottom: 20px;
-    flex-basis: 30%; /* Gère l'espace pris par chaque section */
+.footer-section {
+    margin: 10px;
+    flex: 1;
+    min-width: 220px;
 }
 
-.logo {
-    width: 96px; /* w-24 */
-    margin-bottom: 16px; /* mb-4 */
+.footer-logo {
+    max-width: 60px;
 }
 
-h5 {
-    font-weight: bold;
-    margin-bottom: 8px; /* mb-2 */
+.footer-section h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+.footer-section p {
+    margin: 5px 0;
 }
 
-ul li {
-    margin-bottom: 8px; /* space-y-2 */
-}
+.footer-section a {
 
-a {
-    color: white;
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
-}
 
-.address {
-    font-size: small;
-    line-height: 1.5;
-}
+@media (max-width: 825px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
 
-.copyright {
-    font-size: small;
-    margin-top: 20px; /* Plus d'espace en haut */
+        text-align: center;
+
+    }
+
+    .logo img {
+        height: 30px;
+        margin-bottom: 20px;
+
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+
+
+    h3 {
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    p,
+    a {
+        font-size: 10px;
+    }
 }

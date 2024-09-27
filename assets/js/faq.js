@@ -1,6 +1,6 @@
 let questions = document.querySelectorAll('.faq-question');
 let faqAnswer = document.querySelectorAll('.faqAnswer');
-// Initialise une variable pour stocker la question actuellement affichée
+
 let n = "";
 questions.forEach(function (question) {
 
