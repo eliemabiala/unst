@@ -2,44 +2,32 @@
 
 {% block title %}Accueil
 {% endblock %}
+
 {% block javascripts %}
-
 	{{ importmap('app') }}
-
 {% endblock %}
-
-
-{# {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('styles/faq.css') }}">
-{% endblock %} #}
-
 
 {% block body %}
 	<body
-		class="bg-gray-100 ">
-
-
-		<!-- GIF Section -->
-		<div
-			class="relative mb-20">
-			<!-- GIF Image -->
-			<div class="relative">
-<img src="{{ asset('img/home/ombre.png') }}" alt="GIF animé" class="w-full h-auto object-cover">
-
-			</div>
-
-			<!-- Centered Text on GIF -->
-			<div class="absolute inset-0 flex items-center justify-center p-4 sm:p-6 md:p-10">
-				<div class="bg-white bg-opacity-50 p-4 rounded-lg text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
-					Profitez d’un accompagnement efficace et d’un<br>
-					coaching sur-mesure qui vous font prendre des ailes.
-				</div>
-			</div>
+		class="bg-gray-100">
+<div class="relative mb-20 mt-10">
+	<!-- Ajoutez ici mt-10 ou une autre classe Tailwind -->
+	<!-- GIF Image -->
+		<div class="relative"> <img src="{{ asset('img/home/ombre.png') }}" alt="GIF animé" class="w h-auto object-cover">
+	</div>
+	<!-- Centered Text on GIF -->
+	<div class="absolute inset-0 flex items-center justify-center p-4 sm:p-6 md:p-10">
+		<div class="bg-white bg-opacity-50 p-4 rounded-lg text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
+			Profitez d’un accompagnement efficace et d’un<br>
+			coaching sur-mesure qui vous font prendre des ailes.
 		</div>
+	</div>
+</div>
+
+
 
 		<!-- Main Section: Accompaniment for International Travel -->
-		<section class="container mx-auto text-center md:px-5">
-
+		<section class="container mx-auto text-center px-4 md:px-5">
 			<h1 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">ACCOMPAGNEMENT POUR LE VOYAGE À L'INTERNATIONAL</h1>
 
 			<!-- Grid Layout for Image and Text -->
@@ -48,21 +36,16 @@
 				<!-- First Block: Image and Button -->
 				<div
 					class="relative flex flex-col md:flex-row order-1 md:order-2">
-
 					<!-- Image -->
 					<img
 					src="{{ asset('img/home/img1.png') }}" alt="Voyage pour raison d'études" class="rounded-lg mb-4 md:mb-0">
-
 					<!-- Button -->
 					<a href="#" class="absolute bottom-0 left-0 w-full bg-blue-900 text-white font-semibold py-4 px-4 rounded-b-lg hover:bg-blue-700 text-center">
 						Voyage pour raison d’études &gt;
 					</a>
 				</div>
-
 				<!-- Text Block -->
 				<div class="flex flex-col justify-center text-left order-2 md:order-1">
-
-
 					<p class="text-base sm:text-lg mb-4">
 						Obtenez un accompagnement complet, sécurisé et confidentiel dans vos démarches de voyage à l’international. Nous construisons avec vous votre projet de voyage et vous accompagnons pas à pas jusqu’à la réalisation de votre rêve.
 					</p>
@@ -76,13 +59,11 @@
 					<!-- Image -->
 					<img
 					src="{{ asset('img/home/img2.png') }}" alt="Voyage pour l’emploi" class="rounded-lg mb-4 md:mb-0">
-
 					<!-- Button -->
 					<a href="#" class="absolute bottom-0 left-0 w-full bg-blue-900 text-white font-semibold py-4 px-4 rounded-b-lg hover:bg-blue-700 text-center">
 						Voyage pour l’emploi &gt;
 					</a>
 				</div>
-
 				<!-- Second Text Block -->
 				<div class="flex flex-col justify-center text-left">
 					<p class="text-base sm:text-lg mb-4">
@@ -93,8 +74,7 @@
 		</section>
 
 		<!-- Additional Information Section -->
-		<section class="container mx-auto text-center mb-12 md:px-5">
-
+		<section class="container mx-auto text-center mb-12 px-4 md:px-5">
 			<p class="text-base sm:text-lg mb-4">
 				Pour vous informer sur le pays ou la ville correspondant à votre projet, nous vous fournissons les détails sur le coût de vie, le logement, les frais de scolarité (si voyage pour études), transports, frais liés aux formalités administratives,...
 			</p>
@@ -102,16 +82,14 @@
 		</section>
 
 		<!-- Image Section -->
-		<section class="container mx-auto text-center mb-12 md:px-5">
-
+		<section class="container mx-auto text-center mb-12 px-4 md:px-5">
 			<img src="{{ asset('img/home/biblotheque.png') }}" alt="Conseillers" class="rounded-lg mb-4 mx-auto">
 		</section>
 
 		<!-- Services Section -->
-		<section class="bg-blue-900 text-white py-16 md:px-5">
-
+		<section class="bg-blue-900 text-white py-16 px-4 md:px-5">
 			<div
-				class="container mx-auto px-4 sm:px-6 md:px-8">
+				class="container mx-auto">
 				<!-- Section Title -->
 				<h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-8 sm:mb-12 tracking-wide uppercase">
 					Tous Les Services De Notre Entreprise
@@ -164,6 +142,6 @@
 				</div>
 			</div>
 		</section>
-
 	</body>
 {% endblock %}
+

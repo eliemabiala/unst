@@ -4,11 +4,9 @@
 {% endblock %}
 
 {% block body %}
-
-
 	<div class="container mx-auto px-4 py-6">
 		<div
-			class="grid grid-cols-3 gap-4 mb-4">
+			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
 			<!-- Admin Card -->
 			<div class="bg-gray-200 rounded-lg shadow-md p-2 flex items-center">
 				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
@@ -43,23 +41,19 @@
 			</div>
 		</div>
 
-		<div class="flex justify-between items-center mb-4">
-			<h1 class="text-2xl font-bold">Liste des utilisateurs</h1>
-			<a href="{{ path('app_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
-				Messager
-			</a>
-<a href="{{ path('app_documents_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
-
-
-Documents envoyés
-
-
-</a>
-
-
-			<a href="{{ path('app_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
-				Ajouter un utilisateur
-			</a>
+		<div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+			<h1 class="text-2xl font-bold mb-4 sm:mb-0">Liste des utilisateurs</h1>
+			<div class="flex space-x-2">
+				<a href="{{ path('app_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
+					Messager
+				</a>
+				<a href="{{ path('app_documents_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
+					Documents envoyés
+				</a>
+				<a href="{{ path('app_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
+					Ajouter un utilisateur
+				</a>
+			</div>
 		</div>
 
 		<div class="overflow-x-auto max-h-96">
@@ -76,10 +70,9 @@ Documents envoyés
 						<th class="py-2 px-4 text-left text-gray-700">Email</th>
 						<th class="py-2 px-4 text-left text-gray-700">Numéro de Passeport</th>
 						<th class="py-2 px-4 text-left text-gray-700">Profession</th>
-						{# <th class="py-2 px-4 text-left text-gray-700">Adresse</th> #}
 					</tr>
 				</thead>
-				<body>
+				<tbody>
 					{% for user in users %}
 						{% set profile = user.profile %}
 						{% set passport = profile.passport %}
@@ -94,11 +87,11 @@ Documents envoyés
 							<td class="py-2 px-4">{{ user.email }}</td>
 							<td class="py-2 px-4">{{ passport.numberPassport ?? '' }}</td>
 							<td class="py-2 px-4">{{ passport.profession ?? '' }}</td>
-							{# <td class="py-2 px-4">{{ profile.address }}</td> #}
 						</tr>
 					{% endfor %}
-				</body>
+				</tbody>
 			</table>
 		</div>
 	</div>
 {% endblock %}
+

@@ -11,4 +11,5 @@ import './styles/footer.css';
 
 import './js/faq.js'
 import './js/script.js'
+import './js/footer.js'
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
