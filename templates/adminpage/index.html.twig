@@ -4,11 +4,14 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mx-auto px-4 py-6">
-		<div
-			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-			<!-- Admin Card -->
-			<div class="bg-gray-200 rounded-lg shadow-md p-2 flex items-center">
+	<!-- Container principal avec espacement supérieur ajusté -->
+	<div class="container mx-auto px-4 py-8 mt-20 md:mt-16 lg:mt-24">
+		<!-- Espacement supérieur ajouté ici -->
+
+		<!-- Statistiques des effectifs -->
+			<div
+			class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8"> <!-- Admin Card -->
+			<div class="bg-gray-200 rounded-lg shadow-md p-4 flex items-center">
 				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
 					<img src="{{ asset('img/admin/iconadmin.png') }}" alt="Icon Admin" class="w-8 h-8">
 				</div>
@@ -19,7 +22,7 @@
 			</div>
 
 			<!-- User Card -->
-			<div class="bg-gray-200 rounded-lg shadow-md p-2 flex items-center">
+			<div class="bg-gray-200 rounded-lg shadow-md p-4 flex items-center">
 				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
 					<img src="{{ asset('img/admin/iconuser.png') }}" alt="Icon User" class="w-8 h-8">
 				</div>
@@ -30,7 +33,7 @@
 			</div>
 
 			<!-- Coach Card -->
-			<div class="bg-gray-200 rounded-lg shadow-md p-2 flex items-center">
+			<div class="bg-gray-200 rounded-lg shadow-md p-4 flex items-center">
 				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
 					<img src="{{ asset('img/admin/iconcoache.png') }}" alt="Icon Coach" class="w-8 h-8">
 				</div>
@@ -41,35 +44,41 @@
 			</div>
 		</div>
 
-		<div class="flex flex-col sm:flex-row justify-between items-center mb-4">
-			<h1 class="text-2xl font-bold mb-4 sm:mb-0">Liste des utilisateurs</h1>
-			<div class="flex space-x-2">
-				<a href="{{ path('app_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
-					Messager
-				</a>
-				<a href="{{ path('app_documents_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
-					Documents envoyés
-				</a>
-				<a href="{{ path('app_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
-					Ajouter un utilisateur
-				</a>
-			</div>
-		</div>
+		<!-- En-tête et boutons d'action -->
+<div class="flex space-x-5 flex-col sm:flex-row justify-between items-center mb-6">
 
+	<h1 class="text-2xl font-bold mb-4 sm:mb-0 order-2 sm:order-1">Liste des utilisateurs</h1>
+	<!-- Ajustement ici -->
+	<div class="flex space-x-2 order-1 sm:order-2">
+		<a href="{{ path('app_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Messager
+		</a>
+		<a href="{{ path('app_documents_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Documents envoyés
+		</a>
+		<a href="{{ path('app_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Ajouter un utilisateur
+		</a>
+	</div>
+</div>
+
+
+
+		<!-- Tableau des utilisateurs avec overflow responsive -->
 		<div class="overflow-x-auto max-h-96">
 			<table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
 				<thead class="bg-gray-100 sticky top-0 z-10">
 					<tr class="border-b">
-						<th class="py-2 px-4 text-left text-gray-700">N°</th>
-						<th class="py-2 px-4 text-left text-gray-700">Nom</th>
-						<th class="py-2 px-4 text-left text-gray-700">Post Nom</th>
-						<th class="py-2 px-4 text-left text-gray-700">Prénom</th>
-						<th class="py-2 px-4 text-left text-gray-700">Date de Naissance</th>
-						<th class="py-2 px-4 text-left text-gray-700">Sexe</th>
-						<th class="py-2 px-4 text-left text-gray-700">Téléphone</th>
-						<th class="py-2 px-4 text-left text-gray-700">Email</th>
-						<th class="py-2 px-4 text-left text-gray-700">Numéro de Passeport</th>
-						<th class="py-2 px-4 text-left text-gray-700">Profession</th>
+						<th class="py-4 px-4 text-left text-gray-700">N°</th>
+						<th class="py-4 px-4 text-left text-gray-700">Nom</th>
+						<th class="py-4 px-4 text-left text-gray-700">Post Nom</th>
+						<th class="py-4 px-4 text-left text-gray-700">Prénom</th>
+						<th class="py-4 px-4 text-left text-gray-700">Date de Naissance</th>
+						<th class="py-4 px-4 text-left text-gray-700">Sexe</th>
+						<th class="py-4 px-4 text-left text-gray-700">Téléphone</th>
+						<th class="py-4 px-4 text-left text-gray-700">Email</th>
+						<th class="py-4 px-4 text-left text-gray-700">Numéro de Passeport</th>
+						<th class="py-4 px-4 text-left text-gray-700">Profession</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -4,85 +4,106 @@
 {% endblock %}
 
 {% block body %}
-
 	{% for label, messages in app.flashes %}
 		{% for message in messages %}
 			{% include '_notification.html.twig' %}
-
 		{% endfor %}
 	{% endfor %}
 
+	<div
+		class="container mx-auto px-4 py-12 mt-8">
+		<!-- Marge supérieure ajoutée ici -->
+		<h1 class="text-3xl font-bold mb-6 text-center text-[#14213D]">Profil de l'utilisateur</h1>
+		<!-- Couleur et taille du titre -->
 
-	<div class="container mx-auto px-4 py-6">
-		<h1 class="text-2xl font-bold mb-4">Profil de l'utilisateur</h1>
-
-		<div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-			<p>
-				<strong>Nom :</strong>
-				{{ user.profile.name }}</p>
-			<p>
-				<strong>Post Nom :</strong>
-				{{ user.profile.postname }}</p>
-			<p>
-				<strong>Prénom :</strong>
-				{{ user.profile.firstname }}</p>
-			<p>
-				<strong>Date de naissance :</strong>
-				{{ user.profile.dateOfBirth ? user.profile.dateOfBirth|date('d-m-Y') : 'Non renseigné' }}</p>
+		<div
+			class="bg-gray-100 p-6 rounded-lg shadow-lg space-y-4">
+			<!-- Espace entre les paragraphes -->
+			{% set labelColor = '#14213D' %}
+			<!-- Couleur pour les labels -->
+			{% set valueColor = 'text-gray-800' %}
+			<!-- Couleur pour les valeurs avec une nuance plus foncée -->
 
 			<p>
-				<strong>Sexe :</strong>
-				{{ user.profile.genre.value ?? 'Non renseigné' }}</p>
+				<strong class="text-[#14213D]">Nom :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.name }}</span>
+			</p>
 			<p>
-				<strong>Téléphone :</strong>
-				{{ user.profile.phone }}</p>
+				<strong class="text-[#14213D]">Post Nom :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.postname }}</span>
+			</p>
 			<p>
-				<strong>Email :</strong>
-				{{ user.email }}</p>
+				<strong class="text-[#14213D]">Prénom :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.firstname }}</span>
+			</p>
 			<p>
-				<strong>Rôle :</strong>
-				{{ user.roles|join(', ') }}</p>
+				<strong class="text-[#14213D]">Date de naissance :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.dateOfBirth ? user.profile.dateOfBirth|date('d-m-Y') : 'Non renseigné' }}</span>
+			</p>
 			<p>
-				<strong>Équipe :</strong>
-				{{ user.teams.team }}</p>
+				<strong class="text-[#14213D]">Sexe :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.genre.value ?? 'Non renseigné' }}</span>
+			</p>
 			<p>
-				<strong>Numéro de Passeport :</strong>
-				{{ user.profile.passport.numberPassport ?? 'Non renseigné' }}</p>
+				<strong class="text-[#14213D]">Téléphone :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.phone }}</span>
+			</p>
 			<p>
-				<strong>Date d'expiration :</strong>
-				{{ user.profile.passport.dateExpiration ? user.profile.passport.dateExpiration|date('d-m-Y') : 'Non renseigné' }}</p>
-
+				<strong class="text-[#14213D]">Email :</strong>
+				<span class="{{ valueColor }}">{{ user.email }}</span>
+			</p>
 			<p>
-				<strong>Nationalité :</strong>
-				{{ user.profile.passport.nationalite ?? 'Non renseigné' }}</p>
+				<strong class="text-[#14213D]">Rôle :</strong>
+				<span class="{{ valueColor }}">{{ user.roles|join(', ') }}</span>
+			</p>
 			<p>
-				<strong>Profession :</strong>
-				{{ user.profile.passport.profession ?? 'Non renseigné' }}</p>
+				<strong class="text-[#14213D]">Équipe :</strong>
+				<span class="{{ valueColor }}">{{ user.teams.team }}</span>
+			</p>
 			<p>
-				<strong>Adresse :</strong>
-				{{ user.profile.address }}</p>
+				<strong class="text-[#14213D]">Numéro de Passeport :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.passport.numberPassport ?? 'Non renseigné' }}</span>
+			</p>
 			<p>
-				<strong>Status des démarches :</strong>
-				{{ user.profile.passport.statusDemarches ?? 'Non renseigné' }}</p>
+				<strong class="text-[#14213D]">Date d'expiration :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.passport.dateExpiration ? user.profile.passport.dateExpiration|date('d-m-Y') : 'Non renseigné' }}</span>
+			</p>
 			<p>
-				<strong>Date de création :</strong>
-				{{ user.profile.dateCreation ? user.profile.dateCreation|date('d-m-Y') : 'Non renseigné' }}</p>
-
+				<strong class="text-[#14213D]">Nationalité :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.passport.nationalite ?? 'Non renseigné' }}</span>
+			</p>
 			<p>
-				<strong>Date d'inscription :</strong>
-				{{ user.profile.dateInscrit ? user.profile.dateInscrit|date('d-m-Y') : 'Non renseigné' }}</p>
-
+				<strong class="text-[#14213D]">Profession :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.passport.profession ?? 'Non renseigné' }}</span>
+			</p>
+			<p>
+				<strong class="text-[#14213D]">Adresse :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.address }}</span>
+			</p>
+			<p>
+				<strong class="text-[#14213D]">Status des démarches :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.passport.statusDemarches ?? 'Non renseigné' }}</span>
+			</p>
+			<p>
+				<strong class="text-[#14213D]">Date de création :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.dateCreation ? user.profile.dateCreation|date('d-m-Y') : 'Non renseigné' }}</span>
+			</p>
+			<p>
+				<strong class="text-[#14213D]">Date d'inscription :</strong>
+				<span class="{{ valueColor }}">{{ user.profile.dateInscrit ? user.profile.dateInscrit|date('d-m-Y') : 'Non renseigné' }}</span>
+			</p>
 		</div>
 
-		<div class="mt-4 flex justify-between">
-			<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
-				Retour à Espace Admin
+		<div
+			class="mt-6 flex flex-col sm:flex-row justify-between items-center">
+			<!-- Flex pour aligner les boutons -->
+			<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300 mb-2 sm:mb-0">
+				Retour 
 			</a>
-			<a href="{{ path('app_edit', { id: user.id }) }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
+			<a href="{{ path('app_edit', { id: user.id }) }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
 				Modifier le Profil
 			</a>
 		</div>
-
-
 	</div>
 {% endblock %}
+

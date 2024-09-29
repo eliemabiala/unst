@@ -30,7 +30,7 @@ class RegistrationType extends AbstractType
             ])
             ->add('teams', EntityType::class, [
                 'class' => Teams::class,
-                'choice_label' => 'team', // Assuming 'team' is the property in Teams entity
+                'choice_label' => 'team', 
                 'label' => 'Team',
                 'placeholder' => '-- Sélectionnez une équipe --',
             ])
