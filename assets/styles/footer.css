@@ -15,20 +15,41 @@ footer {
     padding: 0 20px;
 }
 
-.footer-section {
-    margin: 10px;
-    flex: 1;
-    min-width: 220px;
+.logo img {
+    max-width: 100px;
+    /* Adjust size as needed */
 }
 
-.footer-logo {
-    max-width: 60px;
+.faq-section {
+    width: 100%;
+    margin-bottom: 15px;
 }
 
-.footer-section h4 {
+.question {
+    display: flex;
+    align-items: center;
+    /* Align text and icon */
+    cursor: pointer;
+    /* Change cursor to pointer */
+}
+
+.toggle-icon {
+    width: 20px;
+    /* Adjust size of the toggle icon */
+    margin-left: 10px;
+    /* Space between text and icon */
+}
+
+.footAnswer {
+    display: none;
+    /* Hide answers initially */
+    margin-top: 10px;
+    /* Space above the answer */
+}
+
+.footer-section h3 {
     font-size: 16px;
     margin-bottom: 10px;
-
 }
 
 .footer-section p {
@@ -36,41 +57,30 @@ footer {
 }
 
 .footer-section a {
-
+    color: #fff;
+    /* Ensure links are visible */
     text-decoration: none;
 }
 
+.footer-section a:hover {
+    text-decoration: underline;
+    /* Add a hover effect for links */
+}
 
+/* Responsive Styles */
 @media (max-width: 825px) {
     .footer-container {
         flex-direction: column;
         align-items: center;
-
         text-align: center;
-
     }
 
-    .logo img {
-        height: 30px;
-        margin-bottom: 20px;
-
+    .toggle-icon {
+        height: 20px;
+        /* Adjust icon size for mobile */
     }
 
-    .footer-section {
-        margin-bottom: 20px;
+    .faq-section {
         width: 100%;
-        text-align: center;
-    }
-
-
-
-    h3 {
-        font-size: 15px;
-        font-weight: bold;
-    }
-
-    p,
-    a {
-        font-size: 10px;
     }
 }
