@@ -3,6 +3,11 @@
 {% block title %}service
 {% endblock %}
 
+{% block javascripts %}
+	{{ importmap('app') }}
+{% endblock %}
+
+
 
 {% block body %}
 
@@ -120,7 +125,8 @@
 
 
 			<div class="bg-white p-6 rounded-lg shadow">
-				<h2 class="text-2xl font-bold mb-4">Study Coaching Center</h2>
+<h2 class="Study text-2xl font-bold mb-4">Study Coaching Center</h2>
+
 				<img src="{{ asset('img/service/study.png') }}" alt="Study Coaching Center" class="w-full h-auto">
 
 

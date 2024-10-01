@@ -73,14 +73,23 @@
 				<a href="{{ path('home') }}">Accueil</a>
 			</li>
 			<li>
-				<a href="{{ path('app_about') }}">À propos</a>
-			</li>
-			<li>
 				<a href="{{ path('app_service') }}">Services</a>
 			</li>
+
+			<li>
+				<a href="{{ path('app_about') }}">À propos</a>
+			</li>
+
+			<li>
+				<a href="{{ path('app_faq') }}">FAQ</a>
+
+			</li>
+
+
 			<li>
 				<a href="{{ path('app_contact') }}">Contact</a>
 			</li>
+
 
 			{% if app.user %}
 				{% if 'ROLE_ADMIN' in app.user.roles %}
@@ -110,4 +119,3 @@
 		</ul>
 	</nav>
 </header>
-

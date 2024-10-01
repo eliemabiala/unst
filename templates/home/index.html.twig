@@ -8,25 +8,22 @@
 {% endblock %}
 
 {% block body %}
-<body
-	class="bg-gray-100">
-	<!-- Conteneur de l'image avec texte superposé -->
+
+
 	<div
-		class="relative mb-20 mt-16">
-		<!-- GIF Image -->
+		class="relative bg-gray-100 mb-20 mt-16">
+	
 		<div class="relative">
 			<img
 			src="{{ asset('img/home/ombre.png') }}" alt="GIF animé" class="w-full max-w-full h-auto object-contain">
-			<!-- Conteneur pour le texte superposé -->
-			<div class="absolute inset-0 flex items-center justify-center p-4 sm:p-6 md:p-10">
-				<div class="bg-white bg-opacity-50 p-6 sm:p-8 md:p-10 rounded-lg text-center text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl leading-relaxed max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-4xl">
+			<div class="absolute inset-0 flex items-center justify-center p-2 sm:p-3 md:p-4">
+				<div class="bg-white bg-opacity-50 p-3 sm:p-4 md:p-5 rounded-lg text-center text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg leading-snug max-w-[90%] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg">
 					Profitez d’un accompagnement efficace et d’un<br>
 					coaching sur-mesure qui vous fait prendre des ailes.
 				</div>
 			</div>
 		</div>
 	</div>
-</body>
 
 
 </div>
@@ -45,7 +42,8 @@
 			<img
 			src="{{ asset('img/home/img1.png') }}" alt="Voyage pour raison d'études" class="rounded-lg mb-4 md:mb-0 w-full max-w-lg mx-auto md:max-w-full">
 			<!-- Button -->
-			<a href="#" class="absolute bottom-0 left-0 w-full bg-blue-900 text-white font-semibold py-4 px-4 rounded-b-lg hover:bg-blue-700 text-center">
+<a href="#Study" class="absolute bottom-0 left-0 w-full bg-blue-900 text-white font-semibold py-4 px-4 rounded-b-lg hover:bg-blue-700 text-center">
+
 				Voyage pour raison d’études &gt;
 			</a>
 		</div>
@@ -146,6 +144,4 @@
 			</a>
 		</div>
 	</div>
-</section>
-
-</body>{% endblock %}
+</section></body>{% endblock %}
