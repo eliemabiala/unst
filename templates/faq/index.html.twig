@@ -2,12 +2,15 @@
 
 {% block title %}FAQ
 {% endblock %}
-
 {% block javascripts %}
-	{{ importmap('app') }}
-	{{ importmap('faq') }}
-	
+	{% block importmap %}
+		{{ importmap('app') }}
+		
+
+
+	{% endblock %}
 {% endblock %}
+
 
 {# {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('styles/faq.css') }}">
@@ -15,7 +18,7 @@
 
 {% block body %}
 	<div
-class="mt-32 mb-20">
+		class="mt-32 mb-20">
 
 		<!-- Espace en haut de la page -->
 		<div class="faq-container max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-16">
@@ -36,7 +39,7 @@ class="mt-32 mb-20">
 				<button class="faq-question w-full text-left text-lg sm:text-xl text-gray-800 py-2 hover:bg-gray-100 transition duration-300 ease-in-out">
 					Comment facilitez-vous l'accès à l'emploi pour les chômeurs et les personnes éloignées de la vie professionnelle ?
 				</button>
-<div class="faqAnswer hidden px-4 py-2 bg-gray-50 border-l-4 border-gray-800 mt-2">
+				<div class="faqAnswer hidden px-4 py-2 bg-gray-50 border-l-4 border-gray-800 mt-2">
 
 					<p class="text-sm sm:text-base">Nous offrons des services tels que des ateliers de formation, des conseils en carrière, et des ressources en ligne pour aider les chômeurs et les personnes éloignées de la vie professionnelle à se réinsérer dans le marché du travail.</p>
 				</div>
@@ -53,4 +56,3 @@ class="mt-32 mb-20">
 		</div>
 	</div>
 {% endblock %}
-

@@ -3,6 +3,16 @@
 {% block title %}Connexion
 {% endblock %}
 
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap('app') }}
+		
+
+
+	{% endblock %}
+{% endblock %}
+
+
 
 {% block body %}
 	<div class="flex items-center justify-center min-h-screen bg-[#f0f0f0]">

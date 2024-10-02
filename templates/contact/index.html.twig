@@ -2,6 +2,14 @@
 
 {% block title %}Contact
 {% endblock %}
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap('app') }}
+
+
+	{% endblock %}
+{% endblock %}
+
 
 {% block body %}
 	<!-- Container principal avec espacement supérieur réduit sur mobile et augmenté sur desktop -->
