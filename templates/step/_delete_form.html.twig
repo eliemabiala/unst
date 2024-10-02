@@ -1,0 +1,7 @@
+{# templates/step/_delete_form.html.twig #}
+<form method="post" style="display:inline-block;">
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ step.id) }}">
+	<input type="hidden" name="_method" value="DELETE">
+	<button class="text-red-500 hover:underline">Delete</button>
+</form>
+
