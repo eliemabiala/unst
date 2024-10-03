@@ -1,46 +1,46 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<div class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+	<div
+		class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-24">
+		<!-- Augmentation de la marge supérieure à 'mt-24' -->
 		<h1 class="text-2xl font-bold mb-6">Créer un nouvel utilisateur</h1>
 
 		{{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
 
 		<div class="form-group">
-			{{ form_label(form.email, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-			{{ form_widget(form.email, {'attr': {'class': 'w-full border border-gray-300 rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+			{{ form_label(form.email, null, {'attr': {'class': 'block text-black font-medium mb-1'}}) }}
+			{{ form_widget(form.email, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-black'}}) }}
 			{{ form_errors(form.email) }}
 		</div>
 
 		<div class="form-group">
-			{{ form_label(form.roles, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-			{{ form_widget(form.roles, {'attr': {'class': 'w-full border border-gray-300 rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+			{{ form_label(form.roles, null, {'attr': {'class': 'block text-black font-medium mb-1'}}) }}
+			{{ form_widget(form.roles, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-black'}}) }}
 			{{ form_errors(form.roles) }}
 		</div>
 
 		<div class="form-group">
-			{{ form_label(form.teams, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-			{{ form_widget(form.teams, {'attr': {'class': 'w-full border border-gray-300 rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+			{{ form_label(form.teams, null, {'attr': {'class': 'block text-black font-medium mb-1'}}) }}
+			{{ form_widget(form.teams, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-black'}}) }}
 			{{ form_errors(form.teams) }}
 		</div>
 
 		<div class="form-group">
-			{{ form_label(form.password, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-			{{ form_widget(form.password, {'attr': {'class': 'w-full border border-gray-300 rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+			{{ form_label(form.password, null, {'attr': {'class': 'block text-black font-medium mb-1'}}) }}
+			{{ form_widget(form.password, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-black'}}) }}
 			{{ form_errors(form.password) }}
 		</div>
 
 		<div class="form-group">
-			{{ form_label(form.profile, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-			{{ form_widget(form.profile, {'attr': {'class': 'w-full border border-gray-300 rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'}}) }}
+			{{ form_label(form.profile, null, {'attr': {'class': 'block text-black font-medium mb-1'}}) }}
+			{{ form_widget(form.profile, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-black'}}) }}
 			{{ form_errors(form.profile) }}
 		</div>
 
 		<div class="flex justify-between mt-6">
-<button type="submit" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">Envoyer</button>
-
-<a href="{{ path('app_coachepage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">Annuler</a>
-
+			<button type="submit" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">Envoyer</button>
+			<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">Annuler</a>
 		</div>
 
 		{{ form_end(form) }}

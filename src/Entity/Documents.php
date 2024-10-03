@@ -2,10 +2,15 @@
 
 namespace App\Entity;
 
+use Symfony\Component\HttpFoundation\File\File;
 use App\Repository\DocumentsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+#[Vich\Uploadable()]
 #[ORM\Entity(repositoryClass: DocumentsRepository::class)]
 class Documents
 {
@@ -17,11 +22,29 @@ class Documents
     #[ORM\Column(length: 100)]
     private ?string $file_name = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $file_path = null;
+    #[Vich\UploadableField(mapping: "documents", fileNameProperty: "file_name")]
+    private ?File $file_path = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $download_date = null;
+
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'documents')]
+    private Collection $User;
+
+    /**
+     * @var Collection<int, Step>
+     */
+    #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'documents')]
+    private Collection $Step;
+
+    public function __construct()
+    {
+        $this->User = new ArrayCollection();
+        $this->Step = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -40,12 +63,12 @@ class Documents
         return $this;
     }
 
-    public function getFilePath(): ?string
+    public function getFilePath(): ?File
     {
         return $this->file_path;
     }
 
-    public function setFilePath(string $file_path): static
+    public function setFilePath(?File $file_path): static
     {
         $this->file_path = $file_path;
 
@@ -60,6 +83,66 @@ class Documents
     public function setDownloadDate(?\DateTimeInterface $download_date): static
     {
         $this->download_date = $download_date;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUser(): Collection
+    {
+        return $this->User;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->User->contains($user)) {
+            $this->User->add($user);
+            $user->setDocuments($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->User->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getDocuments() === $this) {
+                $user->setDocuments(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Step>
+     */
+    public function getStep(): Collection
+    {
+        return $this->Step;
+    }
+
+    public function addStep(Step $step): static
+    {
+        if (!$this->Step->contains($step)) {
+            $this->Step->add($step);
+            $step->setDocuments($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStep(Step $step): static
+    {
+        if ($this->Step->removeElement($step)) {
+            // set the owning side to null (unless already changed)
+            if ($step->getDocuments() === $this) {
+                $step->setDocuments(null);
+            }
+        }
 
         return $this;
     }

@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class EditController extends AbstractController
 {
     #[Route('/edit/{id}', name: 'app_edit')]
-    #[IsGranted('ROLE_ADMIN')]
+    // #[IsGranted('ROLE_ADMIN')]
     public function edit(
         Request $request,
         EntityManagerInterface $entityManager,
@@ -46,19 +46,23 @@ class EditController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
+            $this->addFlash('success', [
+                'title' => 'Votre',
+                'message'=> 'utilisateur a été modifié'
+            ]);
 
             $email = (new Email())
                 ->from('mabialaelie4@gmail.com')
                 ->to('endiepro4@gmail.com')
                 ->subject('Utilisateur modifié')
                 ->html(
-                    $this->renderView('emails/notification.html.twig', [
+                    $this->renderView('emails/notificationmodif.html.twig', [
                         'user' => $user
                     ])
                 );
             $mailer->send($email);
 
-            return $this->redirectToRoute('app_coachepage');
+            return $this->redirectToRoute('app_user_profile', ['id' => $user->getId()]);
         }
 
         return $this->render('edit/index.html.twig', [

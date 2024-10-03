@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Documents index
+{% endblock %}
+
+{% block body %}
+	<div class="container mx-auto py-8">
+		<h1 class="text-2xl font-bold text-center text-[#14213D] mb-6">Liste des documents</h1>
+
+		<div class="overflow-x-auto">
+			<table class="min-w-full bg-white shadow-md rounded">
+				<thead class="bg-[#14213D] text-white">
+					<tr>
+						<th class="px-4 py-2">Id</th>
+						<th class="px-4 py-2">Nom du fichier</th>
+						<th class="px-4 py-2">Chemin du fichier</th>
+						<th class="px-4 py-2">Date de téléchargement</th>
+						<th class="px-4 py-2">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for document in documents %}
+						<tr class="border-b hover:bg-gray-100">
+							<td class="px-4 py-2">{{ document.id }}</td>
+							<td class="px-4 py-2">{{ document.fileName }}</td>
+							<td class="px-4 py-2">{{ document.filePath }}</td>
+							<td class="px-4 py-2">{{ document.downloadDate ? document.downloadDate|date('Y-m-d') : '' }}</td>
+							<td class="px-4 py-2">
+								<a href="{{ path('app_documents_show', {'id': document.id}) }}" class="text-blue-500 hover:text-blue-700">Afficher</a>
+								<a href="{{ path('app_documents_edit', {'id': document.id}) }}" class="ml-2 text-green-500 hover:text-green-700">Éditer</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5" class="text-center py-4">Aucun enregistrement trouvé</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<div class="text-center mt-6">
+			<a href="{{ path('app_documents_new') }}" class="bg-[#14213D] hover:bg-[#b49047] text-white font-bold py-2 px-4 rounded">Créer un nouveau document</a>
+		</div>
+	</div>
+{% endblock %}
+

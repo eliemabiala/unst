@@ -6,31 +6,28 @@
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
-		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"> {% block stylesheets %}{% endblock %}
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
 		{% block javascripts %}
 			{% block importmap %}
-{{ importmap('faq') }}
-
 				{{ importmap('app') }}
-				
-
 			{% endblock %}
 		{% endblock %}
+		
 	</head>
-	<body class="md:px-2"></body>
+	<body>
+		{% block header %}
+			{% include '_header.html.twig' %}
+		{% endblock %}
 
+		{% block body %}
+			<!-- mes Contenu principal -->
+		{% endblock %}
 
-	{% block header %}
-		{% include '_header.html.twig' %}
-	{% endblock %}
-
-
-	{% block body %}{% endblock %}
-
-
-	{% block footer %}
-		{% include '_footer.html.twig' %}
-	{% endblock %}
-</html></body></html>
+		{% block footer %}
+			{% include '_footer.html.twig' %}
+		{% endblock %}
+	</body>
+</html>

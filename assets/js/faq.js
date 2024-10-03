@@ -1,6 +1,6 @@
 let questions = document.querySelectorAll('.faq-question');
 let faqAnswer = document.querySelectorAll('.faqAnswer');
-// Initialise une variable pour stocker la question actuellement affichée
+
 let n = "";
 questions.forEach(function (question) {
 
@@ -27,3 +27,24 @@ questions.forEach(function (question) {
     });
 });
 // Importation du fichier de styles CSS pour la FAQ
+
+
+// const burger = document.querySelector('.burger');
+// const navLinksContainer = document.querySelector('.nav_links_container');
+
+// burger.addEventListener('click', () => {
+//     burger.classList.toggle('active');
+//     navLinksContainer.classList.toggle('active');
+// });
+
+
+// let menuList = document.getElementById(".burger")
+// nav_links_container.maxHeight = "0px";
+
+// function toggleMenu() {
+//     if (nav_links_container.maxHeight == "0px") {
+//         nav_links_container.maxHeight = "300px";
+//     } else {
+//         nav_links_container.maxHeight = "0px";
+//     }
+// }

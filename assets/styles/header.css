@@ -1,0 +1,128 @@
+.header {
+    z-index: 1000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: #14213D;
+    /* Couleur de fond pour l'en-tête */
+    padding: 10px 20px;
+    /* Espacement autour de l'en-tête */
+}
+
+/* Navigation bar styles */
+.nav_header {
+    display: flex;
+    align-items: center;
+    /* Centrer verticalement les éléments */
+    justify-content: space-between;
+    /* Espacement entre les éléments */
+}
+
+/* Logo styles */
+.logo img {
+    height: 50px;
+    /* Ajuster la hauteur du logo */
+}
+
+/* Burger menu styles */
+
+.burger img {
+    width: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+/* Navigation links container */
+.nav_links_container {
+
+    display: flex;
+    /* Utiliser flexbox pour les liens */
+    justify-content: flex-end;
+    /* Aligner les liens à droite */
+}
+
+/* Navigation links styles */
+.nav_links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+ul>li {
+    margin: 23px;
+}
+
+.nav_link {
+    color: white;
+    /* Couleur des liens */
+    text-decoration: none;
+    /* Supprimer le soulignement */
+    /* Espacement autour des liens */
+    transition: background 0.3s, color 0.3s;
+    /* Transitions douces */
+}
+
+.nav_link:hover {
+    background-color: #14213D;
+    /* Couleur de fond au survol */
+    color: #ecf0f1;
+    /* Couleur du texte au survol */
+}
+
+/* Button styles */
+.nav_button {
+    background-color: #e74c3c;
+    /* Couleur du bouton */
+    color: white;
+    /* Couleur du texte du bouton */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    /* Coins arrondis */
+    cursor: pointer;
+    transition: background 0.3s;
+    /* Transition douce */
+    margin-left: 10px;
+    /* Espacement entre le bouton et les liens */
+}
+
+.nav_button:hover {
+    background-color: #c0392b;
+    /* Teinte plus foncée au survol */
+}
+
+/* Responsive styles */
+@media (max-width: 825px) {
+    .burg {
+        color: white;
+        text-align: center;
+        font-size: 15px; }
+    .nav_links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color:#14213D;
+        width: 100%;
+        display: none;
+    }
+
+        .nav_links_container {
+    
+            display: none;
+        }
+
+    .nav_links.show {
+        display: flex;
+        /* Afficher les liens lorsque actif */
+    }
+
+    .burger img {
+        display: block;
+        /* Afficher l'icône du burger */
+    }
+}
+
+/* Ajoutez d'autres styles ici si nécessaire */

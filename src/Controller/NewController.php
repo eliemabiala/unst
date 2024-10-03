@@ -17,7 +17,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class NewController extends AbstractController
 {
     #[Route('/new', name: 'app_new')]
-    #[IsGranted('ROLE_ADMIN')]
+    // #[IsGranted('ROLE_ADMIN')]
     public function index(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
         $user = new User();
@@ -49,7 +49,7 @@ class NewController extends AbstractController
 
             $email = (new Email())
                 ->from('mabialaelie4@gmail.com')
-                ->to('endiepro4@gmail.com') 
+                ->to('endiepro4@gmail.com')
                 ->subject('Nouveau utilisateur ajouté')
                 ->html(
                     $this->renderView('emails/notification.html.twig', [
@@ -58,7 +58,7 @@ class NewController extends AbstractController
                 );
             $mailer->send($email);
 
-            return $this->redirectToRoute('app_coachepage');
+            return $this->redirectToRoute('app_adminpage');
         }
 
         return $this->render('new/index.html.twig', [

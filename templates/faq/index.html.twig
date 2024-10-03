@@ -1,71 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Faq
+{% block title %}FAQ
+{% endblock %}
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap('app') }}
+		
+
+
+	{% endblock %}
 {% endblock %}
 
-{% block stylesheets %}
+
+{# {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('styles/faq.css') }}">
-{% endblock %}
-
+{% endblock %} #}
 
 {% block body %}
+	<div
+		class="mt-32 mb-20">
 
+		<!-- Espace en haut de la page -->
+		<div class="faq-container max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-16">
+			<h1 class="titr text-center text-xl sm:text-2xl font-bold text-gray-800 mb-6">
+				Bienvenue sur notre page FAQ. Voici les questions les plus fréquentes sur nos services et notre mission. Nous espérons que vous y trouverez les réponses à vos questions.
+			</h1>
 
-	<div class="faq-container">
-		<h1 class="titr">
+			<div class="faq-item border-b border-gray-200 pb-4 mb-4">
+				<button class="faq-question w-full text-left text-lg sm:text-xl text-gray-800 py-2 hover:bg-gray-100 transition duration-300 ease-in-out">
+					Qu'est-ce que vous faites exactement pour accompagner la société via le numérique ?
+				</button>
+				<div class="faqAnswer hidden px-4 py-2 bg-gray-50 border-l-4 border-gray-800 mt-2">
+					<p class="text-sm sm:text-base">Nous accompagnons la société en proposant des outils et des ressources numériques qui facilitent l'accès à l'emploi pour les chômeurs et les personnes éloignées de la vie professionnelle. Nous vulgarisons les connaissances dans divers domaines pour rendre l'information accessible à tous.</p>
+				</div>
+			</div>
 
-			Bienvenue sur notre page FAQ. Voici les questions les plus fréquentes sur nos services et notre mission. Nous espérons que vous y trouverez les réponses à vos questions.
-		</h1>
+			<div class="faq-item border-b border-gray-200 pb-4 mb-4">
+				<button class="faq-question w-full text-left text-lg sm:text-xl text-gray-800 py-2 hover:bg-gray-100 transition duration-300 ease-in-out">
+					Comment facilitez-vous l'accès à l'emploi pour les chômeurs et les personnes éloignées de la vie professionnelle ?
+				</button>
+				<div class="faqAnswer hidden px-4 py-2 bg-gray-50 border-l-4 border-gray-800 mt-2">
 
-		<div class="faq-item">
-			<button class="faq-question">Qu'est-ce que vous faites exactement pour accompagner la société via le numérique ?</button>
+					<p class="text-sm sm:text-base">Nous offrons des services tels que des ateliers de formation, des conseils en carrière, et des ressources en ligne pour aider les chômeurs et les personnes éloignées de la vie professionnelle à se réinsérer dans le marché du travail.</p>
+				</div>
+			</div>
 
-			<div class="faqAnswer">
-				<p>Nous accompagnons la société en proposant des outils et des ressources numériques qui facilitent
-																																																											                    l'accès à l'emploi pour les chômeurs et les personnes
-																																																											                    éloignées de la vie professionnelle. Nous vulgarisons les connaissances dans divers domaines pour
-																																																											                    rendre l'information accessible à tous.</p>
-			</p>
+			<div class="faq-item border-b border-gray-200 pb-4 mb-4">
+				<button class="faq-question w-full text-left text-lg sm:text-xl text-gray-800 py-2 hover:bg-gray-100 transition duration-300 ease-in-out">
+					Comment aidez-vous les étudiants à concrétiser leurs projets d’études en Europe ?
+				</button>
+				<div class="faqAnswer hidden px-4 py-2 bg-gray-50 border-l-4 border-gray-800 mt-2">
+					<p class="text-sm sm:text-base">Nous aidons les étudiants à concrétiser leurs projets d’études en Europe en fournissant des conseils sur les inscriptions universitaires, l'obtention de visas, et en les guidant tout au long du processus de candidature.</p>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="faq-item">
-		<button class="faq-question">Comment facilitez-vous l'accès à l'emploi pour les chômeurs et les personnes éloignées de la vie
-																																				                    professionnelle ?</button>
-
-		<div class="faqAnswer">
-			<p>Nous offrons des services tels que des ateliers de formation, des conseils en carrière, et des
-																																											                    ressources en ligne pour aider les chômeurs et les personnes
-																																											                    éloignées de la vie professionnelle à se réinsérer dans le marché du travail.
-			</p>
-		</div>
-	</div>
-	<div class="faq-item">
-		<button class="faq-question">Comment aidez-vous les étudiants à concrétiser leurs projets d’études en Europe ?</button>
-
-		<div class="faqAnswer">
-			<p>Nous aidons les étudiants à concrétiser leurs projets d’études en Europe en fournissant des conseils
-																																					                    sur les inscriptions universitaires,
-																																					                    l'obtention de visas, et en les guidant tout au long du processus de candidature.</p>
-		</div>
-	</div>
-
-	<div class="faq-item">
-		<button class="faq-question">Comment aidez-vous les étudiants à concrétiser leurs projets d’études en Europe ?</button>
-
-		<div class="faqAnswer">
-			<p>Nous aidons les étudiants à concrétiser leurs projets d’études en Europe en fournissant des conseils
-																																								                    sur les inscriptions universitaires,
-																																								                    l'obtention de visas, et en les guidant tout au long du processus de candidature.</p>
-		</div>
-	</div>
-	<div class="faq-item">
-		<button class="faq-question">Comment aidez-vous les étudiants à concrétiser leurs projets d’études en Europe ?</button>
-
-		<div class="faqAnswer">
-			<p>Nous aidons les étudiants à concrétiser leurs projets d’études en Europe en fournissant des conseils
-																																								                    sur les inscriptions universitaires,
-																																								                    l'obtention de visas, et en les guidant tout au long du processus de candidature.</p>
-		</div>
-	</div>
-
-</div>{% endblock %}
+{% endblock %}

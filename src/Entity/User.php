@@ -47,6 +47,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne(targetEntity: Teams::class, inversedBy: 'users')]
     private ?Teams $teams = null;
 
+    // #[ORM\ManyToOne(inversedBy: 'User')]
+    // #[ORM\JoinColumn(nullable: false)]
+    // private ?Documents $documents = null;
+
+    #[ORM\ManyToOne(targetEntity: Documents::class, inversedBy: 'User')]
+    #[ORM\JoinColumn(name: 'documents_id', nullable: true)] // Ajoutez `nullable: true`
+    private ?Documents $documents = null;
+
     public function __construct()
     {
         $this->appointments = new ArrayCollection();
@@ -155,6 +163,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTeams(?Teams $teams): static
     {
         $this->teams = $teams;
+        return $this;
+    }
+
+    public function getDocuments(): ?Documents
+    {
+        return $this->documents;
+    }
+
+    public function setDocuments(?Documents $documents): static
+    {
+        $this->documents = $documents;
+
         return $this;
     }
 }

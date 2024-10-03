@@ -1,70 +1,147 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Acceuil
+{% block title %}Accueil
+{% endblock %}
+
+{% block javascripts %}
+	{{ importmap('app') }}
 {% endblock %}
 
 {% block body %}
 
 
-	<div class="example-wrapper">
-<div
-	class="container relative mb-8">
-	<!-- Conteneur de l'image GIF -->
-	<div class="relative">
-		<img src="{{ asset('img/home/ombre.gif') }}" alt="GIF animé" class="w-full h-auto">
-	</div>
-
-	<!-- Conteneur pour le texte centré -->
-	<div class="absolute inset-0 flex items-center justify-center p-4 sm:p-6 md:p-10">
-		<div class="bg-white bg-opacity-50 p-4 rounded text-center text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-			Profitez d’un accompagnement efficace et d’un<br>
-			coaching sur-mesure qui vous font prendre des ailes.
+	<div
+		class="relative bg-gray-100 mb-20 mt-16">
+	
+		<div class="relative">
+			<img
+			src="{{ asset('img/home/ombre.png') }}" alt="GIF animé" class="w-full max-w-full h-auto object-contain">
+			<div class="absolute inset-0 flex items-center justify-center p-2 sm:p-3 md:p-4">
+				<div class="bg-white bg-opacity-50 p-3 sm:p-4 md:p-5 rounded-lg text-center text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg leading-snug max-w-[90%] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg">
+					Profitez d’un accompagnement efficace et d’un<br>
+					coaching sur-mesure qui vous fait prendre des ailes.
+				</div>
+			</div>
 		</div>
 	</div>
+
+
 </div>
 
+<!-- Main Section: Accompaniment for International Travel -->
+<section class="container mx-auto text-center px-4 md:px-5 xl:px-16">
+	<h1 class="text-2xl sm:text-3xl xl:text-4xl font-bold mb-6 sm:mb-8">ACCOMPAGNEMENT POUR LE VOYAGE À L'INTERNATIONAL</h1>
 
+	<!-- Grid Layout for Image and Text -->
+	<div
+		class="grid gap-8 md:grid-cols-2 xl:gap-12">
+		<!-- First Block: Image and Button -->
+		<div
+			class="relative flex flex-col md:flex-row order-1 md:order-2">
+			<!-- Image -->
+			<img
+			src="{{ asset('img/home/img1.png') }}" alt="Voyage pour raison d'études" class="rounded-lg mb-4 md:mb-0 w-full max-w-lg mx-auto md:max-w-full">
+			<!-- Button -->
+<a href="#Study" class="absolute bottom-0 left-0 w-full bg-blue-900 text-white font-semibold py-4 px-4 rounded-b-lg hover:bg-blue-700 text-center">
 
-
-
-			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 items-center">
-				<div>
-					<p class="text-gray-800 text-sm sm:text-base md:text-lg">
-						Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié.
-					</p>
-				</div>
-				<div>
-					<img src="{{ asset('img/home/img1.png') }}" alt="Image 2" class="w-full h-auto">
-				</div>
-				<div>
-					<img src="{{ asset('img/home/img2.png') }}" alt="Image 3" class="w-full h-auto">
-				</div>
-				<div>
-					<p class="text-gray-800 text-sm sm:text-base md:text-lg">
-						Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié.
-					</p>
-				</div>
-			</div>
-
-			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 items-center mt-8">
-				<div>
-					<p class="text-gray-800 text-sm sm:text-base md:text-lg">
-						Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié.
-					</p>
-				</div>
-				<div>
-					<img src="{{ asset('img/home/img4.png') }}" alt="Image 4" class="w-full h-auto">
-				</div>
-				<div>
-					<img src="{{ asset('img/home/img5.png') }}" alt="Image 5" class="w-full h-auto">
-				</div>
-				<div>
-					<p class="text-gray-800 text-sm sm:text-base md:text-lg">
-						Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié.
-					</p>
-				</div>
-			</div>
+				Voyage pour raison d’études &gt;
+			</a>
+		</div>
+		<!-- Text Block -->
+		<div class="flex flex-col justify-center text-left order-2 md:order-1">
+			<p class="text-base sm:text-lg xl:text-xl mb-4">
+				Obtenez un accompagnement complet, sécurisé et confidentiel dans vos démarches de voyage à l’international. Nous construisons avec vous votre projet de voyage et vous accompagnons pas à pas jusqu’à la réalisation de votre rêve.
+			</p>
 		</div>
 	</div>
 
-{% endblock %}
+	<!-- Second Block: Image and Button -->
+	<div class="grid gap-8 md:grid-cols-2 mt-8 xl:gap-12">
+		<div
+			class="relative flex flex-col md:flex-row">
+			<!-- Image -->
+			<img
+			src="{{ asset('img/home/img2.png') }}" alt="Voyage pour l’emploi" class="rounded-lg mb-4 md:mb-0 w-full max-w-lg mx-auto md:max-w-full">
+			<!-- Button -->
+			<a href="#" class="absolute bottom-0 left-0 w-full bg-blue-900 text-white font-semibold py-4 px-4 rounded-b-lg hover:bg-blue-700 text-center">
+				Voyage pour l’emploi &gt;
+			</a>
+		</div>
+		<!-- Second Text Block -->
+		<div class="flex flex-col justify-center text-left">
+			<p class="text-base sm:text-lg xl:text-xl mb-4">
+				Nos conseillers et coachs vous montrent des dispositifs de financement, de sécurisation et facilitation de votre projet. Nous remplissons les formalités pour vous donner des ailes.
+			</p>
+		</div>
+	</div>
+</section>
+
+<!-- Additional Information Section -->
+<section class="container mx-auto text-center mb-12 px-4 md:px-5 xl:px-16">
+	<p class="text-base sm:text-lg xl:text-xl mb-4">
+		Pour vous informer sur le pays ou la ville correspondant à votre projet, nous vous fournissons les détails sur le coût de vie, le logement, les frais de scolarité (si voyage pour études), transports, frais liés aux formalités administratives,...
+	</p>
+	<a href="#" class="inline-block bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700">Parler à un conseiller</a>
+</section>
+
+<!-- Image Section -->
+<section class="container mx-auto text-center mb-12 px-4 md:px-5 xl:px-16">
+	<img src="{{ asset('img/home/biblotheque.png') }}" alt="Conseillers" class="rounded-lg mb-4 mx-auto w-full max-w-4xl">
+</section>
+
+<!-- Services Section -->
+<section class="bg-blue-900 text-white py-16 px-4 md:px-5 xl:px-16">
+	<div
+		class="container mx-auto">
+		<!-- Section Title -->
+		<h2 class="text-2xl sm:text-3xl xl:text-4xl font-extrabold text-center mb-8 sm:mb-12 tracking-wide uppercase">
+			Tous Les Services De Notre Entreprise
+		</h2>
+
+		<!-- Services Grid -->
+		<div
+			class="grid gap-8 md:grid-cols-1 lg:grid-cols-2 xl:gap-12">
+			<!-- Professional Insertion Service -->
+			<div class="bg-blue-800 p-6 sm:p-8 xl:p-12 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
+				<div class="flex flex-col items-center mb-6">
+					<img src="{{ asset('img/home/rogne.png') }}" alt="Insertion Professionnelle" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full shadow-lg mb-4">
+					<h3 class="text-lg sm:text-xl xl:text-2xl font-semibold mb-4">Insertion Professionnelle</h3>
+				</div>
+				<ul class="text-left list-disc list-inside text-base sm:text-lg xl:text-xl space-y-2">
+					<li>Programme d'accompagnement à l'emploi</li>
+					<li>Plus de 10 formations offertes</li>
+					<li>Ateliers adaptés à votre emploi du temps</li>
+					<li>Accessible en visioconférence ou en présentiel</li>
+					<li>Suivi personnalisé</li>
+					<li>Certification gratuite</li>
+					<li>Possibilité de financement pour des personnes en situation de précarité</li>
+					<li>100% financement pour des personnes vivant avec handicap</li>
+				</ul>
+			</div>
+
+			<!-- Certifying Training Services -->
+			<div class="bg-blue-800 p-6 sm:p-8 xl:p-12 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
+				<div class="flex flex-col items-center mb-6">
+					<img src="{{ asset('img/home/certi.png') }}" alt="Formations Certifiantes" class="w-24 h-24 sm:w-32 sm:h-32 rounded-full shadow-lg mb-4">
+					<h3 class="text-lg sm:text-xl xl:text-2xl font-semibold mb-4">Nos Formations Certifiantes</h3>
+				</div>
+				<ul class="text-left list-disc list-inside text-base sm:text-lg xl:text-xl space-y-2">
+					<li>Informatique</li>
+					<li>Droit, économie, et gestion</li>
+					<li>Entrepreneuriat</li>
+					<li>Ressources humaines</li>
+					<li>Formation des formateurs</li>
+					<li>Art, Design et éducation</li>
+					<li>Hôtellerie et Restauration</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Call to Action Button -->
+		<div class="text-center mt-8 sm:mt-12">
+			<a href="{{ path('app_service') }}" class="inline-block bg-blue-500 text-white font-semibold py-2 px-4 xl:py-4 xl:px-6 rounded-lg hover:bg-blue-700">
+				Voir plus
+			</a>
+		</div>
+	</div>
+</section></body>{% endblock %}

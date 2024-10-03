@@ -1,0 +1,46 @@
+<header class="header">
+	<nav id="nav_header" class="nav_header">
+		<div class="logo"><img src="{{ asset('img/home/logo.png') }}" alt="Logo du site"></div>
+
+
+		<div class="nav_links_container">
+			<ul id="main-nav" class="nav_links">
+				<li>
+					<a class="nav_link" href="{{ path('home') }}">Accueil</a>
+				</li>
+				<li>
+					<a class="nav_link" href="{{ path('app_service') }}">Services</a>
+				</li>
+				<li>
+					<a class="nav_link" href="{{ path('app_about') }}">À propos</a>
+				</li>
+				<li>
+					<a class="nav_link" href="{{ path('app_faq') }}">Faq</a>
+				</li>
+				<li>
+					<a class="nav_link" href="{{ path('app_contact') }}">Contact</a>
+				</li>
+
+				{% if app.user %}
+					{% if 'ROLE_ADMIN' in app.user.roles %}
+						<li>
+							<a class="nav_link" href="{{ path('app_adminpage') }}">Espace Admin</a>
+						</li>
+					{% elseif 'ROLE_COACH' in app.user.roles %}
+						<li>
+							<a class="nav_link" href="{{ path('app_coachepage') }}">Espace COACH</a>
+						</li>
+					{% elseif 'ROLE_USER' in app.user.roles %}
+						<li>
+							<a class="nav_link" href="{{ path('app_student') }}">Espace Étudiant</a>
+						</li>
+					{% endif %}
+					<button class="nav_button" onclick="window.location.href='{{ path('app_logout') }}'">Déconnexion</button>
+				{% else %}
+					<button class="nav_button" onclick="window.location.href='{{ path('app_login') }}'">Se connecter</button>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+</header>
+
