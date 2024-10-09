@@ -55,6 +55,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(name: 'documents_id', nullable: true)] // Ajoutez `nullable: true`
     private ?Documents $documents = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?profile $profile_id = null;
+
     public function __construct()
     {
         $this->appointments = new ArrayCollection();
@@ -174,6 +177,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDocuments(?Documents $documents): static
     {
         $this->documents = $documents;
+
+        return $this;
+    }
+
+    public function getProfileId(): ?profile
+    {
+        return $this->profile_id;
+    }
+
+    public function setProfileId(?profile $profile_id): static
+    {
+        $this->profile_id = $profile_id;
 
         return $this;
     }
