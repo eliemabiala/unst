@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AppointmentRepository::class)]
+#[ORM\HasLifecycleCallbacks] 
 class Appointment
 {
     #[ORM\Id]
@@ -78,5 +79,11 @@ class Appointment
         $this->user = $user;
 
         return $this;
+    }
+
+    #[ORM\PreUpdate] // Cette méthode sera appelée avant la mise à jour de l'entité
+    public function onPreUpdate()
+    {
+        $this->date_update = new \DateTime(); // Met à jour la date de mise à jour à maintenant
     }
 }

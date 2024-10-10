@@ -6,9 +6,16 @@
     <h1>Appointment index</h1>
 
     <table class="table">
+<p>
+	<strong class="text-[#14213D]">Prénom :</strong>
+
+
+
+</p>
+
         <thead>
             <tr>
-                <th>Id</th>
+                <th>email</th>
                 <th>Date_update</th>
                 <th>Object</th>
                 <th>Creation_date</th>
@@ -19,6 +26,17 @@
         {% for appointment in appointments %}
             <tr>
                 <td>{{ appointment.id }}</td>
+<td>
+{{ appointment.user.email}}
+{{ appointment.user.profile.name}}
+{{ appointment.user.profile.postname}}</td></td>
+
+
+
+
+
+
+
                 <td>{{ appointment.dateUpdate ? appointment.dateUpdate|date('Y-m-d') : '' }}</td>
                 <td>{{ appointment.object }}</td>
                 <td>{{ appointment.creationDate ? appointment.creationDate|date('Y-m-d') : '' }}</td>
