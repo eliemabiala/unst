@@ -29,11 +29,10 @@ class Contact
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-   
+    // The constructor sets the default value for createdAt
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
-    
     }
 
     public function getId(): ?int
@@ -49,7 +48,6 @@ class Contact
     public function setName(?string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -61,7 +59,6 @@ class Contact
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -73,7 +70,6 @@ class Contact
     public function setSubject(?string $subject): static
     {
         $this->subject = $subject;
-
         return $this;
     }
 
@@ -85,7 +81,6 @@ class Contact
     public function setMessage(string $message): static
     {
         $this->message = $message;
-
         return $this;
     }
 
@@ -94,5 +89,10 @@ class Contact
         return $this->createdAt;
     }
 
-   
+    // The setter for createdAt to allow manual setting in fixtures
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
 }

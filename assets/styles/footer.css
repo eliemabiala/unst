@@ -20,12 +20,14 @@ footer {
     /* Adjust size as needed */
 }
 
-.faq-section {
+.footer-help-section {
+    /* Renommé de .faq-section */
     width: 100%;
     margin-bottom: 15px;
 }
 
-.question {
+.footer-help {
+    /* Renommé de .question */
     display: flex;
     align-items: center;
     /* Align text and icon */
@@ -40,8 +42,9 @@ footer {
     /* Space between text and icon */
 }
 
-.footAnswer {
-    display: none;
+.footer-answer {
+    /* Renommé de .footAnswer */
+    /* display: none; */
     /* Hide answers initially */
     margin-top: 10px;
     /* Space above the answer */
@@ -80,7 +83,8 @@ footer {
         /* Adjust icon size for mobile */
     }
 
-    .faq-section {
+    .footer-help-section {
+        /* Renommé de .faq-section */
         width: 100%;
     }
 }
