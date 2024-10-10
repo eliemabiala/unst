@@ -14,9 +14,7 @@ class Appointment1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date_update', null, [
-                'widget' => 'single_text',
-            ])
+           
             ->add('object')
             ->add('creation_date', null, [
                 'widget' => 'single_text',
