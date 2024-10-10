@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface; // Assurez-vous d'importer cette classe
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -12,7 +14,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class AdminpageController extends AbstractController
 {
     #[Route('/adminpage', name: 'app_adminpage')]
-    // #[IsGranted('ROLE_ADMIN')]
+    // #[IsGranted('ROLE_ADMIN')] // Décommentez cette ligne si vous souhaitez protéger la route
     public function index(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
@@ -49,5 +51,19 @@ class AdminpageController extends AbstractController
         return $this->render('adminpage/profile.html.twig', [
             'user' => $user,
         ]);
+    }
+
+    #[Route('/adminpage/delete/{id}', name: 'app_user_delete', methods: ['POST'])]
+    public function delete(User $user, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        // Sécuriser la suppression avec un token CSRF
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Utilisateur supprimé avec succès');
+        }
+
+        return $this->redirectToRoute('app_adminpage');
     }
 }
