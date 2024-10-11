@@ -69,6 +69,13 @@
 				<a href="{{ path('app_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
 					Ajouter un utilisateur
 				</a>
+<a href="{{ path('app_appointment_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300" aria-label="Voir les rendez-vous">Voir les rendez-vous
+
+</a>
+
+
+
+
 			</div>
 		</div>
 
@@ -82,7 +89,6 @@
 						<th class="py-4 px-4 text-left text-gray-700 hidden md:table-cell">Sexe</th>
 						<th class="py-4 px-4 text-left text-gray-700 hidden md:table-cell">Téléphone</th>
 						<th class="py-4 px-4 text-left text-gray-700 hidden md:table-cell">Email</th>
-						<th class="py-4 px-4 text-left text-gray-700 hidden md:table-cell">Numéro de Passeport</th>
 						<th class="py-2 px-4">
 							<form
 								class="max-w-xs mx-auto">
@@ -119,7 +125,6 @@
 							<td class="py-2 px-4 hidden md:table-cell">{{ profile.genre.value ?? '' }}</td>
 							<td class="py-2 px-4 hidden md:table-cell">{{ profile.phone }}</td>
 							<td class="py-2 px-4 hidden md:table-cell">{{ user.email }}</td>
-							<td class="py-2 px-4 hidden md:table-cell">{{ passport.numberPassport ?? '' }}</td>
 							<td class="py-2 px-4">
 								<div class="flex space-x-2">
 									<a href="{{ path('app_user_profile', { id: user.id }) }}">

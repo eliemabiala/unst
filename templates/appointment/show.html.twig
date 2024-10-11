@@ -1,34 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Appointment{% endblock %}
+{% block title %}Détail du rendez-vous
+{% endblock %}
 
 {% block body %}
-    <h1>Appointment</h1>
+	<h1 class="text-2xl font-bold mb-6 text-black">Détail du rendez-vous</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ appointment.id }}</td>
-            </tr>
-            <tr>
-                <th>Date_update</th>
-                <td>{{ appointment.dateUpdate ? appointment.dateUpdate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Object</th>
-                <td>{{ appointment.object }}</td>
-            </tr>
-            <tr>
-                <th>Creation_date</th>
-                <td>{{ appointment.creationDate ? appointment.creationDate|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
+		<tbody class="bg-white divide-y divide-gray-200">
+			<tr>
+				<th class="px-6 py-4 text-left text-sm font-medium text-black uppercase">Id</th>
+				<td class="px-6 py-4 text-sm text-black">{{ appointment.id }}</td>
+			</tr>
+			<tr>
+				<th class="px-6 py-4 text-left text-sm font-medium text-black uppercase">Nom complet</th>
+				<td class="px-6 py-4 text-sm text-black">
+					{{ appointment.user.profile.name }}
+				</td>
+			</tr>
+			<tr>
+				<th class="px-6 py-4 text-left text-sm font-medium text-black uppercase">Email</th>
+				<td class="px-6 py-4 text-sm text-black">{{ appointment.user.email }}</td>
+			</tr>
+			<tr>
+				<th class="px-6 py-4 text-left text-sm font-medium text-black uppercase">Date de mise à jour</th>
+				<td class="px-6 py-4 text-sm text-black">{{ appointment.dateUpdate ? appointment.dateUpdate|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th class="px-6 py-4 text-left text-sm font-medium text-black uppercase">Objet</th>
+				<td class="px-6 py-4 text-sm text-black">{{ appointment.object }}</td>
+			</tr>
+			<tr>
+				<th class="px-6 py-4 text-left text-sm font-medium text-black uppercase">Date de création</th>
+				<td class="px-6 py-4 text-sm text-black">{{ appointment.creationDate ? appointment.creationDate|date('Y-m-d') : '' }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_appointment_index') }}">back to list</a>
+	<div class="mt-6 flex space-x-4">
+		<a href="{{ path('app_appointment_index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Retour à la liste</a>
+		<a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Modifier</a>
+		{{ include('appointment/_delete_form.html.twig') }}
 
-    <a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}">edit</a>
-
-    {{ include('appointment/_delete_form.html.twig') }}
+		<!-- Ajouter un nouveau rendez-vous -->
+		<a href="{{ path('app_appointment_new') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+			Ajouter un nouveau rendez-vous
+		</a>
+	</div>
 {% endblock %}
+
