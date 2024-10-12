@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class AdminpageController extends AbstractController
 {
     #[Route('/adminpage', name: 'app_adminpage')]
-    // #[IsGranted('ROLE_ADMIN')] // Décommentez cette ligne si vous souhaitez protéger la route
+    // #[IsGranted('ROLE_ADMIN')] // Décommentez cette ligne si vous souhaitez protéger la routee
     public function index(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
