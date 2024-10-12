@@ -92,6 +92,28 @@
 				<strong class="text-[#14213D]">Date d'inscription :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.dateInscrit ? user.profile.dateInscrit|date('d-m-Y') : 'Non renseigné' }}</span>
 			</p>
+<div class="mt-8">
+	<h2 class="text-2xl font-bold text-[#14213D]">Rendez-vous</h2>
+
+	{% if user.appointments is not empty %}
+		<ul class="space-y-4">
+			{% for appointment in user.appointments %}
+				<li class="bg-white p-4 rounded-md shadow-md">
+					<p>
+						<strong class="text-[#14213D]">Date du rendez-vous :</strong>
+						{{ appointment.getAppointmentDate ? appointment.getAppointmentDate|date('d-m-Y') : 'Non renseigné' }}</p>
+					<p>
+						<strong class="text-[#14213D]">Heure du rendez-vous :</strong>
+						{{ appointment.getAppointmentTime ? appointment.getAppointmentTime|date('H:i') : 'Non renseigné' }}</p>
+				</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p class="text-gray-500">Aucun rendez-vous trouvé.</p>
+	{% endif %}
+</div>
+
+
 		</div>
 
 		<div

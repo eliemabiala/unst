@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AppointmentRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Appointment
 {
     #[ORM\Id]
@@ -22,6 +23,12 @@ class Appointment
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $creation_date = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $appointment_date = null;  // Date du rendez-vous
+
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $appointment_time = null;  // Heure du rendez-vous
 
     #[ORM\ManyToOne(inversedBy: 'appointments')]
     #[ORM\JoinColumn(nullable: false)]
@@ -68,6 +75,30 @@ class Appointment
         return $this;
     }
 
+    public function getAppointmentDate(): ?\DateTimeInterface
+    {
+        return $this->appointment_date;
+    }
+
+    public function setAppointmentDate(?\DateTimeInterface $appointment_date): static
+    {
+        $this->appointment_date = $appointment_date;
+
+        return $this;
+    }
+
+    public function getAppointmentTime(): ?\DateTimeInterface
+    {
+        return $this->appointment_time;
+    }
+
+    public function setAppointmentTime(?\DateTimeInterface $appointment_time): static
+    {
+        $this->appointment_time = $appointment_time;
+
+        return $this;
+    }
+
     public function getUser(): ?User
     {
         return $this->user;
@@ -78,5 +109,11 @@ class Appointment
         $this->user = $user;
 
         return $this;
+    }
+
+    #[ORM\PreUpdate]
+    public function onPreUpdate()
+    {
+        $this->date_update = new \DateTime(); // Met à jour la date de mise à jour à maintenant
     }
 }

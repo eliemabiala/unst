@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des rendez-vous
+{% endblock %}
+
+{% block body %}
+
+	<!-- Ajout de flex pour centrer verticalement et horizontalement avec un espace en haut plus grand -->
+	<div
+		class="flex flex-col justify-center items-center min-h-screen mt-40 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+		<!-- Contenu principal -->
+		<h1 class="text-2xl font-bold mb-10 text-black text-center">Liste des rendez-vous</h1>
+
+		<!-- Grille de cartes au milieu avec espacement entre le header et le footer -->
+		<div class="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
+			{% for appointment in appointments %}
+				<div
+					class="border border-gray-300 rounded-lg p-4 shadow-md flex flex-col items-start space-y-2">
+					<!-- Nom complet -->
+					<div class="text-sm font-medium text-black">
+						{{ appointment.user.profile.name }}
+						{{ appointment.user.profile.postname }}
+						{{ appointment.user.profile.firstname }}
+					</div>
+
+					<!-- Email -->
+					<div class="text-sm text-black">{{ appointment.user.email }}</div>
+
+					<!-- Date de création -->
+					<div class="text-sm text-gray-500">
+						{{ appointment.creationDate ? appointment.creationDate|date('Y-m-d') : '' }}
+					</div>
+
+					<!-- Actions -->
+					<div class="flex space-x-4 mt-auto">
+						<a href="{{ path('app_appointment_show', {'id': appointment.id}) }}" title="Voir plus" aria-label="Voir plus d'informations sur le rendez-vous">
+							<img src="{{ asset('img/admin/invisible.png') }}" alt="Voir plus" class="inline w-6 h-6 sm:w-4 sm:h-4"/>
+						</a>
+						<a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}" title="Modifier" aria-label="Modifier le rendez-vous">
+							<img src="{{ asset('img/admin/edit.png') }}" alt="Modifier" class="inline w-6 h-6 sm:w-4 sm:h-4"/>
+						</a>
+						<form method="post" action="{{ path('app_appointment_delete', {'id': appointment.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appointment.id) }}">
+							<button type="submit" title="Supprimer" aria-label="Supprimer le rendez-vous">
+								<img src="{{ asset('img/admin/delete.png') }}" alt="Supprimer" class="inline w-6 h-6 sm:w-4 sm:h-4"/>
+							</button>
+						</form>
+					</div>
+				</div>
+			{% else %}
+				<p class="text-center text-black col-span-full">Aucun enregistrement trouvé</p>
+			{% endfor %}
+		</div>
+
+		<!-- Bouton pour créer un nouveau rendez-vous, centré -->
+		<div class="mt-12">
+			<a href="{{ path('app_appointment_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300" aria-label="Créer un nouveau rendez-vous">
+				Créer un nouveau rendez-vous
+			</a>
+		</div>
+
+		<!-- Espace pour le footer -->
+		<div class="mt-24"></div>
+	</div>
+
+{% endblock %}
+
