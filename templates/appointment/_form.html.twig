@@ -1,11 +1,50 @@
-{{ form_start(form) }}
-<div class="space-y-4">
-	{{ form_widget(form, {'attr': {'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'}}) }}
+{{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+<div
+	class="space-y-4">
+	<!-- Champ Utilisateur -->
+	<div class="form-group">
+		{{ form_label(form.user, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+		{{ form_widget(form.user, {'attr': {'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'}}) }}
+		{{ form_errors(form.user, {'attr': {'class': 'text-red-500 text-sm'}}) }}
+	</div>
+
+	<!-- Grille pour Date et Heure (Alignés côte à côte sur les écrans larges) -->
+	<div
+		class="grid grid-cols-1 md:grid-cols-2 gap-6">
+		<!-- Champ Date du rendez-vous -->
+		<div class="form-group">
+			{{ form_label(form.appointment_date, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+			{{ form_widget(form.appointment_date, {'attr': {'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'}}) }}
+			{{ form_errors(form.appointment_date, {'attr': {'class': 'text-red-500 text-sm'}}) }}
+		</div>
+
+		<!-- Champ Heure du rendez-vous -->
+		<div class="form-group">
+			{{ form_label(form.appointment_time, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+			{{ form_widget(form.appointment_time, {'attr': {'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'}}) }}
+			{{ form_errors(form.appointment_time, {'attr': {'class': 'text-red-500 text-sm'}}) }}
+		</div>
+	</div>
+
+	<!-- Champ Objet -->
+	<div class="form-group">
+		{{ form_label(form.object, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+		{{ form_widget(form.object, {'attr': {'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'}}) }}
+		{{ form_errors(form.object, {'attr': {'class': 'text-red-500 text-sm'}}) }}
+	</div>
 </div>
-<div class="mt-6">
-	<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-		{{ button_label|default('Save') }}
+
+<!-- Boutons avec espacement et flexibilité pour le positionnement -->
+<div class="flex justify-between mt-8 mb-8">
+	<button class="bg-[#14213D] text-white py-2 px-6 rounded hover:text-[#b49047] transition duration-300">
+{{ button_label|default('Sauvegarder') }}
+
 	</button>
+
+	<a href="{{ path('app_appointment_index') }}" class="bg-[#14213D] text-white py-2 px-6 rounded hover:text-[#b49047] transition duration-300">
+		Retour à la liste de Rdv
+	</a>
 </div>
+
 {{ form_end(form) }}
 

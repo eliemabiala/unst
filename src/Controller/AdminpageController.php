@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Appointment; 
+use App\Form\AppointmentType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -48,8 +50,12 @@ class AdminpageController extends AbstractController
     #[Route('/adminpage/profile/{id}', name: 'app_user_profile')]
     public function show(User $user): Response
     {
+        // Récupérer les rendez-vous associés à cet utilisateur
+        $appointments = $user->getAppointments();
+
         return $this->render('adminpage/profile.html.twig', [
             'user' => $user,
+            'appointments' => $appointments,
         ]);
     }
 
@@ -65,5 +71,29 @@ class AdminpageController extends AbstractController
         }
 
         return $this->redirectToRoute('app_adminpage');
+    }
+
+    #[Route('/adminpage/appointment/new/{id}', name: 'app_appointment_new')]
+    public function createAppointment(User $user, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $appointment = new Appointment();
+        $appointment->setUser($user); // Associe le rendez-vous à l'utilisateur
+
+        $form = $this->createForm(AppointmentType::class, $appointment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($appointment);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Rendez-vous créé avec succès.');
+
+            return $this->redirectToRoute('app_user_profile', ['id' => $user->getId()]);
+        }
+
+        return $this->render('appointment/add_rdv.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user,
+        ]);
     }
 }
