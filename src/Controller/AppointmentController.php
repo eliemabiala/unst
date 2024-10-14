@@ -17,10 +17,28 @@ class AppointmentController extends AbstractController
     #[Route('/', name: 'app_appointment_index', methods: ['GET'])]
     public function index(AppointmentRepository $appointmentRepository): Response
     {
+        // Tri par date de création en ordre croissant (ASC)
         return $this->render('appointment/index.html.twig', [
-            'appointments' => $appointmentRepository->findAll(),
+            'appointments' => $appointmentRepository->findBy([], ['creation_date' => 'ASC']),
         ]);
     }
+
+//         #[Route('/user', name: 'app_appointment_user', methods: ['GET'])]
+// public function userAppointments(AppointmentRepository $appointmentRepository): Response
+// {
+//     // Récupérer l'utilisateur connecté
+//     $user = $this->getUser();
+
+//     // Récupérer les rendez-vous pour cet utilisateur
+//     $appointments = $appointmentRepository->findBy(['user' => $user], ['appointmentDate' => 'ASC']);
+
+//     return $this->render('appointment/user_appointments.html.twig', [
+//         'appointments' => $appointments,
+//     ]);
+// }
+
+
+
 
     #[Route('/new', name: 'app_appointment_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -71,7 +89,7 @@ class AppointmentController extends AbstractController
     #[Route('/{id}', name: 'app_appointment_delete', methods: ['POST'])]
     public function delete(Request $request, Appointment $appointment, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$appointment->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $appointment->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($appointment);
             $entityManager->flush();
         }

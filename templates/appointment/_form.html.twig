@@ -14,14 +14,14 @@
 		<!-- Champ Date du rendez-vous -->
 		<div class="form-group">
 			{{ form_label(form.appointment_date, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
-			{{ form_widget(form.appointment_date, {'attr': {'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'}}) }}
+			{{ form_widget(form.appointment_date, {'attr': {'type': 'date', 'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'}}) }}
 			{{ form_errors(form.appointment_date, {'attr': {'class': 'text-red-500 text-sm'}}) }}
 		</div>
 
 		<!-- Champ Heure du rendez-vous -->
 		<div class="form-group">
 			{{ form_label(form.appointment_time, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
-			{{ form_widget(form.appointment_time, {'attr': {'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'}}) }}
+			{{ form_widget(form.appointment_time, {'attr': {'type': 'time', 'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'}}) }}
 			{{ form_errors(form.appointment_time, {'attr': {'class': 'text-red-500 text-sm'}}) }}
 		</div>
 	</div>
@@ -37,8 +37,7 @@
 <!-- Boutons avec espacement et flexibilité pour le positionnement -->
 <div class="flex justify-between mt-8 mb-8">
 	<button class="bg-[#14213D] text-white py-2 px-6 rounded hover:text-[#b49047] transition duration-300">
-{{ button_label|default('Sauvegarder') }}
-
+		{{ button_label|default('Sauvegarder') }}
 	</button>
 
 	<a href="{{ path('app_appointment_index') }}" class="bg-[#14213D] text-white py-2 px-6 rounded hover:text-[#b49047] transition duration-300">

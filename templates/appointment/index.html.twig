@@ -29,11 +29,18 @@
 
 					<!-- Date de création -->
 					<div class="text-sm text-gray-500">
-						{{ appointment.creationDate ? appointment.creationDate|date('Y-m-d') : '' }}
+						{{ appointment.creationDate ? appointment.creationDate|date('d-m-Y') : '' }}
+					</div>
+
+					<!-- Date et heure du rendez-vous -->
+					<div class="text-sm text-gray-500">
+						{{ appointment.appointmentDate ? appointment.appointmentDate|date('d-m-Y') : '' }}
+						
+						{{ appointment.appointmentTime ? appointment.appointmentTime|date('H:i') : '' }}
 					</div>
 
 					<!-- Actions -->
-					<div class="flex space-x-4 mt-auto">
+					<div class="flex justify-between mt-auto w-full">
 						<a href="{{ path('app_appointment_show', {'id': appointment.id}) }}" title="Voir plus" aria-label="Voir plus d'informations sur le rendez-vous">
 							<img src="{{ asset('img/admin/invisible.png') }}" alt="Voir plus" class="inline w-6 h-6 sm:w-4 sm:h-4"/>
 						</a>
@@ -47,15 +54,22 @@
 							</button>
 						</form>
 					</div>
+
 				</div>
 			{% else %}
 				<p class="text-center text-black col-span-full">Aucun enregistrement trouvé</p>
 			{% endfor %}
 		</div>
 
-		<!-- Bouton pour créer un nouveau rendez-vous, centré -->
-		<div class="mt-12">
-			<a href="{{ path('app_appointment_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300" aria-label="Créer un nouveau rendez-vous">
+		<div
+			class="mt-6 flex flex-row justify-between items-center space-x-4">
+
+			<!-- Flex pour aligner les boutons -->
+			<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+				Retour
+			</a>
+			<!-- Bouton pour créer un nouveau rendez-vous, centré -->
+			<a href="{{ path('app_appointment_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
 				Créer un nouveau rendez-vous
 			</a>
 		</div>

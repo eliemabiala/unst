@@ -127,9 +127,11 @@
 									<a href="{{ path('app_edit', { id: user.id }) }}">
 										<img src="{{ asset('img/admin/messager.png') }}" alt="Icon message" title="Envoyer un message" aria-label="Envoyer un message" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
 									</a>
-									<a href="{{ path('app_appointment_new', { id: user.email }) }}">
-										<img src="{{ asset('img/admin/addrdv.png') }}" alt="Icon addrdv" title="Ajouter un rendez-vous" aria-label="Ajouter un rendez-vous" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
-									</a>
+<a href="{{ path('app_appointment_new', { email: user.email }) }}">
+	<img src="{{ asset('img/admin/addrdv.png') }}" alt="Ajouter un rendez-vous" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
+</a>
+
+
 									<a href="{{ path('app_appointment_new', {'id': user.id}) }}">
 										<img src="{{ asset('img/admin/edit.png') }}" alt="Icon edit" title="Modifier le profil" aria-label="Modifier le profil" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
 									</a>
