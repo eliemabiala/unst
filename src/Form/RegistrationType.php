@@ -24,13 +24,13 @@ class RegistrationType extends AbstractType
                 'choices' => [
                     'Administrateur' => 'ROLE_ADMIN',
                     'Coach' => 'ROLE_COACH',
-                    'Etudiant' => 'ROLE_USER',
+                    'Etudiant' => 'ROLE_STUDENT',
                 ],
                 'placeholder' => '-- Sélectionnez un rôle --',
             ])
             ->add('teams', EntityType::class, [
                 'class' => Teams::class,
-                'choice_label' => 'team', 
+                'choice_label' => 'team',
                 'label' => 'Team',
                 'placeholder' => '-- Sélectionnez une équipe --',
             ])

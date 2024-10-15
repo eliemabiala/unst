@@ -39,7 +39,7 @@ class UserFixtures extends Fixture
             );
 
             $user->setPassword($hashedPassword);
-            $user->setRoles(['ROLE_USER']);
+            $user->setRoles(['ROLE_STUDENT']);
             $user->setTeams($teams[array_rand($teams)]);
 
             // Associez un profil à l'utilisateur
