@@ -58,6 +58,21 @@
 					{{ form_widget(form.message, {'attr': {'class': 'w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#14213D]'}}) }}
 					{{ form_errors(form.message, {'attr': {'class': 'text-red-600 text-sm mt-1'}}) }}
 				</div>
+				<!-- Case à cocher pour accepter les conditions générales -->
+				<div class="form-group">
+					<label>
+						<!-- Affiche la case à cocher -->
+						{{ form_widget(form.termsAccepted) }}
+						J'accepte les termes et
+						<!-- Lien vers les termes et conditions -->
+						<a href="{{ path('terms_conditions') }}" class="text-blue-600 hover:underline">
+							 conditions
+						</a>.
+					</label>
+					<!-- Affiche les erreurs de validation pour la case à cocher -->
+					{{ form_errors(form.termsAccepted) }}
+				</div>
+
 
 				<!-- Bouton Envoyer -->
 				<div class="text-center">
@@ -104,4 +119,3 @@
 		</div>
 	</div>
 {% endblock %}
-
