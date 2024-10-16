@@ -19,7 +19,10 @@ class ContactFixtures extends Fixture
             $contact->setEmail($faker->email());
             $contact->setSubject('Demande n°' . ($i + 1));
             $contact->setMessage($faker->text());
-            $contact->setCreatedAt(new \DateTimeImmutable()); 
+            $contact->setCreatedAt(new \DateTimeImmutable());
+
+            // Définir termsAccepted à true pour éviter les erreurs de contrainte de base de données
+            $contact->setTermsAccepted(true);
 
             $manager->persist($contact);
         }

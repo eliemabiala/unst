@@ -8,12 +8,20 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
+    #[Route('/terms-conditions', name: 'terms_conditions')]
+    public function show(): Response
+    {
+        return $this->render('terms/conditions.html.twig', [
+            'controller_name' => 'TermsController',
+        ]);
+    }
+    
     #[Route('/contact', name: 'app_contact')]
     public function index(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
@@ -34,13 +42,19 @@ class ContactController extends AbstractController
 
             // Création de l'email
             $email = (new Email())
-                ->from('mabialaelie4@gmail.com')
-                ->to('endiepro4@gmail.com')
-                ->subject('Nouveau utilisateur ajouté')
+                ->from($this->getParameter('mailer_from')) // Utilise l'adresse email définie dans .env
+                ->to($this->getParameter('mailer_to')) // Utilise l'adresse email définie dans .env
+                ->subject('Nouveau message reçu')
                 ->text('Vous avez un nouveau message.')
-                ->html($this->renderView('emails\notificationcotact.html.twig', [
-                    'contact' => $contact
-                ]));
+                ->html($this->renderView('emails/notificationcontact.html.twig',
+                    [
+                        'contact' => $contact,
+                    ]
+                ));
+
+            // Envoi de l'email
+            $mailer->send($email);
+
 
             // Envoi de l'email
             $mailer->send($email);
@@ -48,7 +62,7 @@ class ContactController extends AbstractController
             // Ajout d'un message flash de succès
             $this->addFlash('success', 'Votre message a bien été envoyé.');
 
-            // Redirection vers une page (ex : page d'accueil)
+            // Redirection vers la même page (ou une autre page si nécessaire)
             return $this->redirectToRoute('app_contact');
         }
 
