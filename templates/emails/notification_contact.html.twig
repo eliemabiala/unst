@@ -18,19 +18,19 @@
 				<ul class="list-disc list-inside mt-4 mb-4 text-gray-700">
 					<li>
 						<strong class="font-medium">Nom :</strong>
-						{{ contact.name }}
+						{{ contact.name|e }}
 					</li>
 					<li>
 						<strong class="font-medium">Email :</strong>
-						{{ contact.email }}
+						{{ contact.email|e }}
 					</li>
 					<li>
 						<strong class="font-medium">Sujet :</strong>
-						{{ contact.subject }}
+						{{ contact.subject|e }}
 					</li>
 					<li>
 						<strong class="font-medium">Message :</strong>
-						{{ contact.message }}
+						{{ contact.message|e }}
 					</li>
 				</ul>
 				<p class="text-gray-700 mt-2">Merci pour votre attention.</p>

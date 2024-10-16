@@ -37,10 +37,9 @@ class ContactController extends AbstractController
                 ->from('mabialaelie4@gmail.com') // L'adresse email de l'expéditeur
                 ->to('endiepro4@gmail.com') // L'adresse email du destinataire
                 ->subject('Nouveau utilisateur ajouté')
-                ->text('Vous avez un nouveau message.')
                 ->html($this->renderView('emails/notification_contact.html.twig', [
                     'contact' => $contact
-                ]));
+                ])); // Envoi des données du contact au template
 
             // Envoi de l'email via le service de mailer
             $mailer->send($email);
@@ -58,9 +57,9 @@ class ContactController extends AbstractController
         ]);
     }
 
-#[Route('/conditions', name: 'terms_conditions')]
-public function termsConditions(): Response
-{
-    return $this->render('contact/terms_conditions.html.twig');
-}
+    #[Route('/conditions', name: 'terms_conditions')]
+    public function termsConditions(): Response
+    {
+        return $this->render('contact/terms_conditions.html.twig');
+    }
 }
