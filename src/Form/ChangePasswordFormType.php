@@ -27,28 +27,27 @@ class ChangePasswordFormType extends AbstractType
                 'first_options' => [
                     'constraints' => [
                         new NotBlank([
-                            'message' => 'Please enter a password',
+                            'message' => 'Veuillez entrer un mot de passe',
                         ]),
                         new Length([
-                            'min' => 12,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
-                            // max length allowed by Symfony for security reasons
+                            'min' => 6,
+                            'minMessage' => 'Votre mot de passe doit contenir au moins {{ limit }} caractères',
                             'max' => 4096,
                         ]),
                         new PasswordStrength(),
-                        new NotCompromisedPassword(),
+                        new NotCompromisedPassword([
+                            'message' => 'Ce mot de passe a déjà été compromis dans une fuite de données, veuillez en choisir un autre.',
+                        ]),
                     ],
-                    'label' => 'New password',
+                    'label' => 'Nouveau mot de passe',
+                    'help' => 'Utilisez un mot de passe fort contenant au moins 6 caractères, incluant des majuscules, des minuscules, des chiffres et des caractères spéciaux. Exemple: B1s!on-V0ltaGe!2024',
                 ],
                 'second_options' => [
-                    'label' => 'Repeat Password',
+                    'label' => 'Répéter le mot de passe',
                 ],
-                'invalid_message' => 'The password fields must match.',
-                // Instead of being set onto the object directly,
-                // this is read and encoded in the controller
+                'invalid_message' => 'Les champs de mot de passe doivent correspondre.',
                 'mapped' => false,
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

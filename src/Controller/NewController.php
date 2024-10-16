@@ -14,6 +14,8 @@ use App\Entity\User;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 
+
+
 class NewController extends AbstractController
 {
     #[Route('/new', name: 'app_new')]
