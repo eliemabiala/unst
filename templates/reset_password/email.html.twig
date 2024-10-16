@@ -1,11 +1,21 @@
-<h1>Bonjour !</h1>
+<div class="bg-gray-50 p-6">
+	<h1 class="text-xl font-bold text-gray-800 mb-4">Bonjour !</h1>
 
-<p>Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant :</p>
+	<p class="text-gray-700 mb-4">
+		Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant :
+	</p>
 
-<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+	<a href="{{ url('app_reset_password', {token: resetToken.token}) }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg mb-4">
+		Réinitialiser votre mot de passe
+	</a>
 
-<p>Ce lien expirera dans
-	{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+	<p class="text-gray-700 mb-4">
+		Ce lien expirera dans
+		<span class="font-semibold">
+			{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+		</span>
+	</p>
 
-<p>À bientôt !</p>
+	<p class="text-gray-700">À bientôt !</p>
+</div>
 

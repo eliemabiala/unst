@@ -46,25 +46,24 @@
 					</div>
 				{% endif %}
 
-				<input
-				type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 				{#
-																                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-																                    See https://symfony.com/doc/current/security/remember_me.html
-																
-																                    <div class="flex items-center mb-4">
-																                        <input type="checkbox" name="_remember_me" id="_remember_me" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-																                        <label for="_remember_me" class="ml-2 block text-sm text-gray-900">Se souvenir de moi</label>
-																                    </div>
-																                #}
-{# <div class="text-center">
-<a href="{{ path('app_password_request') }}" class="text-sm text-blue-500 hover:underline">Mot de passe oublié ?</a>
+																				                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+																				                    See https://symfony.com/doc/current/security/remember_me.html
+																				
+																				                    <div class="flex items-center mb-4">
+																				                        <input type="checkbox" name="_remember_me" id="_remember_me" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+																				                        <label for="_remember_me" class="ml-2 block text-sm text-gray-900">Se souvenir de moi</label>
+																				                    </div>
+																				                #}
+				<div class="text-center">
+<a href="{{ path('app_forgot_password_request') }}" class="text-sm text-blue-500 hover:underline">Mot de passe oublié ?</a>
 
-</div> #}
+				
+				</div>
 
-				<button type="submit" class="w-full py-2 px-4 bg-[#14213D] text-white font-semibold rounded-lg shadow-sm">
-					Se connecter
+					<button type="submit" class="w-full py-2 px-4 bg-[#14213D] text-white font-semibold rounded-lg shadow-sm"> Se connecter
 				</button>
 			</form>
 		</div>
