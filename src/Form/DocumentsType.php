@@ -1,4 +1,5 @@
 <?php
+// src/Form/DocumentsType.php
 
 namespace App\Form;
 
@@ -13,17 +14,13 @@ class DocumentsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            
-            ->add('file_path',VichFileType::class,[
-                'label'=>false,
-                'required'=>false,
-                'allow_delete'=>true,
-                'download_uri'=>true,
+            ->add('file_path', VichFileType::class, [
+                'label' => false,
+                'required' => false,
+                'allow_delete' => true,
+                'download_uri' => true,
             ])
-            ->add('download_date', null, [
-                'widget' => 'single_text',
-            ])
-        ;
+             ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -23,21 +23,19 @@ class AppointmentController extends AbstractController
         ]);
     }
 
-//         #[Route('/user', name: 'app_appointment_user', methods: ['GET'])]
-// public function userAppointments(AppointmentRepository $appointmentRepository): Response
-// {
-//     // Récupérer l'utilisateur connecté
-//     $user = $this->getUser();
+    #[Route('/user', name: 'app_appointment_user', methods: ['GET'])]
+    public function userAppointments(AppointmentRepository $appointmentRepository): Response
+    {
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
 
-//     // Récupérer les rendez-vous pour cet utilisateur
-//     $appointments = $appointmentRepository->findBy(['user' => $user], ['appointmentDate' => 'ASC']);
+        // Récupérer les rendez-vous pour cet utilisateur
+        $appointments = $appointmentRepository->findBy(['user' => $user], ['appointmentDate' => 'ASC']);
 
-//     return $this->render('appointment/user_appointments.html.twig', [
-//         'appointments' => $appointments,
-//     ]);
-// }
-
-
+        return $this->render('appointment/user_appointments.html.twig', [
+            'appointments' => $appointments,
+        ]);
+    }
 
 
     #[Route('/new', name: 'app_appointment_new', methods: ['GET', 'POST'])]

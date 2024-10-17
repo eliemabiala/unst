@@ -15,6 +15,7 @@
 						<th class="px-4 py-2">Nom du fichier</th>
 						<th class="px-4 py-2">Chemin du fichier</th>
 						<th class="px-4 py-2">Date de téléchargement</th>
+						<th class="px-4 py-2">Email de l'utilisateur</th>
 						<th class="px-4 py-2">Actions</th>
 					</tr>
 				</thead>
@@ -23,16 +24,26 @@
 						<tr class="border-b hover:bg-gray-100">
 							<td class="px-4 py-2">{{ document.id }}</td>
 							<td class="px-4 py-2">{{ document.fileName }}</td>
-							<td class="px-4 py-2">{{ document.filePath }}</td>
+							<td class="px-4 py-2">
+								{% if document.filePath %}
+									<a href="{{ asset(document.filePath) }}" class="text-blue-500 hover:text-blue-700">Télécharger</a>
+								{% else %}
+									Aucun fichier
+								{% endif %}
+							</td>
 							<td class="px-4 py-2">{{ document.downloadDate ? document.downloadDate|date('Y-m-d') : '' }}</td>
+							<td class="px-4 py-2">{{ document.User.first ? document.User.first.email : 'Aucun utilisateur' }}</td>
 							<td class="px-4 py-2">
 								<a href="{{ path('app_documents_show', {'id': document.id}) }}" class="text-blue-500 hover:text-blue-700">Afficher</a>
 								<a href="{{ path('app_documents_edit', {'id': document.id}) }}" class="ml-2 text-green-500 hover:text-green-700">Éditer</a>
+								<a href="{{ path('app_documents_delete', {'id': document.id}) }}" class="ml-2 text-red-500 hover:text-red-700" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce document ?')">
+									Supprimer
+								</a>
 							</td>
 						</tr>
 					{% else %}
 						<tr>
-							<td colspan="5" class="text-center py-4">Aucun enregistrement trouvé</td>
+							<td colspan="6" class="text-center py-4">Aucun enregistrement trouvé</td>
 						</tr>
 					{% endfor %}
 				</tbody>
