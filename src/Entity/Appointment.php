@@ -133,6 +133,6 @@ class Appointment
     #[ORM\PreUpdate]
     public function onPreUpdate()
     {
-        $this->date_update = new \DateTime(); // Update the modification date to now
+        $this->date_update = new \DateTime();
     }
 }

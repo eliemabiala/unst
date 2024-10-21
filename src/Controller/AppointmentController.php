@@ -5,38 +5,46 @@ namespace App\Controller;
 use App\Entity\Appointment;
 use App\Form\Appointment1Type;
 use App\Repository\AppointmentRepository;
+use App\Repository\TeamsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/appointment')]
+    // #[IsGranted('ROLE_ADMIN')]
 class AppointmentController extends AbstractController
 {
     #[Route('/', name: 'app_appointment_index', methods: ['GET'])]
     public function index(AppointmentRepository $appointmentRepository): Response
     {
-        // Tri par date de création en ordre croissant (ASC)
-        return $this->render('appointment/index.html.twig', [
-            'appointments' => $appointmentRepository->findBy([], ['creation_date' => 'ASC']),
-        ]);
-    }
-
-    #[Route('/user', name: 'app_appointment_user', methods: ['GET'])]
-    public function userAppointments(AppointmentRepository $appointmentRepository): Response
-    {
         // Récupérer l'utilisateur connecté
-        $user = $this->getUser();
+        $currentUser = $this->getUser();
 
-        // Récupérer les rendez-vous pour cet utilisateur
-        $appointments = $appointmentRepository->findBy(['user' => $user], ['appointmentDate' => 'ASC']);
+        // Vérifier si l'utilisateur est bien connecté
+        if (!$currentUser) {
+            throw $this->createAccessDeniedException('Vous devez être connecté.');
+        }
 
-        return $this->render('appointment/user_appointments.html.twig', [
+        // Si l'utilisateur est admin, on récupère tous les rendez-vous
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $appointments = $appointmentRepository->findAll();
+        } else {
+            // Récupérer uniquement les rendez-vous de l'utilisateur connecté
+            $appointments = $appointmentRepository->createQueryBuilder('a')
+                ->where('a.user = :user')
+                ->setParameter('user', $currentUser)
+                ->orderBy('a.appointment_date', 'ASC')  // Utilisation de 'appointment_date' comme dans l'entité
+                ->getQuery()
+                ->getResult();
+
+        }
+
+        return $this->render('appointment/index.html.twig', [
             'appointments' => $appointments,
         ]);
     }
-
 
     #[Route('/new', name: 'app_appointment_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -87,7 +95,7 @@ class AppointmentController extends AbstractController
     #[Route('/{id}', name: 'app_appointment_delete', methods: ['POST'])]
     public function delete(Request $request, Appointment $appointment, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $appointment->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $appointment->getId(), $request->get('_token'))) {
             $entityManager->remove($appointment);
             $entityManager->flush();
         }

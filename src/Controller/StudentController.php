@@ -8,10 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class StudentController extends AbstractController
 {
     #[Route('/student', name: 'app_student', methods: ['GET'])]
+    #[IsGranted('ROLE_COACH')]
     public function informations(UserInterface $user): Response
     {
         if (!$user instanceof \App\Entity\User) {
