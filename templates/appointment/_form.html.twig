@@ -1,6 +1,7 @@
 {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
 <div
 	class="space-y-4">
+
 	<!-- Champ Utilisateur -->
 	<div class="form-group">
 		{{ form_label(form.user, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
@@ -8,9 +9,17 @@
 		{{ form_errors(form.user, {'attr': {'class': 'text-red-500 text-sm'}}) }}
 	</div>
 
+	<!-- Champ Sélection Coach -->
+	<div class="form-group">
+		{{ form_label(form.coach, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+		{{ form_widget(form.coach, {'attr': {'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'}}) }}
+		{{ form_errors(form.coach, {'attr': {'class': 'text-red-500 text-sm'}}) }}
+	</div>
+
 	<!-- Grille pour Date et Heure (Alignés côte à côte sur les écrans larges) -->
 	<div
 		class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
 		<!-- Champ Date du rendez-vous -->
 		<div class="form-group">
 			{{ form_label(form.appointment_date, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}

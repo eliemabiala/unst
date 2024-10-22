@@ -47,10 +47,10 @@
 				</div>
 			</a>
 		</div>
-<a href="{{ path('app_coachepage_appointments') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300" aria-label="Voir les rendez-vous">Voir les rendez-vous
+		<a href="{{ path('app_appointment_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300" aria-label="Voir les rendez-vous">Voir les rendez-vous
 
 
-</a>
+		</a>
 		<!-- Liste des coachs -->
 		<div class="overflow-x-auto max-h-96 mt-10 mb-10">
 			<table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
@@ -89,9 +89,11 @@
 									<a href="{{ path('app_edit', { id: user.id }) }}">
 										<img src="{{ asset('img/admin/messager.png') }}" alt="Envoyer un message" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
 									</a>
-									<a href="{{ path('app_appointment_new', { email: user.email }) }}">
+									<a href="{{ path('see_all_appointments', { email: user.email }) }}">
 										<img src="{{ asset('img/admin/addrdv.png') }}" alt="Ajouter un rendez-vous" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
 									</a>
+
+
 									<a href="{{ path('app_edit', { id: user.id }) }}">
 										<img src="{{ asset('img/admin/edit.png') }}" alt="Modifier le profil" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
 									</a>
@@ -110,4 +112,3 @@
 		</div>
 	</div>
 {% endblock %}
-

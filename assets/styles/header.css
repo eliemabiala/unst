@@ -5,9 +5,7 @@
     top: 0;
     width: 100%;
     background-color: #14213D;
-    /* Couleur de fond pour l'en-tête */
-    padding: 0 20px 0 20px;
-    /* Espacement autour de l'en-tête */
+padding: 8px 20px 9px 20px;
 }
 
 /* Navigation bar styles */

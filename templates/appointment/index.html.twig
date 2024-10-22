@@ -55,7 +55,8 @@
 						</a>
 						<form method="post" action="{{ path('app_appointment_delete', {'id': appointment.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
 							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appointment.id) }}">
-							<button type="submit" title="Supprimer">
+<button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');" class="text-red-600">
+
 								<img src="{{ asset('img/admin/delete.png') }}" alt="Supprimer" class="inline w-6 h-6 sm:w-4 sm:h-4"/>
 							</button>
 						</form>

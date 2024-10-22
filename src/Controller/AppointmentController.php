@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Appointment;
 use App\Form\Appointment1Type;
 use App\Repository\AppointmentRepository;
+use App\Repository\UserRepository;
 use App\Repository\TeamsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -102,4 +103,27 @@ class AppointmentController extends AbstractController
 
         return $this->redirectToRoute('app_appointment_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/user/{id}/appointments', name: 'app_appointment_user', methods: ['GET'])]
+    public function getUserAppointments($id, AppointmentRepository $appointmentRepository, UserRepository $userRepository): Response
+    {
+        $user = $userRepository->find($id);
+
+        if (!$user) {
+            throw $this->createNotFoundException('Utilisateur non trouvé.');
+        }
+
+        $appointments = $appointmentRepository->createQueryBuilder('a')
+            ->where('a.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('a.appointment_date', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('appointment/seeall.html.twig', [
+            'appointments' => $appointments,
+            'user' => $user,
+        ]);
+    }
+
 }
