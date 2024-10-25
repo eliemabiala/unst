@@ -22,28 +22,31 @@ class Documents
     #[ORM\Column(length: 100)]
     private ?string $file_name = null;
 
-    #[Vich\UploadableField(mapping: "documents", fileNameProperty: "file_name")]
+    #[Vich\UploadableField(mapping: 'documents', fileNameProperty: 'file_name')]
     private ?File $file_path = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $download_date = null;
 
-    /**
-     * @var Collection<int, User>
-     */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'documents')]
-    private Collection $User;
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'documents')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
-    /**
-     * @var Collection<int, Step>
-     */
+    // Ajoutez la relation ManyToOne avec User
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    private ?User $selectedUser = null;
+
+    // Ajout de la relation Coach
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?User $coach = null;
+
     #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'documents')]
-    private Collection $Step;
+    private Collection $steps;
 
     public function __construct()
     {
-        $this->User = new ArrayCollection();
-        $this->Step = new ArrayCollection();
+        $this->steps = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -87,32 +90,40 @@ class Documents
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUser(): Collection
+    public function getUser(): ?User
     {
-        return $this->User;
+        return $this->user;
     }
 
-    public function addUser(User $user): static
+    public function setUser(?User $user): static
     {
-        if (!$this->User->contains($user)) {
-            $this->User->add($user);
-            $user->setDocuments($this);
-        }
+        $this->user = $user;
 
         return $this;
     }
 
-    public function removeUser(User $user): static
+    // Ajout des méthodes pour selectedUser
+    public function getSelectedUser(): ?User
     {
-        if ($this->User->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getDocuments() === $this) {
-                $user->setDocuments(null);
-            }
-        }
+        return $this->selectedUser;
+    }
+
+    public function setSelectedUser(?User $selectedUser): static
+    {
+        $this->selectedUser = $selectedUser;
+
+        return $this;
+    }
+
+    // Ajout des méthodes pour Coach
+    public function getCoach(): ?User
+    {
+        return $this->coach;
+    }
+
+    public function setCoach(?User $coach): static
+    {
+        $this->coach = $coach;
 
         return $this;
     }
@@ -120,15 +131,15 @@ class Documents
     /**
      * @return Collection<int, Step>
      */
-    public function getStep(): Collection
+    public function getSteps(): Collection
     {
-        return $this->Step;
+        return $this->steps;
     }
 
     public function addStep(Step $step): static
     {
-        if (!$this->Step->contains($step)) {
-            $this->Step->add($step);
+        if (!$this->steps->contains($step)) {
+            $this->steps->add($step);
             $step->setDocuments($this);
         }
 
@@ -137,7 +148,7 @@ class Documents
 
     public function removeStep(Step $step): static
     {
-        if ($this->Step->removeElement($step)) {
+        if ($this->steps->removeElement($step)) {
             // set the owning side to null (unless already changed)
             if ($step->getDocuments() === $this) {
                 $step->setDocuments(null);

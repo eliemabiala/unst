@@ -9,7 +9,6 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\TemporaryFile;
 
 class UserFixtures extends Fixture
 {
@@ -39,7 +38,7 @@ class UserFixtures extends Fixture
             );
 
             $user->setPassword($hashedPassword);
-            $user->setRoles(['ROLE_USER']);
+            $user->setRoles(['ROLE_STUDENT']);
             $user->setTeams($teams[array_rand($teams)]);
 
             // Associez un profil à l'utilisateur
@@ -62,7 +61,7 @@ class UserFixtures extends Fixture
                 $file = new File($tempFile); // Créez un objet File
 
                 $document->setFilePath($file); // Associez l'objet File au document
-                $document->addUser($user); // Associez l'utilisateur au document
+                $document->setUser($user); // Utilisez setUser au lieu de addUser
                 $manager->persist($document);
             }
 

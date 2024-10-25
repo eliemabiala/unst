@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AppointmentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
 #[ORM\Entity(repositoryClass: AppointmentRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -30,9 +31,15 @@ class Appointment
     #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $appointment_time = null;  // Heure du rendez-vous
 
+    // The student (user) attending the appointment
     #[ORM\ManyToOne(inversedBy: 'appointments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    // New property for the coach assigned to the appointment
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $coach = null;
 
     public function getId(): ?int
     {
@@ -111,9 +118,21 @@ class Appointment
         return $this;
     }
 
+    public function getCoach(): ?User
+    {
+        return $this->coach;
+    }
+
+    public function setCoach(?User $coach): static
+    {
+        $this->coach = $coach;
+
+        return $this;
+    }
+
     #[ORM\PreUpdate]
     public function onPreUpdate()
     {
-        $this->date_update = new \DateTime(); // Met à jour la date de mise à jour à maintenant
+        $this->date_update = new \DateTime();
     }
 }

@@ -4,43 +4,56 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mx-auto py-8">
+	<div class="container mx-auto mt-40">
 		<h1 class="text-2xl font-bold text-center text-[#14213D] mb-6">Liste des documents</h1>
 
 		<div class="overflow-x-auto">
 			<table class="min-w-full bg-white shadow-md rounded">
 				<thead class="bg-[#14213D] text-white">
 					<tr>
-						<th class="px-4 py-2">Id</th>
 						<th class="px-4 py-2">Nom du fichier</th>
-						<th class="px-4 py-2">Chemin du fichier</th>
-						<th class="px-4 py-2">Date de téléchargement</th>
+
+						{% if not is_granted('ROLE_STUDENT') %}
+							<th class="px-4 py-2">Utilisateur</th>
+						{% endif %}
+
+						<th class="px-4 py-2">Envoie par</th>
 						<th class="px-4 py-2">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for document in documents %}
 						<tr class="border-b hover:bg-gray-100">
-							<td class="px-4 py-2">{{ document.id }}</td>
 							<td class="px-4 py-2">{{ document.fileName }}</td>
-							<td class="px-4 py-2">{{ document.filePath }}</td>
-							<td class="px-4 py-2">{{ document.downloadDate ? document.downloadDate|date('Y-m-d') : '' }}</td>
-							<td class="px-4 py-2">
-								<a href="{{ path('app_documents_show', {'id': document.id}) }}" class="text-blue-500 hover:text-blue-700">Afficher</a>
-								<a href="{{ path('app_documents_edit', {'id': document.id}) }}" class="ml-2 text-green-500 hover:text-green-700">Éditer</a>
+
+							{% if not is_granted('ROLE_STUDENT') %}
+								<td class="px-4 py-2 text-center">{{ document.user ? document.user.email : 'Aucun utilisateur' }}</td>
+							{% endif %}
+
+							<td class="px-4 py-2 text-center">{{ document.coach ? document.coach.email : 'Non assigné' }}</td>
+							<td class="px-4 py-2 text-center">
+								
+
+								{% if is_granted('ROLE_STUDENT') %}
+									<a href="{{ asset('uploads/documents/' ~ document.fileName) }}" class="ml-2 text-purple-500 hover:text-purple-700" download>Télécharger</a>
+								{% else %}
+								<a href="{{ path('app_documents_show', {'id': document.id}) }}" class="text-blue-500 hover:text-blue-700">Détail</a>
+									<a href="{{ path('app_documents_edit', {'id': document.id}) }}" class="ml-2 text-green-500 hover:text-green-700">Modifier</a>
+									<a href="{{ path('app_documents_delete', {'id': document.id}) }}" class="ml-2 text-red-500 hover:text-red-700" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce document ?')">Supprimer</a>
+								{% endif %}
 							</td>
 						</tr>
 					{% else %}
 						<tr>
-							<td colspan="5" class="text-center py-4">Aucun enregistrement trouvé</td>
+							<td colspan="6" class="text-center py-4">Aucun enregistrement trouvé</td>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
 		</div>
 
-		<div class="text-center mt-6">
-			<a href="{{ path('app_documents_new') }}" class="bg-[#14213D] hover:bg-[#b49047] text-white font-bold py-2 px-4 rounded">Créer un nouveau document</a>
+		<div class="text-center py-10 mt-6">
+			<a href="{{ path('app_documents_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">Créer un nouveau document</a>
 		</div>
 	</div>
 {% endblock %}

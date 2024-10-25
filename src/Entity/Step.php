@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\StepRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StepRepository::class)]
@@ -17,17 +16,12 @@ class Step
     #[ORM\Column(length: 100)]
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: 'text')]
     private ?string $description = null;
 
-    // #[ORM\ManyToOne(inversedBy: 'Step')]
-    // #[ORM\JoinColumn(nullable: false)]
-    // private ?Documents $documents = null;
-
-    #[ORM\ManyToOne(targetEntity: Documents::class, inversedBy: 'Step')]
-    #[ORM\JoinColumn(name: 'documents_id', nullable: true)] // Ajoutez `nullable: true`
+    #[ORM\ManyToOne(targetEntity: Documents::class, inversedBy: 'steps')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Documents $documents = null;
-
 
     public function getId(): ?int
     {
@@ -39,7 +33,7 @@ class Step
         return $this->title;
     }
 
-    public function setTitle(string $title): static
+    public function setTitle(string $title): self
     {
         $this->title = $title;
 
@@ -51,7 +45,7 @@ class Step
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(string $description): self
     {
         $this->description = $description;
 
@@ -63,7 +57,7 @@ class Step
         return $this->documents;
     }
 
-    public function setDocuments(?Documents $documents): static
+    public function setDocuments(?Documents $documents): self
     {
         $this->documents = $documents;
 

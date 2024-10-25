@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -28,6 +29,10 @@ class Contact
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(type: 'boolean')]
+    #[Assert\IsTrue(message: 'Vous devez accepter les termes et conditions.')]
+    private ?bool $termsAccepted = null;
 
     // The constructor sets the default value for createdAt
     public function __construct()
@@ -89,10 +94,22 @@ class Contact
         return $this->createdAt;
     }
 
-    // The setter for createdAt to allow manual setting in fixtures
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    // Getter pour termsAccepted
+    public function getTermsAccepted(): ?bool
+    {
+        return $this->termsAccepted;
+    }
+
+    // Setter pour termsAccepted
+    public function setTermsAccepted(bool $termsAccepted): static
+    {
+        $this->termsAccepted = $termsAccepted;
         return $this;
     }
 }

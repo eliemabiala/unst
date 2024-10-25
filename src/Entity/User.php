@@ -1,5 +1,5 @@
 <?php
-// src/Entity/User.php
+
 namespace App\Entity;
 
 use App\Repository\UserRepository;
@@ -21,15 +21,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    /**
-     * @var list<string> The user roles
-     */
     #[ORM\Column(type: 'json')]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
     #[ORM\Column]
     private ?string $password = null;
 
@@ -37,28 +31,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(nullable: false)]
     private ?Profile $profile = null;
 
-    /**
-     * @var Collection<int, Appointment>
-     */
     #[ORM\OneToMany(targetEntity: Appointment::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $appointments;
 
-    // Updated property name from $team to $teams
     #[ORM\ManyToOne(targetEntity: Teams::class, inversedBy: 'users')]
+    #[ORM\JoinColumn(nullable: true)] // Permet de rendre l'équipe optionnelle
     private ?Teams $teams = null;
 
-    // #[ORM\ManyToOne(inversedBy: 'User')]
-    // #[ORM\JoinColumn(nullable: false)]
-    // private ?Documents $documents = null;
-
-    #[ORM\ManyToOne(targetEntity: Documents::class, inversedBy: 'User')]
-    #[ORM\JoinColumn(name: 'documents_id', nullable: true)] // Ajoutez `nullable: true`
-    private ?Documents $documents = null;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Documents::class)]
+    private Collection $documents;
 
     public function __construct()
     {
         $this->appointments = new ArrayCollection();
+        $this->documents = new ArrayCollection();
     }
+
+    // Méthodes existantes
 
     public function getId(): ?int
     {
@@ -108,8 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials(): void
     {
-        // Clear sensitive data, if any
-        // $this->plainPassword = null;
+        // Clear sensitive data
     }
 
     public function getProfile(): ?Profile
@@ -123,9 +111,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Appointment>
-     */
     public function getAppointments(): Collection
     {
         return $this->appointments;
@@ -144,7 +129,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeAppointment(Appointment $appointment): static
     {
         if ($this->appointments->removeElement($appointment)) {
-            // set the owning side to null (unless already changed)
             if ($appointment->getUser() === $this) {
                 $appointment->setUser(null);
             }
@@ -153,27 +137,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // Updated getter method from getTeam() to getTeams()
+
     public function getTeams(): ?Teams
     {
         return $this->teams;
     }
 
-    // Updated setter method from setTeam() to setTeams()
     public function setTeams(?Teams $teams): static
     {
         $this->teams = $teams;
         return $this;
     }
 
-    public function getDocuments(): ?Documents
+    // Méthodes pour Documents
+
+    public function getDocuments(): Collection
     {
         return $this->documents;
     }
 
-    public function setDocuments(?Documents $documents): static
+    public function addDocument(Documents $document): static
     {
-        $this->documents = $documents;
+        if (!$this->documents->contains($document)) {
+            $this->documents->add($document);
+            $document->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocument(Documents $document): static
+    {
+        if ($this->documents->removeElement($document)) {
+            if ($document->getUser() === $this) {
+                $document->setUser(null);
+            }
+        }
 
         return $this;
     }

@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class CoachepageController extends AbstractController
 {
     #[Route('/coachepage', name: 'app_coachepage')]
-    // #[IsGranted('ROLE_COACH')]
+    #[IsGranted('ROLE_COACH')]
     public function index(UserRepository $userRepository): Response
     {
         // Obtenir l'utilisateur connecté
