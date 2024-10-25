@@ -15,12 +15,9 @@ class Teams
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 2)]
-    private ?string $team = null;
+    #[ORM\Column(length: 50)]
+    private ?string $team = null;  // Propriété renommée en `team`
 
-    /**
-     * @var Collection<int, User>
-     */
     #[ORM\OneToMany(mappedBy: 'teams', targetEntity: User::class)]
     private Collection $users;
 
@@ -42,7 +39,6 @@ class Teams
     public function setTeam(string $team): static
     {
         $this->team = $team;
-
         return $this;
     }
 
@@ -67,7 +63,6 @@ class Teams
     public function removeUser(User $user): static
     {
         if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
             if ($user->getTeams() === $this) {
                 $user->setTeams(null);
             }

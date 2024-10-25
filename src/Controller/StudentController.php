@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Appointment; // Assurez-vous d'importer l'entité Appointment
+use App\Entity\Appointment;
+use App\Entity\Documents; // Ensure this matches your actual entity name
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +14,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class StudentController extends AbstractController
 {
     #[Route('/student', name: 'app_student', methods: ['GET'])]
-    #[IsGranted('ROLE_COACH')]
+    #[IsGranted('ROLE_STUDENT')]
     public function informations(UserInterface $user): Response
     {
         if (!$user instanceof \App\Entity\User) {
@@ -38,7 +39,7 @@ class StudentController extends AbstractController
     #[Route('/student/appointments', name: 'app_student_appointments', methods: ['GET'])]
     public function appointments(UserInterface $user, EntityManagerInterface $entityManager): Response
     {
-        // Récupérer les rendez-vous de l'utilisateur connecté
+        // Retrieve the logged-in user's appointments
         $appointments = $entityManager->getRepository(Appointment::class)
             ->findBy(['user' => $user]);
 
@@ -46,4 +47,5 @@ class StudentController extends AbstractController
             'appointments' => $appointments,
         ]);
     }
+
 }

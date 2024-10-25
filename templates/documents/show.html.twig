@@ -4,24 +4,26 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mx-auto py-8">
+	<div
+		class="container mx-auto py-8 mt-20">
+		<!-- Ajout de mt-20 pour un espace en haut -->
 		<h1 class="text-2xl font-bold text-center text-[#14213D] mb-6">Détails du document</h1>
 
 		<div class="overflow-x-auto">
 			<table class="min-w-full bg-white shadow-md rounded mb-6">
 				<tbody>
-					<tr class="border-b">
+					{# <tr class="border-b">
 						<th class="px-4 py-2 text-left bg-gray-100">Id</th>
 						<td class="px-4 py-2">{{ document.id }}</td>
-					</tr>
+					</tr> #}
 					<tr class="border-b">
 						<th class="px-4 py-2 text-left bg-gray-100">Nom du fichier</th>
 						<td class="px-4 py-2">{{ document.fileName }}</td>
 					</tr>
-					<tr class="border-b">
+					{# <tr class="border-b">
 						<th class="px-4 py-2 text-left bg-gray-100">Chemin du fichier</th>
 						<td class="px-4 py-2">{{ document.filePath }}</td>
-					</tr>
+					</tr> #}
 					<tr class="border-b">
 						<th class="px-4 py-2 text-left bg-gray-100">Date de téléchargement</th>
 						<td class="px-4 py-2">{{ document.downloadDate ? document.downloadDate|date('Y-m-d') : '' }}</td>
@@ -31,8 +33,9 @@
 		</div>
 
 		<div class="flex justify-center space-x-4">
-			<a href="{{ path('app_documents_index') }}" class="bg-[#14213D] hover:bg-[#b49047] text-white font-bold py-2 px-4 rounded">Retour à la liste</a>
-			<a href="{{ path('app_documents_edit', {'id': document.id}) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Éditer</a>
+			<a href="{{ path('app_documents_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300" aria-label="Voir les rendez-vous">Retour à la liste</a>
+			<a href="{{ path('app_documents_edit', {'id': document.id}) }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-green-500 transition duration-300" aria-label="Éditer">Éditer</a>
+
 			{{ include('documents/_delete_form.html.twig', { 'class': 'inline' }) }}
 		</div>
 	</div>
