@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conversations Existantes
+{% endblock %}
+
+{% block body %}
+	<div class="container mx-auto mt-40 my-8 p-4">
+		<div class="flex justify-between items-center mb-4">
+			<h1 class="text-2xl font-bold">Vos Conversations Existantes</h1>
+			<a href="{{ path('app_conversation_list') }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+				Nouveau message
+			</a>
+		</div>
+
+
+		<ul class="mt-4 space-y-4">
+			{% for conversation in conversations %}
+				<!-- Rendre la carte entière cliquable en englobant avec une balise <a> -->
+				<a href="{{ path('app_conversation_show', { 'id': conversation.id }) }}" class="block">
+					<li class="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded hover:bg-gray-200 transition">
+						<div>
+							{% set otherParticipant = null %}
+							{% for participant in conversation.participants %}
+								{% if participant != app.user %}
+									{% set otherParticipant = participant %}
+								{% endif %}
+							{% endfor %}
+							<!-- Afficher le nom du participant autre que l'utilisateur courant -->
+							{% if otherParticipant %}
+								<strong class="text-lg font-semibold">{{ otherParticipant.profile ? otherParticipant.profile.firstname : 'Nom indisponible' }}</strong>
+							{% endif %}
+						</div>
+						<!-- Afficher la date et l'heure du dernier message -->
+						<div class="text-sm text-gray-500">
+							{% set lastMessage = conversation.messages|last %}
+							{% if lastMessage %}
+								<span>{{ lastMessage.createdAt|date('d-m-Y H:i') }}</span>
+							{% else %}
+								<span>Aucun message</span>
+							{% endif %}
+						</div>
+					</li>
+				</a>
+			{% else %}
+				<li class="text-gray-500">Aucune conversation existante trouvée.</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

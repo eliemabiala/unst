@@ -18,7 +18,15 @@ class Messages
     private ?string $content = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $sending_date = null;
+    private ?\DateTimeInterface $createdAt = null; // Propriété pour la date de création du message
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $author = null;
+
+    #[ORM\ManyToOne(inversedBy: 'messages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Conversation $conversation = null;
 
     public function getId(): ?int
     {
@@ -37,14 +45,38 @@ class Messages
         return $this;
     }
 
-    public function getSendingDate(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->sending_date;
+        return $this->createdAt;
     }
 
-    public function setSendingDate(\DateTimeInterface $sending_date): static
+    public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
-        $this->sending_date = $sending_date;
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): static
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    public function getConversation(): ?Conversation
+    {
+        return $this->conversation;
+    }
+
+    public function setConversation(?Conversation $conversation): static
+    {
+        $this->conversation = $conversation;
 
         return $this;
     }
