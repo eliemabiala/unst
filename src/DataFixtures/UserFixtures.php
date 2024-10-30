@@ -30,38 +30,41 @@ class UserFixtures extends Fixture
 
         for ($i = 1; $i <= 10; $i++) {
             $user = new User();
-            $user->setEmail('mail' . $i . '@gmail.com');
-
-            $hashedPassword = $this->passwordHasher->hashPassword(
-                $user,
-                'password' . $i
-            );
-
-            $user->setPassword($hashedPassword);
-            $user->setRoles(['ROLE_STUDENT']);
-            $user->setTeams($teams[array_rand($teams)]);
 
             // Associez un profil à l'utilisateur
             $profile = $this->getReference('profile_' . $i);
             if ($profile) {
                 $user->setProfile($profile);
+
+                // Crée un email basé sur le prénom et le nom du profil
+                $firstName = strtolower(str_replace(' ', '', $profile->getFirstname()));
+                $lastName = strtolower(str_replace(' ', '', $profile->getName()));
+                $user->setEmail($firstName . '.' . $lastName . '@exemple.com');
             } else {
                 throw new \RuntimeException('Profile reference not found for user with index ' . $i);
             }
+
+            // Hachage du mot de passe
+            $hashedPassword = $this->passwordHasher->hashPassword(
+                $user,
+                'password' . $i
+            );
+            $user->setPassword($hashedPassword);
+            $user->setRoles(['ROLE_STUDENT']);
+            $user->setTeams($teams[array_rand($teams)]);
 
             // Créez et associez des documents à l'utilisateur
             for ($j = 1; $j <= 3; $j++) {
                 $document = new Documents();
                 $document->setFileName('Document ' . $j . ' for user ' . $i);
 
-                // Créez un fichier temporaire pour simuler un fichier téléchargé
+                // Crée un fichier temporaire pour simuler un fichier téléchargé
                 $tempFile = tempnam(sys_get_temp_dir(), 'upload_');
                 file_put_contents($tempFile, 'This is the content of the file ' . $j);
 
-                $file = new File($tempFile); // Créez un objet File
-
-                $document->setFilePath($file); // Associez l'objet File au document
-                $document->setUser($user); // Utilisez setUser au lieu de addUser
+                $file = new File($tempFile); // Crée un objet File
+                $document->setFilePath($file); // Associe l'objet File au document
+                $document->setUser($user); // Utilise setUser au lieu de addUser
                 $manager->persist($document);
             }
 
@@ -70,7 +73,7 @@ class UserFixtures extends Fixture
 
         $manager->flush();
 
-        // Nettoyez les fichiers temporaires
+        // Nettoyage des fichiers temporaires
         foreach (glob(sys_get_temp_dir() . '/upload_*') as $file) {
             unlink($file);
         }

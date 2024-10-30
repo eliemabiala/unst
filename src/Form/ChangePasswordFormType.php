@@ -40,7 +40,7 @@ class ChangePasswordFormType extends AbstractType
                         ]),
                     ],
                     'label' => 'Nouveau mot de passe',
-                    'help' => 'Utilisez un mot de passe fort contenant au moins 6 caractères, incluant des majuscules, des minuscules, des chiffres et des caractères spéciaux. Exemple: B1s!on-V0ltaGe!2024',
+                    'help' => 'Utilisez un mot de passe fort contenant au moins 6 caractères. Exemple: B1s!on-V0ltaGe!2024',
                 ],
                 'second_options' => [
                     'label' => 'Répéter le mot de passe',

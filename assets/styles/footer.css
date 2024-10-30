@@ -16,38 +16,27 @@ footer {
 }
 
 .logo img {
-    max-width: 100px;
-    /* Adjust size as needed */
+    max-width: 221px;
 }
 
 .footer-help-section {
-    /* Renommé de .faq-section */
     width: 100%;
     margin-bottom: 15px;
 }
 
 .footer-help {
-    /* Renommé de .question */
     display: flex;
     align-items: center;
-    /* Align text and icon */
     cursor: pointer;
-    /* Change cursor to pointer */
 }
 
 .toggle-icon {
     width: 20px;
-    /* Adjust size of the toggle icon */
     margin-left: 10px;
-    /* Space between text and icon */
 }
 
 .footer-answer {
-    /* Renommé de .footAnswer */
-    /* display: none; */
-    /* Hide answers initially */
     margin-top: 10px;
-    /* Space above the answer */
 }
 
 .footer-section h3 {
@@ -58,6 +47,16 @@ footer {
 .footer-section p {
     margin: 5px 0;
 }
+.later {
+        display: flex;
+        flex-direction: column
+    }
+
+.ft{
+            display: flex;
+            justify-content: center;
+}
+
 
 .footer-section a {
     color: #fff;
@@ -85,7 +84,6 @@ footer {
                 }
 
     .footer-help-section {
-        /* Renommé de .faq-section */
         width: 100%;
     }
 }

@@ -1,17 +1,22 @@
 <footer>
 	<div class="footer-container">
 		<div class="logo">
-			<img src="{{ asset('img/home/logo.png') }}" alt="Logo du site">
+			<img src="{{ asset('img/home/logos.png') }}" alt="Logo du site">
 		</div>
 		<div class="help-section">
 			<h3 class="footer-help">BESOIN D'AIDE ?</h3>
-			<a class="footer-answer" href="#">Faq</a>
-		</div>
+			<div class="later">
+			<a class="footer-answer" href="{{ path('app_faq')}}">Faq</a>
+			<a class="footer-answer" href="{{ path('app_contact')}}">Contact</a>
+</div></div>
+
 		<div class="social-section">
 			<h3 class="footer-help">RESTER CONNECTÉ</h3>
-			<a class="footer-answer" href="#">Facebook</a><br>
-			<a class="footer-answer" href="#">YouTube</a>
-		</div>
+			<div class="ft">
+			<a class="logo" href="https://www.facebook.com/YourPageName" target="_blank"><img src="{{ asset('img/home/facebook.png') }}" alt="Logo du site"></a><br>
+			<a class="logo" href="https://www.youtube.com/YourChannelName"><img src="{{ asset('img/home/youtube.png') }}" alt="Logo du site"></a>
+</div></div>
+
 		<div class="contact-section">
 			<h3 class="footer-help">CONTACT</h3>
 			<p class="footer-answer">
@@ -25,4 +30,3 @@
 		</div>
 	</div>
 </footer>
-

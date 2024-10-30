@@ -1,18 +1,13 @@
 <header class="header">
 	<nav
 		id="nav_header" class="nav_header">
-		<!-- Logo -->
 <div class="logo">
 	<a href="{{ path('home') }}"><img src="{{ asset('img/home/logo.png') }}" alt="Logo du site"></a>
 </div>
 
-
-		<!-- Menu Burger pour mobile -->
 		<div class="burger">
 			<img src="{{ asset('img/picture/burger.png') }}" alt="menu burger">
 		</div>
-
-		<!-- Navigation principale -->
 		<div class="nav_links_container">
 			<ul id="main-nav" class="nav_links">
 				<li>
@@ -45,13 +40,10 @@
 							<a class="nav_link" href="{{ path('app_student') }}">Espace Étudiant</a>
 						</li>
 					{% endif %}
-
-					<!-- Bouton de déconnexion encapsulé dans un li -->
 					<li>
 						<button class="nav_button" onclick="window.location.href='{{ path('app_logout') }}'">Déconnexion</button>
 					</li>
 				{% else %}
-					<!-- Bouton de connexion encapsulé dans un li -->
 					<li>
 						<button class="nav_button" onclick="window.location.href='{{ path('app_login') }}'">Se connecter</button>
 					</li>
@@ -105,13 +97,10 @@
 						<a class="nav_link" href="{{ path('app_student') }}">Espace Étudiant</a>
 					</li>
 				{% endif %}
-
-				<!-- Bouton de déconnexion encapsulé dans un li -->
 				<li>
 					<button class="nav_button" onclick="window.location.href='{{ path('app_logout') }}'">Déconnexion</button>
 				</li>
 			{% else %}
-				<!-- Bouton de connexion encapsulé dans un li -->
 				<li>
 					<button class="nav_button" onclick="window.location.href='{{ path('app_login') }}'">Se connecter</button>
 				</li>
