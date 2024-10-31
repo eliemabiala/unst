@@ -12,9 +12,7 @@
 
 		{% block javascripts %}
 			{% block importmap %}
-				{# {{ importmap('faq') }} #}
 				{{ importmap(['app']) }}
-				{# {{ importmap('reset.js') }} #}
 
 
 			{% endblock %}
@@ -24,11 +22,11 @@
 		{% block header %}
 			{% include '_header.html.twig' %}
 		{% endblock %}
-
-
+		
+		{# <body style="padding-top: 107px @media (max-width: 825px)"></body> #}
 		{% block body %}
-
 		{% endblock %}
+
 
 		{% block footer %}
 			{% include '_footer.html.twig' %}

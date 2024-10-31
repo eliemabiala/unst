@@ -2,6 +2,14 @@
 
 {% block title %}Profil de l'utilisateur
 {% endblock %}
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app', 'faq']) }}
+
+
+	{% endblock %}
+{% endblock %}
+
 
 {% block body %}
 	{% for label, messages in app.flashes %}

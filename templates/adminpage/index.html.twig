@@ -2,6 +2,14 @@
 
 {% block title %}User List
 {% endblock %}
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app', 'faq']) }}
+
+
+	{% endblock %}
+{% endblock %}
+
 
 {% block body %}
 	{% for message in app.flashes('success') %}
