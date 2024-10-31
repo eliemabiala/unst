@@ -7,7 +7,8 @@
 	<div class="container mx-auto mt-40 my-8 p-4">
 		<div class="flex justify-between items-center mb-4">
 			<h1 class="text-2xl font-bold">Vos Conversations Existantes</h1>
-			<a href="{{ path('app_conversation_list') }}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+<a href="{{ path('app_conversation_list') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+
 				Nouveau message
 			</a>
 		</div>
@@ -46,4 +47,27 @@
 			{% endfor %}
 		</ul>
 	</div>
+<div
+	class="flex justify-center mb-10">
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white flex py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Retour
+		</a>
+	{% elseif is_granted('ROLE_COACH') %}
+		<a href="{{ path('app_coachepage') }}" class="bg-[#14213D] text-white flex py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Retour
+		</a>
+	{% elseif is_granted('ROLE_STUDENT') %}
+		<a href="{{ path('app_student') }}" class="bg-[#14213D] text-white flex py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Retour
+		</a>
+	{% else %}
+		<a href="{{ path('app_existing_conversations') }}" class="bg-[#14213D] text-white flex py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Retour
+		</a>
+	{% endif %}
+</div>
+
+
+
 {% endblock %}

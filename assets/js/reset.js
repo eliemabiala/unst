@@ -1,14 +1,13 @@
-function togglePasswordVisibility(fieldId, iconElement) {
-    let input = document.getElementById(fieldId);
-    if (input) {
+let togglePasswordVisibility = document.getElementById("togglePasswordVisibility")
+
+let input = document.getElementById("password");
+togglePasswordVisibility.addEventListener("click", function() {
         if (input.type === 'password') {
-            input.type = 'text';
-            iconElement.textContent = '👁️'; 
+            input.type = 'text'; 
+            togglePasswordVisibility.textContent = "👁️"
         } else {
             input.type = 'password';
-            iconElement.textContent = '👁️‍🗨️';
+            togglePasswordVisibility.textContent = "👁️‍🗨️"
         }
-    } else {
-        console.error(`Élément avec l'ID ${fieldId} introuvable.`);
-    }
-}
+    
+});

@@ -47,14 +47,15 @@ footer {
 .footer-section p {
     margin: 5px 0;
 }
-.later {
-        display: flex;
-        flex-direction: column
-    }
 
-.ft{
-            display: flex;
-            justify-content: center;
+.later {
+    display: flex;
+    flex-direction: column
+}
+
+.ft {
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -66,6 +67,38 @@ footer {
 .footer-section a:hover {
     text-decoration: underline;
 }
+
+
+.site-credits {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.credits-link {
+    color: #9f9100;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.credits-link:hover {
+    text-decoration: underline;
+}
+
+.credits-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+
+
+
 @media (max-width: 825px) {
     .footer-container {
         flex-direction: column;
@@ -76,14 +109,29 @@ footer {
     .toggle-icon {
         height: 20px;
     }
-    .contact-section{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin-top: 20px;
-                }
+
+    .contact-section {
+        display: none;
+    }
 
     .footer-help-section {
         width: 100%;
+    }
+
+    .site-credits {
+        padding: 15px 0;
+    }
+
+    .credits-link {
+        margin: 0 5px;
+        font-size: 12px;
+    }
+
+    .credits-content {
+        padding: 0 10px;
+    }
+
+    .credits-content p {
+        font-size: 12px;
     }
 }

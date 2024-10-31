@@ -10,16 +10,18 @@
 					<tr>
 						<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Prénom</th>
 						<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-						<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
+						<th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"></th>
 					</tr>
 				</thead>
 				<tbody class="divide-y divide-gray-200">
 					{% for user in users %}
-						<tr>
+						<tr class="hover:bg-gray-100 cursor-pointer" onclick="window.location='{{ path('app_conversation_create', {'id': user.id}) }}'">
 							<td class="px-6 py-4 whitespace-nowrap">{{ user.profile ? user.profile.firstname : 'Non défini' }}</td>
 							<td class="px-6 py-4 whitespace-nowrap">{{ user.email }}</td>
 							<td class="px-6 py-4 whitespace-nowrap">
-								<a href="{{ path('app_conversation_create', {'id': user.id}) }}" class="text-blue-500 hover:underline">Contacter</a>
+								<a href="{{ path('app_conversation_create', {'id': user.id}) }}">
+									<img src="{{ asset('img/admin/messager.png') }}" alt="Icon message" title="Envoyer un message" aria-label="Envoyer un message" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
+								</a>
 							</td>
 						</tr>
 					{% else %}
@@ -30,6 +32,13 @@
 				</tbody>
 			</table>
 		{% endif %}
+	</div>
+	<div
+		class="flex justify-center mb-10">
+		<!-- Centrage horizontal et espace en bas -->
+		<a href="{{ path('app_existing_conversations') }}" class="bg-[#14213D] text-white flex py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Retour
+		</a>
 	</div>
 {% endblock %}
 

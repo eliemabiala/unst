@@ -18,7 +18,7 @@
 						{% endif %}
 
 						<th class="px-4 py-2">Envoie par</th>
-						<th class="px-4 py-2">Actions</th>
+						<th class="px-4 py-2"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -32,12 +32,12 @@
 
 							<td class="px-4 py-2 text-center">{{ document.coach ? document.coach.email : 'Non assigné' }}</td>
 							<td class="px-4 py-2 text-center">
-								
+
 
 								{% if is_granted('ROLE_STUDENT') %}
 									<a href="{{ asset('uploads/documents/' ~ document.fileName) }}" class="ml-2 text-purple-500 hover:text-purple-700" download>Télécharger</a>
 								{% else %}
-								<a href="{{ path('app_documents_show', {'id': document.id}) }}" class="text-blue-500 hover:text-blue-700">Détail</a>
+									<a href="{{ path('app_documents_show', {'id': document.id}) }}" class="text-blue-500 hover:text-blue-700">Détail</a>
 									<a href="{{ path('app_documents_edit', {'id': document.id}) }}" class="ml-2 text-green-500 hover:text-green-700">Modifier</a>
 									<a href="{{ path('app_documents_delete', {'id': document.id}) }}" class="ml-2 text-red-500 hover:text-red-700" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce document ?')">Supprimer</a>
 								{% endif %}
@@ -51,10 +51,35 @@
 				</tbody>
 			</table>
 		</div>
+<div class="flex justify-between items-center mb-10 px-4 mt-6">
+	<!-- Ajouté mt-6 pour espace en haut -->
+	<!-- Bouton Retour en fonction du rôle de l'utilisateur -->
+		{% if is_granted('ROLE_ADMIN') %}
+			<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300"> Retour
+		</a>
+	{% elseif is_granted('ROLE_COACH') %}
+		<a href="{{ path('app_coachepage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Retour
+		</a>
+	{% elseif is_granted('ROLE_STUDENT') %}
+		<a href="{{ path('app_student') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Retour
+		</a>
+	{% else %}
+		<a href="{{ path('app_existing_conversations') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+			Retour
+		</a>
+	{% endif %}
 
-		<div class="text-center py-10 mt-6">
-			<a href="{{ path('app_documents_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">Créer un nouveau document</a>
-		</div>
+	<!-- Bouton Créer un nouveau document -->
+	<a href="{{ path('app_documents_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+		Créer un nouveau document
+	</a>
+</div>
+
+
+
 	</div>
-{% endblock %}
 
+
+{% endblock %}
