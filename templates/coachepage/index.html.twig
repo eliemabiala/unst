@@ -4,16 +4,14 @@
 {% endblock %}
 
 {% block javascripts %}
-	{% block importmap %}
-		{{ importmap('app') }}
-		{{ importmap('faq') }}
-	{% endblock %}
+	{{ importmap('app') }}
 {% endblock %}
 
+
 {% block body %}
-	<div
-		class="container mx-auto px-4 py-6 mt-20 mb-10">
-		<!-- Section des informations générales -->
+	<div class="container mx-auto px-4 py-6 mt-20 lg:mt-32 mb-10">
+
+
 		<div
 			class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
 			<!-- Carte pour les Utilisateurs -->
@@ -56,11 +54,11 @@
 				<a href="{{ path('app_existing_conversations') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
 					Messages
 				</a>
-				<a href="{{ path('app_documents_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+				{# <a href="{{ path('app_documents_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
 					Documents envoyés
 				</a>
 				<a href="{{ path('app_appointment_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300" aria-label="Voir les rendez-vous">Voir les rendez-vous
-				</a>
+				</a> #}
 			</div>
 		</div>
 
@@ -104,15 +102,8 @@
 									<a href="{{ path('app_conversation_create', {'id': user.id}) }}">
 										<img src="{{ asset('img/admin/messager.png') }}" alt="Envoyer un message" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
 									</a>
-									<a href="{{ path('app_edit', { id: user.id }) }}">
-										<img src="{{ asset('img/admin/edit.png') }}" alt="Modifier le profil" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
-									</a>
-									<form action="{{ path('app_user_delete', { id: user.id }) }}" method="post" style="display:inline;">
-										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-										<button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');" class="text-red-600">
-											<img src="{{ asset('img/admin/delete.png') }}" alt="Supprimer" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
-										</button>
-									</form>
+
+
 								</div>
 							</td>
 						</tr>
@@ -122,4 +113,3 @@
 		</div>
 	</div>
 {% endblock %}
-

@@ -4,70 +4,57 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mx-auto mt-40 my-8 p-4">
-		<div class="flex justify-between items-center mb-4">
-			<h1 class="text-2xl font-bold">Vos Conversations Existantes</h1>
-<a href="{{ path('app_conversation_list') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-
-				Nouveau message
-			</a>
-		</div>
-
-
-		<ul class="mt-4 space-y-4">
-			{% for conversation in conversations %}
-				<!-- Rendre la carte entière cliquable en englobant avec une balise <a> -->
-				<a href="{{ path('app_conversation_show', { 'id': conversation.id }) }}" class="block">
-					<li class="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded hover:bg-gray-200 transition">
-						<div>
-							{% set otherParticipant = null %}
-							{% for participant in conversation.participants %}
-								{% if participant != app.user %}
-									{% set otherParticipant = participant %}
-								{% endif %}
-							{% endfor %}
-							<!-- Afficher le nom du participant autre que l'utilisateur courant -->
-							{% if otherParticipant %}
-								<strong class="text-lg font-semibold">{{ otherParticipant.profile ? otherParticipant.profile.firstname : 'Nom indisponible' }}</strong>
-							{% endif %}
-						</div>
-						<!-- Afficher la date et l'heure du dernier message -->
-						<div class="text-sm text-gray-500">
-							{% set lastMessage = conversation.messages|last %}
-							{% if lastMessage %}
-								<span>{{ lastMessage.createdAt|date('d-m-Y H:i') }}</span>
-							{% else %}
-								<span>Aucun message</span>
-							{% endif %}
-						</div>
-					</li>
+	<div class="container mx-auto mt-40 my-8 p-4 min-h-screen flex flex-col justify-between">
+		<div>
+			<div class="flex justify-between items-center mb-4">
+				<h1 class="text-2xl font-bold">Vos Conversations Existantes</h1>
+				<a href="{{ path('app_conversation_list') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+					Nouveau message
 				</a>
-			{% else %}
-				<li class="text-gray-500">Aucune conversation existante trouvée.</li>
-			{% endfor %}
-		</ul>
+			</div>
+
+			<ul class="mt-4 space-y-4">
+				{% for conversation in conversations %}
+					<a href="{{ path('app_conversation_show', { 'id': conversation.id }) }}" class="block">
+						<li class="flex items-center justify-between space-x-4 bg-gray-100 p-4 rounded hover:bg-gray-200 transition">
+							<div>
+								{% set otherParticipant = null %}
+								{% for participant in conversation.participants %}
+									{% if participant != app.user %}
+										{% set otherParticipant = participant %}
+									{% endif %}
+								{% endfor %}
+								{% if otherParticipant %}
+									<strong class="text-lg font-semibold">{{ otherParticipant.profile ? otherParticipant.profile.firstname : 'Nom indisponible' }}</strong>
+								{% endif %}
+							</div>
+							<div class="text-sm text-gray-500">
+								{% set lastMessage = conversation.messages|last %}
+								{% if lastMessage %}
+									<span>{{ lastMessage.createdAt|date('d-m-Y H:i') }}</span>
+								{% else %}
+									<span>Aucun message</span>
+								{% endif %}
+							</div>
+						</li>
+					</a>
+				{% else %}
+					<li class="text-gray-500">Aucune conversation existante trouvée.</li>
+				{% endfor %}
+			</ul>
+
+
+			{% set return_path = path(
+			is_granted('ROLE_ADMIN') ? 'app_adminpage' :
+			(is_granted('ROLE_COACH') ? 'app_coachepage' :
+			(is_granted('ROLE_STUDENT') ? 'app_student' : 'app_existing_conversations'))
+		) %}
+
+			<div class="flex justify-center mt-8">
+				<a href="{{ return_path }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+					Retour
+				</a>
+			</div>
+		</div>
 	</div>
-<div
-	class="flex justify-center mb-10">
-	{% if is_granted('ROLE_ADMIN') %}
-		<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white flex py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-			Retour
-		</a>
-	{% elseif is_granted('ROLE_COACH') %}
-		<a href="{{ path('app_coachepage') }}" class="bg-[#14213D] text-white flex py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-			Retour
-		</a>
-	{% elseif is_granted('ROLE_STUDENT') %}
-		<a href="{{ path('app_student') }}" class="bg-[#14213D] text-white flex py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-			Retour
-		</a>
-	{% else %}
-		<a href="{{ path('app_existing_conversations') }}" class="bg-[#14213D] text-white flex py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-			Retour
-		</a>
-	{% endif %}
-</div>
-
-
-
 {% endblock %}

@@ -18,15 +18,13 @@ class Appointment1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // Champ pour sélectionner le coach
             ->add('coach', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'email',  // Afficher l'email de l'utilisateur
+                'choice_label' => 'email', 
                 'label' => 'Sélectionnez le coach pour le rendez-vous',
                 'placeholder' => 'Sélectionnez un coach',
                 'query_builder' => function (UserRepository $repo) {
-                    // Filtrer uniquement les utilisateurs ayant le rôle ROLE_COACH
-                    return $repo->createQueryBuilder('u')
+                       return $repo->createQueryBuilder('u')
                         ->andWhere('u.roles LIKE :role')
                         ->setParameter('role', '%ROLE_COACH%');
                 },

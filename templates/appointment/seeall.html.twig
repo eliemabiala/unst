@@ -33,11 +33,11 @@
 				{% for appointment in user.appointments %}
 					<li class="bg-white p-4 rounded-md shadow-md">
 						<p class="mb-2">
-							<strong class="text-[#14213D]">Date du rendez-vous :</strong>
+							<strong class="text-black">Date du rendez-vous :</strong>
 							{{ appointment.getAppointmentDate ? appointment.getAppointmentDate|date('d-m-Y') : 'Non renseigné' }}
 						</p>
 						<p>
-							<strong class="text-[#14213D]">Heure du rendez-vous :</strong>
+							<strong class="text-black">Heure du rendez-vous :</strong>
 							{{ appointment.getAppointmentTime ? appointment.getAppointmentTime|date('H:i') : 'Non renseigné' }}
 						</p>
 
@@ -72,12 +72,14 @@
 		{% else %}
 			<p class="text-gray-500">Aucun rendez-vous trouvé.</p>
 		{% endif %}
-	
 
-	<!-- Bouton Retour -->
-	<div class="mt-6 flex flex-col sm:flex-row justify-between items-center">
-		<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300 mb-2 sm:mb-0">
-			Retour
-		</a>
-	</div></div>
+
+		<!-- Bouton Retour -->
+		<div class="mt-6 flex flex-col sm:flex-row justify-between items-center">
+			<a href="{{ path('app_adminpage') }}" class="bg-unst-blue text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300 mb-2 sm:mb-0">
+
+				Retour
+			</a>
+		</div>
+	</div>
 {% endblock %}

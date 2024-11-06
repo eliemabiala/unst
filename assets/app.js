@@ -14,4 +14,5 @@ import './styles/services.css';
 import './js/script.js'
 import './js/footer.js'
 import './js/script.js'
+import './js/navIconProfile.js'
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

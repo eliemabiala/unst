@@ -10,7 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[Vich\Uploadable()]
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: DocumentsRepository::class)]
 class Documents
 {
@@ -32,14 +32,15 @@ class Documents
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    // Ajoutez la relation ManyToOne avec User
     #[ORM\ManyToOne(targetEntity: User::class)]
     private ?User $selectedUser = null;
 
-    // Ajout de la relation Coach
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: true)]
     private ?User $coach = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'documents')]
     private Collection $steps;
@@ -59,7 +60,7 @@ class Documents
         return $this->file_name;
     }
 
-    public function setFileName(string $file_name): static
+    public function setFileName(?string $file_name): static
     {
         $this->file_name = $file_name;
 
@@ -71,9 +72,14 @@ class Documents
         return $this->file_path;
     }
 
-    public function setFilePath(?File $file_path): static
+    public function setFilePath(?File $file_path = null): static
     {
         $this->file_path = $file_path;
+
+        // Met à jour la date pour déclencher l'upload si un fichier est attribué
+        if ($file_path) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
 
         return $this;
     }
@@ -102,7 +108,6 @@ class Documents
         return $this;
     }
 
-    // Ajout des méthodes pour selectedUser
     public function getSelectedUser(): ?User
     {
         return $this->selectedUser;
@@ -115,7 +120,6 @@ class Documents
         return $this;
     }
 
-    // Ajout des méthodes pour Coach
     public function getCoach(): ?User
     {
         return $this->coach;
@@ -124,6 +128,18 @@ class Documents
     public function setCoach(?User $coach): static
     {
         $this->coach = $coach;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -149,7 +165,6 @@ class Documents
     public function removeStep(Step $step): static
     {
         if ($this->steps->removeElement($step)) {
-            // set the owning side to null (unless already changed)
             if ($step->getDocuments() === $this) {
                 $step->setDocuments(null);
             }

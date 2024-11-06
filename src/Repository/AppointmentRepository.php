@@ -22,8 +22,8 @@ class AppointmentRepository extends ServiceEntityRepository
     public function findByTeam($team)
     {
         return $this->createQueryBuilder('a')
-            ->innerJoin('a.user', 'u')  // Jointure avec l'utilisateur
-            ->andWhere('u.teams = :team')  // Filtrer par l'équipe
+            ->innerJoin('a.user', 'u')  
+            ->andWhere('u.teams = :team')  
             ->setParameter('team', $team)
             ->orderBy('a.appointment_date', 'ASC')
             ->getQuery()

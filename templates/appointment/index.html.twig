@@ -8,7 +8,7 @@
 		class="flex flex-col justify-center items-center min-h-screen mt-40 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
 		<!-- Contenu principal -->
-		<h1 class="text-2xl font-bold mb-10 text-black text-center">Liste des rendez-vous</h1>
+		<h1 class="text-2xl font-bold text-black text-center">Liste des rendez-vous</h1>
 
 		<!-- Grille de cartes -->
 		<div class="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
@@ -18,7 +18,7 @@
 
 					<!-- Informations de l'étudiant -->
 					<div class="text-sm font-medium text-black">
-				
+
 						{{ appointment.user.profile.name }}
 						{{ appointment.user.profile.postname }}
 						{{ appointment.user.profile.firstname }}
@@ -55,7 +55,7 @@
 						</a>
 						<form method="post" action="{{ path('app_appointment_delete', {'id': appointment.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');">
 							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appointment.id) }}">
-<button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');" class="text-red-600">
+							<button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');" class="text-red-600">
 
 								<img src="{{ asset('img/admin/delete.png') }}" alt="Supprimer" class="inline w-6 h-6 sm:w-4 sm:h-4"/>
 							</button>
@@ -67,35 +67,24 @@
 			{% endfor %}
 		</div>
 
-		{# <div class="mt-6 flex flex-row justify-between items-center space-x-4">
-			<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+
+		<div
+			class="mt-6 flex w-full justify-between items-center space-x-4">
+
+			<!-- "Retour" button aligned to the left -->
+			<a href="{% if is_granted('ROLE_ADMIN') %} {{ path('app_adminpage') }} {% elseif is_granted('ROLE_COACH') %} {{ path('app_coachepage') }} {% else %} {{ path('home') }} {% endif %}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-custom-sky-blue transition duration-300">
 				Retour
 			</a>
-			<a href="{{ path('app_appointment_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-				Créer un nouveau rendez-vous
+
+			<!-- "Ajouter un rendez-vous" button aligned to the right -->
+			<a href="{{ path('app_appointment_new') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-sky-blue transition duration-300">
+
+				Ajouter un rendez-vous
 			</a>
-		</div>	 #}
-
-
-				<div class="mt-6 flex flex-row justify-between items-center space-x-4">
-    <a href="{% if is_granted('ROLE_ADMIN') %}
-                 {{ path('app_adminpage') }}
-             {% elseif is_granted('ROLE_COACH') %}
-                 {{ path('app_coachepage') }}
-             {% else %}
-                 {{ path('homepage') }}  {# Route par défaut si aucun des rôles n'est accordé #}
-             {% endif %}"  
-       class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-        Retour
-    </a>
-
-    <a href="{{ path('app_appointment_new') }}" 
-       class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-        Créer un nouveau rendez-vous
-    </a>
-</div> 
+		</div>
 
 		<div class="mt-24"></div>
-	</div>
-{% endblock %}
 
+	</div>
+
+{% endblock %}

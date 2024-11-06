@@ -2,9 +2,9 @@
 
 {% block body %}
 	<div
-		class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-24">
-		<!-- Augmentation de la marge supérieure à 'mt-24' -->
-		<h1 class="text-2xl font-bold mb-6">Créer un nouvel utilisateur</h1>
+		class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-24 mb-12">
+		<!-- Ajout de 'mb-12' pour l'espace en bas -->
+		<h1 class="text-2xl text-center font-bold mb-6">Créer un nouvel utilisateur</h1>
 
 		{{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
 
@@ -32,18 +32,87 @@
 			{{ form_errors(form.password) }}
 		</div>
 
-		<div class="form-group">
-			{{ form_label(form.profile, null, {'attr': {'class': 'block text-black font-medium mb-1'}}) }}
-			{{ form_widget(form.profile, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-black'}}) }}
-			{{ form_errors(form.profile) }}
+		<div class="space-y-6">
+			<div class="form-group">
+				{{ form_label(form.profile.name, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
+				{{ form_widget(form.profile.name, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
+				{{ form_errors(form.profile.name) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(form.profile.postname, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
+				{{ form_widget(form.profile.postname, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
+				{{ form_errors(form.profile.postname) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(form.profile.firstname, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
+				{{ form_widget(form.profile.firstname, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
+				{{ form_errors(form.profile.firstname) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(form.profile.genre, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
+				{{ form_widget(form.profile.genre, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
+				{{ form_errors(form.profile.genre) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(form.profile.phone, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
+				{{ form_widget(form.profile.phone, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
+				{{ form_errors(form.profile.phone) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(form.profile.address, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
+				{{ form_widget(form.profile.address, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
+				{{ form_errors(form.profile.address) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(form.profile.date_of_birth, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
+				{{ form_widget(form.profile.date_of_birth, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
+				{{ form_errors(form.profile.date_of_birth) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(form.profile.date_inscrit, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
+				{{ form_widget(form.profile.date_inscrit, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
+				{{ form_errors(form.profile.date_inscrit) }}
+			</div>
+		</div>
+
+		<div class="space-y-6 mt-8">
+			<div class="form-group">
+				{{ form_label(form.profile.passport.number_passport, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
+				{{ form_widget(form.profile.passport.number_passport, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
+				{{ form_errors(form.profile.passport.number_passport) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(form.profile.passport.date_expiration, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
+				{{ form_widget(form.profile.passport.date_expiration, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
+				{{ form_errors(form.profile.passport.date_expiration) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(form.profile.passport.nationalite, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
+				{{ form_widget(form.profile.passport.nationalite, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
+				{{ form_errors(form.profile.passport.nationalite) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_label(form.profile.passport.profession, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
+				{{ form_widget(form.profile.passport.profession, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
+				{{ form_errors(form.profile.passport.profession) }}
+			</div>
 		</div>
 
 		<div class="flex justify-between mt-6">
-			<button type="submit" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">Envoyer</button>
 			<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">Annuler</a>
+			<button type="submit" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">Ajouter</button>
 		</div>
 
 		{{ form_end(form) }}
 	</div>
 {% endblock %}
-
