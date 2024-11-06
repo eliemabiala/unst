@@ -36,7 +36,7 @@ class AppointmentController extends AbstractController
             $appointments = $appointmentRepository->createQueryBuilder('a')
                 ->where('a.user = :user')
                 ->setParameter('user', $currentUser)
-                ->orderBy('a.appointment_date', 'ASC')  // Utilisation de 'appointment_date' comme dans l'entité
+                ->orderBy('a.appointment_date', 'ASC')  
                 ->getQuery()
                 ->getResult();
 

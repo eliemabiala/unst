@@ -2,6 +2,14 @@
 
 {% block title %}Profil de l'utilisateur
 {% endblock %}
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app', 'faq']) }}
+
+
+	{% endblock %}
+{% endblock %}
+
 
 {% block body %}
 	{% for label, messages in app.flashes %}
@@ -13,7 +21,7 @@
 	<div
 		class="container mx-auto px-4 py-12 mt-8">
 		<!-- Marge supérieure ajoutée ici -->
-		<h1 class="text-3xl font-bold mb-6 text-center text-[#14213D]">Profil de l'utilisateur</h1>
+		<h1 class="text-3xl font-bold mb-6 text-center text-black">Profil de l'utilisateur</h1>
 		<!-- Couleur et taille du titre -->
 
 		<div
@@ -25,85 +33,85 @@
 			<!-- Couleur pour les valeurs avec une nuance plus foncée -->
 
 			<p>
-				<strong class="text-[#14213D]">Nom :</strong>
+				<strong class="text-black">Nom :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.name }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Post Nom :</strong>
+				<strong class="text-black">Post Nom :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.postname }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Prénom :</strong>
+				<strong class="text-black">Prénom :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.firstname }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Date de naissance :</strong>
+				<strong class="text-black">Date de naissance :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.dateOfBirth ? user.profile.dateOfBirth|date('d-m-Y') : 'Non renseigné' }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Sexe :</strong>
+				<strong class="text-black">Sexe :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.genre.value ?? 'Non renseigné' }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Téléphone :</strong>
+				<strong class="text-black">Téléphone :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.phone }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Email :</strong>
+				<strong class="text-black">Email :</strong>
 				<span class="{{ valueColor }}">{{ user.email }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Rôle :</strong>
+				<strong class="text-black">Rôle :</strong>
 				<span class="{{ valueColor }}">{{ user.roles|join(', ') }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Équipe :</strong>
+				<strong class="text-black">Équipe :</strong>
 				<span class="{{ valueColor }}">{{ user.teams.team }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Numéro de Passeport :</strong>
+				<strong class="text-black">Numéro de Passeport :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.passport.numberPassport ?? 'Non renseigné' }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Date d'expiration :</strong>
+				<strong class="text-black">Date d'expiration :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.passport.dateExpiration ? user.profile.passport.dateExpiration|date('d-m-Y') : 'Non renseigné' }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Nationalité :</strong>
+				<strong class="text-black">Nationalité :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.passport.nationalite ?? 'Non renseigné' }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Profession :</strong>
+				<strong class="text-black">Profession :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.passport.profession ?? 'Non renseigné' }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Adresse :</strong>
+				<strong class="text-black">Adresse :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.address }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Status des démarches :</strong>
+				<strong class="text-black">Status des démarches :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.passport.statusDemarches ?? 'Non renseigné' }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Date de création :</strong>
+				<strong class="text-black">Date de création :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.dateCreation ? user.profile.dateCreation|date('d-m-Y') : 'Non renseigné' }}</span>
 			</p>
 			<p>
-				<strong class="text-[#14213D]">Date d'inscription :</strong>
+				<strong class="text-black">Date d'inscription :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.dateInscrit ? user.profile.dateInscrit|date('d-m-Y') : 'Non renseigné' }}</span>
 			</p>
 			<div class="mt-8">
-				<h2 class="text-2xl font-bold text-[#14213D]">Rendez-vous</h2>
+				<h2 class="text-2xl font-bold text-black">Rendez-vous</h2>
 
 				{% if user.appointments is not empty %}
 					<ul class="space-y-4">
 						{% for appointment in user.appointments %}
 							<li class="bg-white p-4 rounded-md shadow-md">
 								<p>
-									<strong class="text-[#14213D]">Date du rendez-vous :</strong>
+									<strong class="text-black">Date du rendez-vous :</strong>
 									{{ appointment.getAppointmentDate ? appointment.getAppointmentDate|date('d-m-Y') : 'Non renseigné' }}</p>
 								<p>
-									<strong class="text-[#14213D]">Heure du rendez-vous :</strong>
+									<strong class="text-black">Heure du rendez-vous :</strong>
 									{{ appointment.getAppointmentTime ? appointment.getAppointmentTime|date('H:i') : 'Non renseigné' }}</p>
 							</li>
 						{% endfor %}

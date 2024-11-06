@@ -41,10 +41,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Documents::class)]
     private Collection $documents;
 
+    /**
+     * @var Collection<int, Conversation>
+     */
+    #[ORM\ManyToMany(targetEntity: Conversation::class, mappedBy: 'participants')]
+    private Collection $conversations;
+
     public function __construct()
     {
         $this->appointments = new ArrayCollection();
         $this->documents = new ArrayCollection();
+        $this->conversations = new ArrayCollection();
     }
 
     // Méthodes existantes
@@ -172,6 +179,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($document->getUser() === $this) {
                 $document->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Conversation>
+     */
+    public function getConversations(): Collection
+    {
+        return $this->conversations;
+    }
+
+    public function addConversation(Conversation $conversation): static
+    {
+        if (!$this->conversations->contains($conversation)) {
+            $this->conversations->add($conversation);
+            $conversation->addParticipant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConversation(Conversation $conversation): static
+    {
+        if ($this->conversations->removeElement($conversation)) {
+            $conversation->removeParticipant($this);
         }
 
         return $this;

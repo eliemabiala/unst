@@ -1,5 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
+{% endblock %}
+
+
+
 {% block body %}
 
 	<div class="bg-gray-100 font-sans flex items-center justify-center min-h-screen p-6">
@@ -50,21 +58,30 @@
 					{% endif %}
 				</div>
 
-				<!-- Bouton pour aller à la page des rendez-vous -->
+				{# <!-- Bouton pour aller à la page des rendez-vous -->
 				<div class="mt-6 text-center">
 					<a href="{{ path('app_student_appointments') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
 
-						Voir mes rendez-vous
+						Rendez-vous
 					</a>
 
 				</div>
+
+				<div class="mt-6 text-center">
+					<a href="{{ path('app_existing_conversations') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+						Messages
+					</a>
+
+				</div>
+
+
 				<div class="mt-6 text-center">
 					<a href="{{ path('app_documents_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
 
 
-						Voir mes doc
+						Documents
 					</a>
-				</div>
+				</div> #}
 
 			</div>
 		</div>

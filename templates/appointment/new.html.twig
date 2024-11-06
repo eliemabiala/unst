@@ -3,6 +3,13 @@
 {% block title %}Nouveau rendez-vous
 {% endblock %}
 
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
+{% endblock %}
+
+
 {% block body %}
 
 	<!-- Ajout d'espace en haut de la page et centrage du titre -->

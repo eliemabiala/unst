@@ -1,5 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
+{% endblock %}
+
+
 
 {% block body %}
 	<div class="bg-gray-100 font-sans flex items-center justify-center min-h-screen p-6">

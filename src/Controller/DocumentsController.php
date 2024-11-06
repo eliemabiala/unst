@@ -19,14 +19,17 @@ class DocumentsController extends AbstractController
     {
         $user = $this->getUser();
 
+        // Tri les documents par `download_date` décroissante (les plus récents en haut)
         if ($this->isGranted('ROLE_STUDENT')) {
             $documents = $entityManager->getRepository(Documents::class)->createQueryBuilder('d')
                 ->where('d.user = :user OR d.selectedUser = :user')
                 ->setParameter('user', $user)
+                ->orderBy('d.download_date', 'DESC') // Tri par `download_date`
                 ->getQuery()
                 ->getResult();
         } else {
-            $documents = $entityManager->getRepository(Documents::class)->findAll();
+            // Récupère tous les documents et les tri par `download_date` décroissante
+            $documents = $entityManager->getRepository(Documents::class)->findBy([], ['download_date' => 'DESC']);
         }
 
         return $this->render('documents/index.html.twig', [
@@ -60,6 +63,7 @@ class DocumentsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $document->setUser($user);
             $document->setCoach($form->get('coach')->getData());
+            $document->setDownloadDate(new \DateTime()); // Définit la date actuelle pour `download_date`
 
             $entityManager->persist($document);
             $entityManager->flush();
@@ -108,15 +112,27 @@ class DocumentsController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_documents_delete', methods: ['POST'])]
-    public function delete(Request $request, Documents $document, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Documents $document = null, EntityManagerInterface $entityManager): Response
     {
+        // Vérifie si le document existe
+        if (!$document) {
+            $this->addFlash('error', 'Document introuvable.');
+            return $this->redirectToRoute('app_documents_index');
+        }
+
+        // Vérifie que l'utilisateur n'est pas un étudiant
         if ($this->isGranted('ROLE_STUDENT')) {
             return $this->redirectToRoute('app_documents_index');
         }
 
-        if ($this->isCsrfTokenValid('delete' . $document->getId(), $request->get('_token'))) {
+        // Vérifie le token CSRF
+        if ($this->isCsrfTokenValid('delete' . $document->getId(), $request->request->get('_token'))) {
             $entityManager->remove($document);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Document supprimé avec succès.');
+        } else {
+            $this->addFlash('error', 'Échec de la validation du token CSRF.');
         }
 
         return $this->redirectToRoute('app_documents_index');

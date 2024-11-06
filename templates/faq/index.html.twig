@@ -4,7 +4,7 @@
 {% endblock %}
 {% block javascripts %}
 	{% block importmap %}
-		{{ importmap('app') }}
+		{{ importmap(['app', 'faq']) }}
 
 
 	{% endblock %}
@@ -87,5 +87,13 @@
 
 
 		</div>
+		<div class="text-center mt-10">
+			<a href="{{ path('app_contact') }}" class=" bg-custom-blue text-white py-2 px-4 xl:py-4 xl:px-6 rounded-lg hover:bg-blue-900">
+
+				Nous contacter
+			</a>
+		</div>
+
+
 	</div>
 {% endblock %}
