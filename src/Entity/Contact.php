@@ -112,4 +112,5 @@ class Contact
         $this->termsAccepted = $termsAccepted;
         return $this;
     }
+
 }
