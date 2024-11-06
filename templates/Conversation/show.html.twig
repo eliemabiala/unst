@@ -3,8 +3,18 @@
 {% block title %}Conversation
 {% endblock %}
 
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
+{% endblock %}
+
+
+
 {% block body %}
-	<div class="container mx-auto mt-40 my-8 p-4 ">
+
+<div class="container mx-auto mt-40 my-8 p-4 min-h-screen">
+
 		<h2 class="text-xl font-bold mb-4 text-center">
 			{% for participant in conversation.participants %}
 				{% if participant != app.user %}

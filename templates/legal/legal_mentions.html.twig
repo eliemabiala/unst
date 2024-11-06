@@ -1,5 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
+{% endblock %}
+
+
 {% block title %}Mentions concernant les données personnelles
 {% endblock %}
 

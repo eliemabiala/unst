@@ -28,6 +28,9 @@ class Messages
     #[ORM\JoinColumn(nullable: false)]
     private ?Conversation $conversation = null;
 
+    #[ORM\Column(options: ['default' => false])]
+    private ?bool $isRead = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +80,18 @@ class Messages
     public function setConversation(?Conversation $conversation): static
     {
         $this->conversation = $conversation;
+
+        return $this;
+    }
+
+    public function isRead(): ?bool
+    {
+        return $this->isRead;
+    }
+
+    public function setRead(bool $isRead): static
+    {
+        $this->isRead = $isRead;
 
         return $this;
     }

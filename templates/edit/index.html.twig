@@ -1,5 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
+{% endblock %}
+
+
 {% block body %}
 	<!-- Container with padding and rounded corners for the profile form -->
 	<div class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-24 mb-12">

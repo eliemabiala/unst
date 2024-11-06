@@ -3,8 +3,16 @@
 {% block title %}Documents
 {% endblock %}
 
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
+{% endblock %}
+
+
 {% block body %}
-	<div class="container mx-auto py-8 mt-20 px-4 sm:px-0">
+	<div class="container mx-auto py-8 mt-20 px-4 sm:px-0 min-h-screen">
+
 		<h1 class="text-2xl font-bold text-center text-[#14213D] mb-6">Détails du document</h1>
 
 		<div class="overflow-x-auto">
@@ -15,9 +23,9 @@
 						<td class="px-4 py-2">{{ document.fileName }}</td>
 					</tr>
 					{# <tr class="border-b">
-						<th class="px-4 py-2 text-left bg-gray-100">Date de téléchargement</th>
-						<td class="px-4 py-2">{{ document.downloadDate ? document.downloadDate|date('Y-m-d') : '' }}</td>
-					</tr> #}
+										<th class="px-4 py-2 text-left bg-gray-100">Date de téléchargement</th>
+										<td class="px-4 py-2">{{ document.downloadDate ? document.downloadDate|date('Y-m-d') : '' }}</td>
+									</tr> #}
 					<tr class="border-b">
 						<th class="px-4 py-2 text-left bg-gray-100">Utilisateur</th>
 						<td class="px-4 py-2">{{ document.user ? document.user.email : 'Aucun utilisateur' }}</td>
@@ -44,7 +52,7 @@
 				Télécharger
 			</a>
 
-			{{ include('documents/_delete_form.html.twig', { 'attr': { 'class': 'bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-300 text-center w-full sm:w-auto' } }) }}
+			{{ include('documents/_delete_form.html.twig', { 'button_label': 'Mettre à jour', 'attr': { 'class': 'bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-300 text-center w-full sm:w-auto' } }) }}
 		</div>
 	</div>
 {% endblock %}

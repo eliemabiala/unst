@@ -3,6 +3,13 @@
 {% block title %}Liste des rendez-vous
 {% endblock %}
 
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
+{% endblock %}
+
+
 {% block body %}
 	<div
 		class="flex flex-col justify-center items-center min-h-screen mt-40 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

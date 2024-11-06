@@ -61,6 +61,14 @@ class ConversationController extends AbstractController
             throw $this->createNotFoundException("La conversation demandée n'existe pas.");
         }
 
+        $messages = $conversation->getMessages();
+        foreach ($messages as $message) {
+            if ($message->getAuthor() !== $this->getUser()) {
+                $message->setRead(true);
+            }
+        }
+        $entityManager->flush();
+
         // Vérifier que la conversation contient exactement deux participants
         $participants = $conversation->getParticipants();
         if (count($participants) !== 2 || !$participants->contains($user)) {

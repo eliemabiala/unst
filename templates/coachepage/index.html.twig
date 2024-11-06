@@ -4,8 +4,11 @@
 {% endblock %}
 
 {% block javascripts %}
-	{{ importmap('app') }}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
 {% endblock %}
+
 
 
 {% block body %}
@@ -14,9 +17,9 @@
 
 		<div
 			class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-			<!-- Carte pour les Utilisateurs -->
+			
 			<div class="bg-gray-200 rounded-lg shadow-md p-4 flex items-center">
-				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
+				<div class="bg-custom-blue text-white rounded-l-lg p-4">
 					<img src="{{ asset('img/admin/iconuser.png') }}" alt="Icon User" class="w-8 h-8">
 				</div>
 				<div class="ml-4">
@@ -26,18 +29,19 @@
 			</div>
 
 			<!-- Carte pour le messager -->
-			<div class="bg-gray-200 rounded-lg shadow-md p-4 flex items-center">
-				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
+			<a href="{{ path('app_existing_conversations') }}" class="bg-gray-200 rounded-lg shadow-md p-4 flex items-center">
+
+				<div class="bg-custom-blue text-white rounded-l-lg p-4">
 					<img src="{{ asset('img/admin/message.png') }}" alt="Icon Message" class="w-8 h-8">
 				</div>
 				<div class="ml-4">
 					<p class="text-sm font-medium">Messager</p>
 				</div>
-			</div>
+			</a>
 
 			<!-- Carte pour le profil du coach -->
 			<a href="{{ path('app_myprofile') }}" class="bg-gray-200 rounded-lg shadow-md p-4 flex items-center">
-				<div class="bg-[#14213D] text-white rounded-l-lg p-4">
+				<div class="bg-custom-blue text-white rounded-l-lg p-4">
 					<img src="{{ asset('img/admin/iconcoache.png') }}" alt="Icon Profile" class="w-8 h-8">
 				</div>
 				<div class="ml-4">
@@ -51,14 +55,14 @@
 		<div class="flex space-x-5 flex-col sm:flex-row justify-between items-center mb-6">
 			<h1 class="text-2xl font-bold mb-4 sm:mb-0 order-2 sm:order-1">Liste des utilisateurs</h1>
 			<div class="flex space-x-2 order-1 sm:order-2">
-				<a href="{{ path('app_existing_conversations') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+				<a href="{{ path('app_existing_conversations') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">
 					Messages
 				</a>
-				{# <a href="{{ path('app_documents_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-					Documents envoyés
-				</a>
-				<a href="{{ path('app_appointment_index') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300" aria-label="Voir les rendez-vous">Voir les rendez-vous
-				</a> #}
+				{# <a href="{{ path('app_documents_index') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">
+									Documents envoyés
+								</a>
+								<a href="{{ path('app_appointment_index') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300" aria-label="Voir les rendez-vous">Voir les rendez-vous
+								</a> #}
 			</div>
 		</div>
 
@@ -78,7 +82,7 @@
 								<label for="coach-search" class="mb-1 text-sm font-medium sr-only">Search</label>
 								<div class="relative">
 									<input type="search" id="coach-search" class="w-full p-1 text-black rounded-lg border border-[#14213D] focus:outline-none" placeholder="Nom de coach" required/>
-									<button type="submit" class="text-white absolute right-1 top-1 bg-[#e74c3c] border-2 font-medium rounded-lg text-xs px-2 py-1">Search</button>
+									<button type="submit" class="text-white absolute right-1 top-1 bg-custom-blue border-2 font-medium rounded-lg text-xs px-2 py-1">Search</button>
 								</div>
 							</form>
 						</th>

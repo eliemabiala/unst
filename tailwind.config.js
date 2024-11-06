@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         'custom-blue': '#14213D',
         'custom-sky-blue': '#0284C7',
+        'custom-hover': '#b49047',
       },
       fontSize: {
         'xxs': '0.625rem', 

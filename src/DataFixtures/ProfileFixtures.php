@@ -48,7 +48,6 @@ class ProfileFixtures extends Fixture
             $profile->setDateCreation(new \DateTime());
             $profile->setDateInscrit(new \DateTime());
 
-            // Création du Passport
             $passport = new Passport();
             $passport->setNumberPassport('CD' . strtoupper($faker->bothify('#######')));
             $passport->setDateExpiration($faker->dateTimeBetween('+5 years', '+10 years'));
@@ -61,7 +60,7 @@ class ProfileFixtures extends Fixture
             $profile->setPassport($passport);
             $manager->persist($profile);
 
-            // Référence pour lier le profil à un utilisateur dans les autres fixtures
+            
             $this->addReference('profile_' . $i, $profile);
         }
 

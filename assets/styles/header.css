@@ -16,7 +16,6 @@
     background-color: #14213D;
 }
 
-
 .logo img {
     height: 50px;
 }
@@ -57,11 +56,11 @@ ul>li {
     background-color: #14213D;
     color: #ecf0f1;
     padding-bottom: 3px;
-    border-bottom: solid 1px #0284C7;
+    border-bottom: solid 1px #1E3A8A;
 }
 
 .nav_button {
-    background-color: #0284C7;
+    background-color: #1E3A8A;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -73,9 +72,6 @@ ul>li {
 .nav_button:hover {
     background-color: #14213D;
 }
-
-
-/* nav_icon_profile start */
 
 .nav_icon_profile {
     margin: 0px;
@@ -123,9 +119,6 @@ ul>li {
     align-items: center;
 }
 
-/* nav_icon_profile  end */
-
-
 .nav_links {
     z-index: 10000;
     background-color: rgb(20, 33, 61);
@@ -160,7 +153,6 @@ ul>li {
         display: flex;
 
     }
-
     .burger img {
         display: block;
     }

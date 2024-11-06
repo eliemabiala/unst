@@ -7,6 +7,7 @@ use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
@@ -29,6 +30,10 @@ class DocumentsType extends AbstractType
                 'placeholder' => 'Choisissez un destinataire',
                 'required' => false, // Permet de ne pas sélectionner de coach si ce n'est pas obligatoire
             ]);
+            // ->add('save', SubmitType::class, [
+            //     'label' => 'Mettre à jour',
+            //     'attr' => ['class' => 'bg-[#14213D] text-white py-2 px-4 rounded hover:bg-[#b49047] transition duration-300'],
+            // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

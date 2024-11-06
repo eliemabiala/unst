@@ -4,8 +4,11 @@
 {% endblock %}
 
 {% block javascripts %}
-	{{ importmap('app') }}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
 {% endblock %}
+
 
 {% block body %}
 
@@ -23,24 +26,20 @@
 		</div>
 	</div>
 
-	<!-- Main Section: Accompaniment for International Travel -->
 	<section class="container mx-auto text-center px-4 md:px-5 xl:px-16 mb-8">
 		<h1 class="text-2xl sm:text-3xl xl:text-4xl font-bold mb-4 sm:mb-6">
 			ACCOMPAGNEMENT POUR LES ÉTUDES À L'INTERNATIONAL
 		</h1>
 
-		<div
-			class="grid gap-6 md:grid-cols-2 xl:gap-8">
-			<!-- First Block: Image and Button -->
+		<div class="grid gap-6 md:grid-cols-2 xl:gap-8">
 			<div class="relative flex flex-col md:flex-row order-1 md:order-2">
 				<img src="{{ asset('img/home/img1.png') }}" alt="Voyage pour raison d'études" class="rounded-lg mb-4 md:mb-0 w-full max-w-lg mx-auto md:max-w-full">
-				<a href="#Study" class="absolute bottom-0 left-0 w-full bg-blue-900 text-white font-semibold py-3 px-4 rounded-b-lg hover:bg-sky-600 text-center">
+				<a href="{{ path('app_service') }}" class=" absolute bottom-0 left-0 w-full bg-custom-blue text-white font-semibold py-3 px-4 rounded-b-lg hover:bg-blue-900 text-center ">
 
 					Voyage pour raison d’études &gt;
 				</a>
 			</div>
 
-			<!-- Text Block -->
 			<div class="flex flex-col justify-center text-left order-2 md:order-1">
 				<p class="text-base sm:text-lg xl:text-xl mb-4">
 					Obtenez un accompagnement complet, sécurisé et confidentiel dans vos démarches de voyage à l’international. Nous construisons avec vous votre projet de voyage et vous accompagnons pas à pas jusqu’à la réalisation de votre rêve.
@@ -48,16 +47,16 @@
 			</div>
 		</div>
 
-		<!-- Second Block: Image and Button -->
 		<div class="grid gap-6 md:grid-cols-2 mt-8 xl:gap-8">
 			<div class="relative flex flex-col md:flex-row">
 				<img src="{{ asset('img/home/img2.png') }}" alt="Voyage pour l’emploi" class="rounded-lg mb-4 md:mb-0 w-full max-w-lg mx-auto md:max-w-full">
-				<a href="#" class="absolute bottom-0 left-0 w-full bg-custom-blue text-white font-semibold py-3 px-4 rounded-b-lg hover:bg-sky-600 text-center">
+				<a href="{{ path('app_service') }} " class="absolute bottom-0 left-0 w-full bg-custom-blue text-white font-semibold py-3 px-4 rounded-b-lg hover:bg-blue-900 text-center">
+
+
 					Voyage pour l’emploi &gt;
 				</a>
 			</div>
 
-			<!-- Second Text Block -->
 			<div class="flex flex-col justify-center text-left">
 				<p class="text-base sm:text-lg xl:text-xl mb-4">
 					Nos conseillers et coachs vous montrent des dispositifs de financement, de sécurisation et facilitation de votre projet. Nous remplissons les formalités pour vous donner des ailes.
@@ -70,7 +69,9 @@
 		<p class="text-base sm:text-lg xl:text-xl mb-4">
 			Pour vous informer sur le pays ou la ville correspondant à votre projet, nous vous fournissons les détails sur le coût de vie, le logement, les frais de scolarité (si voyage pour études), transports, frais liés aux formalités administratives, etc.
 		</p>
-		<a href="#" class="inline-block bg-blue-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-sky-600 transition duration-300">
+		<a href=" {{ path('app_service') }} " class="inline-block bg-custom-blue text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-900 transition duration-300">
+
+
 			Parler à un conseiller
 		</a>
 	</section>
@@ -80,7 +81,6 @@
 		<img src="{{ asset('img/home/biblotheque.png') }}" alt="Conseillers" class="rounded-lg mb-4 mx-auto w-full max-w-4xl">
 	</section>
 
-	<!-- Innovation Métiers & US' Emploi Section -->
 	<section class="container mx-auto text-center py-10 px-4 md:px-5 xl:px-16">
 		<h2 class="text-2xl font-bold mb-4">
 			Innovation Métiers & US' Emploi
@@ -88,7 +88,7 @@
 		<p class="text-base sm:text-lg xl:text-xl mb-6">
 			Création de métiers numériques, formations d'avenir en ligne ou en présentiel, accompagnement vers l'emploi durable avec suivi personnalisé. Financement total pour personnes handicapées et formations certifiantes.
 		</p>
-		<a href="{{ path('app_service') }}" class="inline-block bg-blue-900 text-white font-semibold py-2 px-4 xl:py-4 xl:px-6 rounded-lg hover:bg-sky-600">
+		<a href="{{ path('app_service') }}" class="inline-block bg-custom-blue text-white font-semibold py-2 px-4 xl:py-4 xl:px-6 rounded-lg hover:bg-blue-900">
 
 
 			Voir plus

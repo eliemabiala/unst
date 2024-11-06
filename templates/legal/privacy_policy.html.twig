@@ -1,9 +1,14 @@
-{# templates/legal/privacy_policy.html.twig #}
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Politique de confidentialité
 {% endblock %}
+
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
+{% endblock %}
+
 
 {% block body %}
 	<div class="min-h-screen flex justify-center items-center py-16 mt-16 md:mt-32 lg:mt-25">

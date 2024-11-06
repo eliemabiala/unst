@@ -2,6 +2,12 @@
 
 {% block title %}Modifier le rendez-vous
 {% endblock %}
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
+{% endblock %}
+
 
 {% block body %}
 	<h1 class="text-2xl font-bold mb-6 text-black">Modifier le rendez-vous</h1>
