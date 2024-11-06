@@ -8,8 +8,11 @@ import './bootstrap.js';
 import './styles/app.css';
 import './styles/header.css';
 import './styles/footer.css';
+// import './styles/services.css';
 
-import './js/faq.js'
+// import './js/faq.js'
 import './js/script.js'
 import './js/footer.js'
+import './js/script.js'
+import './js/navIconProfile.js'
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

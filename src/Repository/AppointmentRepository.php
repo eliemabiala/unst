@@ -16,6 +16,21 @@ class AppointmentRepository extends ServiceEntityRepository
         parent::__construct($registry, Appointment::class);
     }
 
+    /**
+     * Trouver les rendez-vous des utilisateurs appartenant à une équipe donnée.
+     */
+    public function findByTeam($team)
+    {
+        return $this->createQueryBuilder('a')
+            ->innerJoin('a.user', 'u')  
+            ->andWhere('u.teams = :team')  
+            ->setParameter('team', $team)
+            ->orderBy('a.appointment_date', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
     //    /**
     //     * @return Appointment[] Returns an array of Appointment objects
     //     */

@@ -4,17 +4,12 @@
 {% endblock %}
 {% block javascripts %}
 	{% block importmap %}
-		{{ importmap('app') }}
-		
+		{{ importmap(['app', 'faq']) }}
 
 
 	{% endblock %}
 {% endblock %}
 
-
-{# {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('styles/faq.css') }}">
-{% endblock %} #}
 
 {% block body %}
 	<div
@@ -28,12 +23,47 @@
 
 			<div class="faq-item border-b border-gray-200 pb-4 mb-4">
 				<button class="faq-question w-full text-left text-lg sm:text-xl text-gray-800 py-2 hover:bg-gray-100 transition duration-300 ease-in-out">
-					Qu'est-ce que vous faites exactement pour accompagner la société via le numérique ?
+					Quelles sont les formations que vous conseillez aux étudiants après le bac ?
 				</button>
 				<div class="faqAnswer hidden px-4 py-2 bg-gray-50 border-l-4 border-gray-800 mt-2">
-					<p class="text-sm sm:text-base">Nous accompagnons la société en proposant des outils et des ressources numériques qui facilitent l'accès à l'emploi pour les chômeurs et les personnes éloignées de la vie professionnelle. Nous vulgarisons les connaissances dans divers domaines pour rendre l'information accessible à tous.</p>
+					<p class="text-sm sm:text-base">Nous proposons diverses formations post-bac adaptées à votre profil et à vos aspirations : universités, BTS, IUT, écoles de commerce et d'ingénieurs, formations professionnelles ou études à l’étranger. Nous vous aidons à choisir la filière qui correspond le mieux à vos intérêts, compétences et objectifs professionnels.</p>
 				</div>
 			</div>
+
+
+			<div class="faq-item border-b border-gray-200 pb-4 mb-4">
+				<button class="faq-question w-full text-left text-lg sm:text-xl text-gray-800 py-2 hover:bg-gray-100 transition duration-300 ease-in-out">
+					Comment se passe l’accompagnement pour l'orientation ?
+				</button>
+				<div class="faqAnswer hidden px-4 py-2 bg-gray-50 border-l-4 border-gray-800 mt-2">
+					<p class="text-sm sm:text-base">
+						Notre accompagnement inclut :
+						<ul>
+							<li>Analyse de votre profil, intérêts et ambitions.</li>
+							<li>Conseils personnalisés pour choisir la bonne filière.</li>
+							<li>Aide à la préparation des dossiers, notamment Parcoursup.</li>
+							<li>Suivi jusqu’à l’inscription et préparation aux entretiens.</li>
+						</ul>
+					</p>
+				</div>
+			</div>
+
+			<div class="faq-item border-b border-gray-200 pb-4 mb-4">
+				<button class="faq-question w-full text-left text-lg sm:text-xl text-gray-800 py-2 hover:bg-gray-100 transition duration-300 ease-in-out">
+					Quels sont les services d'aide aux démarches proposés ?
+				</button>
+				<div class="faqAnswer hidden px-4 py-2 bg-gray-50 border-l-4 border-gray-800 mt-2">
+					<p class="text-sm sm:text-base">
+						Nous vous assistons dans toutes les démarches administratives :
+						<ul>
+							<li>Aide à la rédaction des lettres de motivation et préparation des dossiers.</li>
+							<li>Conseils sur l’utilisation de Parcoursup et suivi des réponses.</li>
+							<li>Assistance pour finaliser l'inscription une fois accepté.</li>
+						</ul>
+					</p>
+				</div>
+			</div>
+
 
 			<div class="faq-item border-b border-gray-200 pb-4 mb-4">
 				<button class="faq-question w-full text-left text-lg sm:text-xl text-gray-800 py-2 hover:bg-gray-100 transition duration-300 ease-in-out">
@@ -44,15 +74,26 @@
 					<p class="text-sm sm:text-base">Nous offrons des services tels que des ateliers de formation, des conseils en carrière, et des ressources en ligne pour aider les chômeurs et les personnes éloignées de la vie professionnelle à se réinsérer dans le marché du travail.</p>
 				</div>
 			</div>
-
 			<div class="faq-item border-b border-gray-200 pb-4 mb-4">
 				<button class="faq-question w-full text-left text-lg sm:text-xl text-gray-800 py-2 hover:bg-gray-100 transition duration-300 ease-in-out">
-					Comment aidez-vous les étudiants à concrétiser leurs projets d’études en Europe ?
+					Proposez-vous des simulations d’entretiens pour aider à la sélection des écoles ou universités ?
 				</button>
 				<div class="faqAnswer hidden px-4 py-2 bg-gray-50 border-l-4 border-gray-800 mt-2">
-					<p class="text-sm sm:text-base">Nous aidons les étudiants à concrétiser leurs projets d’études en Europe en fournissant des conseils sur les inscriptions universitaires, l'obtention de visas, et en les guidant tout au long du processus de candidature.</p>
+					<p class="text-sm sm:text-base">
+						Oui, nous organisons des simulations d’entretiens avec des experts en recrutement. Ils vous conseilleront sur la présentation, la gestion du stress, et les réponses aux questions courantes.
+					</p>
 				</div>
 			</div>
+
+
 		</div>
+		<div class="text-center mt-10">
+			<a href="{{ path('app_contact') }}" class=" bg-custom-blue text-white py-2 px-4 xl:py-4 xl:px-6 rounded-lg hover:bg-blue-900">
+
+				Nous contacter
+			</a>
+		</div>
+
+
 	</div>
 {% endblock %}

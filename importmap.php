@@ -4,6 +4,15 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    'faq' => [
+        'path' => './assets/js/faq.js',
+        'entrypoint' => true,
+    ],
+    'reset' => [
+        'path' => './assets/js/reset.js',
+        'entrypoint' => true,
+    ],
+
     '@hotwired/stimulus' => [
         'version' => '3.2.2',
     ],

@@ -1,160 +1,87 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}service
+{% block title %}Service
 {% endblock %}
 
 {% block javascripts %}
 	{% block importmap %}
-		{{ importmap('app') }}
+		{{ importmap(['app']) }}
 	{% endblock %}
 {% endblock %}
 
 
+
 {% block body %}
-
-
-<main class="container mx-auto py-15 px-4 pt-28">
-
+	<main class="container mx-auto py-15 px-4 pt-28 mb-16">
 		<div class="container mx-auto p-8">
 			<div class="flex flex-col md:flex-row items-center">
 				<div class="flex-1">
-					<img src="{{ asset('img/service/call.png') }}" alt=" service Image" class=" rounded-md shadow-md">
-
-
+					<img src="{{ asset('img/service/call.png') }}" alt="service Image" class="rounded-md shadow-md">
 				</div>
 				<div class="flex-1 md:ml-8 mt-4 md:mt-0">
-					<h1 class="text-4xl font-bold text-gray-900">Services exclusifs</h1>
-					<p class="mt-4 text-gray-700">Ceci est notre Page de services. C'est l'endroit idéal pour vous fournir des informations sur les services que nous proposons.</p>
+					<h1 class="text-4xl font-bold text-black">Services exclusifs</h1>
+					<p class="mt-4 text-black">Ceci est notre Page de services. C'est l'endroit idéal pour vous fournir des informations sur les services que nous proposons.</p>
 				</div>
 			</div>
 		</div>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
+		<div
+			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			<!-- Ajout des sections services -->
 			<div class="bg-white p-6 rounded-lg shadow">
-				<h2 class="text-2xl font-bold mb-4">Formations professionnelles</h2>
+				<h2 class="text-2xl font-bold mb-4 text-black">Formations professionnelles</h2>
 				<img src="{{ asset('img/service/prof.png') }}" alt="Formation Professionnelles" class="h-48 w-full object-cover mb-4">
-
-
-				<p>Avec nos experts, nous organisons des formations professionnelles dans les domaines clés de
-																																																	                            l'activité économique du pays. L'objectif est de former les personnes sur les compétences
-																																																	                            leur permettant d'intégrer un emploi, de s'y perfectionner ou d'en créer. Nos formations
-																																																	                            donnent droit à une certification attestant les compétences des participants. Sont concernés
-																																																	                            par nos formations : les étudiants, les salariés, les entrepreneurs, chefs d'entreprises,
-																																																	                            etc.</p>
+				<p class="text-black">Avec nos experts, nous organisons des formations professionnelles dans les domaines clés de l'activité économique du pays...</p>
 			</div>
 
-
 			<div class="bg-white p-6 rounded-lg shadow">
-				<h2 class="text-2xl font-bold mb-4">Innovation Métiers</h2>
-				<img src="{{ asset('img/service/innovation.png') }}" alt=" innovation Métiers" class=" h-48 w-full object-cover mb-4">
-
-
-				<p>Avec le soutien du Gouvernement, nous créons de nouveaux métiers pour promouvoir la société
-																																																	                            numérique et faciliter l'emploi des jeunes. Le « Consultant PME » ou « Juriste
-																																																	                            d’Entrepreneurs » est l'un de ces métiers. Formé en entrepreneuriat, il maîtrise la création
-																																																	                            et le développement des PME. Il accompagne l'entrepreneur de la conception du projet à la
-																																																	                            formalisation des activités, en utilisant des outils numériques pour affronter la
-																																																	                            concurrence. Il fixe librement son salaire selon la situation économique de son projet ou
-																																																	                            son abonnement.</p>
+				<h2 class="text-2xl font-bold mb-4 text-black">Innovation Métiers</h2>
+				<img src="{{ asset('img/service/innovation.png') }}" alt="Innovation Métiers" class="h-48 w-full object-cover mb-4">
+				<p class="text-black">Avec le soutien du Gouvernement, nous créons de nouveaux métiers pour promouvoir la société numérique...</p>
 			</div>
 
-
 			<div class="bg-white p-6 rounded-lg shadow">
-				<h2 class="text-2xl font-bold mb-4">US' Emploi</h2>
+				<h2 class="text-2xl font-bold mb-4 text-black">US' Emploi</h2>
 				<img src="{{ asset('img/service/us.png') }}" alt="US' Emploi" class="h-48 w-full object-cover mb-4">
-
-
-				<p>L’action "Tout pour l’Emploi" vise à accompagner des personnes en difficultés sociales et
-																																																	                            professionnelles vers un emploi durable. À travers l’insertion professionnelle, US' Emploi
-																																																	                            se donne pour mission de fournir un emploi à près de 1500 personnes chaque année. L’objectif
-																																																	                            est de préparer le retour à l’emploi sur le marché du travail classique pour les chômeurs de
-																																																	                            longue durée, les bénéficiaires des minima sociaux, les jeunes de moins de 30 ans en grande
-																																																	                            difficulté, et les travailleurs en situation de handicap. Elle facilite également l’entrée
-																																																	                            dans le monde du travail pour ceux qui n’ont jamais eu cette chance.</p>
+				<p class="text-black">L’action "Tout pour l’Emploi" vise à accompagner des personnes en difficultés sociales et professionnelles vers un emploi durable...</p>
 			</div>
 
-
 			<div class="bg-white p-6 rounded-lg shadow">
-				<h2 class="text-2xl font-bold mb-4">Ateliers de professionnalisation</h2>
+				<h2 class="text-2xl font-bold mb-4 text-black">Ateliers de professionnalisation</h2>
 				<img src="{{ asset('img/service/ateliers.png') }}" alt="Ateliers de professionnalisation" class="h-48 w-full object-cover mb-4">
-
-
-				<p>L'US en collaboration avec des universités, instituts supérieurs, voire des écoles organise
-																																																	                            au bénéfice des étudiants et écoliers des séances de professionnalisation en présentiel ou
-																																																	                            en distanciel. Le coût de la professionnalisation supporté par l’étudiant ou l’élève est
-																																																	                            soit incorporé dans ses frais académiques ou scolaires soit payé à part.</p>
+				<p class="text-black">L'US en collaboration avec des universités, instituts supérieurs, voire des écoles organise au bénéfice des étudiants...</p>
 			</div>
 
-
 			<div class="bg-white p-6 rounded-lg shadow">
-				<h2 class="text-2xl font-bold mb-4">Organisation des jeux concours</h2>
+				<h2 class="text-2xl font-bold mb-4 text-black">Organisation des jeux concours</h2>
 				<img src="{{ asset('img/service/organisation.png') }}" alt="Organisation des jeux concours" class="h-48 w-full object-cover mb-4">
-
-
-				<p>L'US organise des jeux concours sur sa plateforme ou non dans l’intention d’accompagner les
-																																																	                            écoliers, étudiants et entrepreneurs.</p>
+				<p class="text-black">L'US organise des jeux concours sur sa plateforme ou non dans l’intention d’accompagner les écoliers...</p>
 			</div>
 
-
 			<div class="bg-white p-6 rounded-lg shadow">
-				<h2 class="text-2xl font-bold mb-4">Espace Numérique de Travail (ENT)</h2>
+				<h2 class="text-2xl font-bold mb-4 text-black">Espace Numérique de Travail (ENT)</h2>
 				<img src="{{ asset('img/service/espace.png') }}" alt="Espace Numérique de Travail (ENT)" class="h-48 w-full object-cover mb-4">
-
-
-				<p>Dans un monde de plus en plus numérique, la création d’une plateforme avec un Espace
-																																																	                            numérique de travail offre une solution aux étudiants congolais face aux difficultés
-																																																	                            financières et au manque de documentation scientifique. Cet espace permet d’accéder à une
-																																																	                            médiathèque, une bibliothèque et une librairie numériques, ainsi qu’à un espace de jeu, des
-																																																	                            jeux-concours, et un forum, facilitant ainsi leurs études. En collaboration avec des réseaux
-																																																	                            de télécommunications, l’US propose des produits comme le modem US-connect pour faciliter
-																																																	                            l’accès à cette plateforme.</p>
+				<p class="text-black">Dans un monde de plus en plus numérique, la création d’une plateforme avec un Espace numérique de travail offre une solution aux étudiants congolais...</p>
 			</div>
 
-
 			<div class="bg-white p-6 rounded-lg shadow">
-				<h2 class="text-2xl font-bold mb-4">Accompagnement des entrepreneurs</h2>
+				<h2 class="text-2xl font-bold mb-4 text-black">Accompagnement des entrepreneurs</h2>
 				<img src="{{ asset('img/service/accompagnement.png') }}" alt="Accompagnement des entrepreneurs" class="h-48 w-full object-cover mb-4">
-
-
-				<p>L'US accompagne les entrepreneurs dans l’élaboration de leurs projets, plans d’affaires
-																																																	                            (business plan), statuts, contrat de travail, règlement intérieur,…dans le but de les aider
-																																																	                            à créer des entreprises pérennes couvrant dans la forme et en toute légalité. Cet
-																																																	                            accompagnement hors-pair permet aux jeunes entreprises de bénéficier du marché de
-																																																	                            financements tant espéré.</p>
+				<p class="text-black">L'US accompagne les entrepreneurs dans l’élaboration de leurs projets, plans d’affaires (business plan), statuts, contrat de travail, règlement intérieur...</p>
 			</div>
 
-
 			<div class="bg-white p-6 rounded-lg shadow">
-<h2 class="Study text-2xl font-bold mb-4">Study Coaching Center</h2>
-
+				<h2 class="text-2xl font-bold mb-4 text-black">Study Coaching Center</h2>
 				<img src="{{ asset('img/service/study.png') }}" alt="Study Coaching Center" class="w-full h-auto">
-
-
-				<p>C’est l’action de la société pour l’accompagnement de tout étudiant porteur d’un projet
-																																																	                            d’études à l’international (France, Canada, USA).
-																																																	                            Dans la première phase, les candidats sont coachés sur tous les contours de la procédure
-																																																	                            pour études. Ils sont préenregistrés, enregistrés (sous test de sélection, concours, ou
-																																																	                            directement sur dossier) et liés avec la société sous contrat de coaching. A la fin du
-																																																	                            coaching le contrat prend fin ; les parties peuvent conclure une nouvelle convention de
-																																																	                            prise en charge. La procédure est confidentielle.</p>
+				<p class="text-black">C’est l’action de la société pour l’accompagnement de tout étudiant porteur d’un projet d’études à l’international...</p>
 			</div>
+
 			<div class="bg-white p-6 rounded-lg shadow">
-				<h2 class="text-2xl font-bold mb-4">Study Coaching Center</h2>
-				<img src="src/asset/coaching.png" alt="Study Coaching Center" class="h-48 w-full object-cover mb-4">
-
-				<p>C’est l’action de la société pour l’accompagnement de tout étudiant porteur d’un projet
-																																																	                            d’études à l’international (France, Canada, USA).
-																																																	                            Dans la première phase, les candidats sont coachés sur tous les contours de la procédure
-																																																	                            pour études. Ils sont préenregistrés, enregistrés (sous test de sélection, concours, ou
-																																																	                            directement sur dossier) et liés avec la société sous contrat de coaching. A la fin du
-																																																	                            coaching le contrat prend fin ; les parties peuvent conclure une nouvelle convention de
-																																																	                            prise en charge. La procédure est confidentielle.</p>
+				<h2 class="text-2xl font-bold mb-4 text-black">Study Coaching Center</h2>
+				<img src="{{ asset('img/service/etude.png') }}" alt="Study Coaching Center" class="h-48 w-full object-cover mb-4">
+				<p class="text-black">C’est l’action de la société pour l’accompagnement de tout étudiant porteur d’un projet d’études à l’international...</p>
 			</div>
-
 		</div>
 	</main>
-
-
 {% endblock %}
 

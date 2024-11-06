@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -29,11 +30,14 @@ class Contact
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-   
+    #[ORM\Column(type: 'boolean')]
+    #[Assert\IsTrue(message: 'Vous devez accepter les termes et conditions.')]
+    private ?bool $termsAccepted = null;
+
+    // The constructor sets the default value for createdAt
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
-    
     }
 
     public function getId(): ?int
@@ -49,7 +53,6 @@ class Contact
     public function setName(?string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -61,7 +64,6 @@ class Contact
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -73,7 +75,6 @@ class Contact
     public function setSubject(?string $subject): static
     {
         $this->subject = $subject;
-
         return $this;
     }
 
@@ -85,7 +86,6 @@ class Contact
     public function setMessage(string $message): static
     {
         $this->message = $message;
-
         return $this;
     }
 
@@ -97,9 +97,20 @@ class Contact
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
-   
+    // Getter pour termsAccepted
+    public function getTermsAccepted(): ?bool
+    {
+        return $this->termsAccepted;
+    }
+
+    // Setter pour termsAccepted
+    public function setTermsAccepted(bool $termsAccepted): static
+    {
+        $this->termsAccepted = $termsAccepted;
+        return $this;
+    }
+
 }

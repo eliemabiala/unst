@@ -14,10 +14,12 @@ use App\Entity\User;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 
+
+
 class NewController extends AbstractController
 {
     #[Route('/new', name: 'app_new')]
-    // #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
         $user = new User();

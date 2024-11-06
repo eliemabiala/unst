@@ -6,8 +6,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'custom-blue': '#14213D',
+        'custom-sky-blue': '#0284C7',
+        'custom-hover': '#b49047',
+      },
       fontSize: {
-        'xxs': '0.625rem', // Définir une taille de police encore plus petite
+        'xxs': '0.625rem', 
+      },
+      screens: {
+        'sm-md': '825px', // Point de rupture personnalisé pour 825px
       },
     },
   },

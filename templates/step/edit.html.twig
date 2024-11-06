@@ -2,6 +2,13 @@
 
 {% block title %}Edit Step{% endblock %}
 
+{% block javascripts %}
+	{% block importmap %}
+		{{ importmap(['app']) }}
+	{% endblock %}
+{% endblock %}
+
+
 {% block body %}
     <h1>Edit Step</h1>
 

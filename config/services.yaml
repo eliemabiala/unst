@@ -1,6 +1,9 @@
-# config/services.yaml
 parameters:
     uploads_directory: '%kernel.project_dir%/public/uploads'
+    documents_directory: '%kernel.project_dir%/public/documents' 
+
+    mailer_from: '%env(MAILER_FROM)%'
+    mailer_to: '%env(MAILER_TO)%'
 
 services:
     # default configuration for services in *this* file

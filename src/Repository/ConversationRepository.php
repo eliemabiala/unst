@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Conversation;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,28 +17,20 @@ class ConversationRepository extends ServiceEntityRepository
         parent::__construct($registry, Conversation::class);
     }
 
-    //    /**
-    //     * @return Conversation[] Returns an array of Conversation objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findConversationBetweenUsers(User $recipient, User $sender): ?Conversation
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb->join('c.participants', 'p1')
+            ->join('c.participants', 'p2')
+            ->where('p1.id = :recipientId')
+            ->andWhere('p2.id = :senderId')
+            ->orWhere('p1.id = :senderId')
+            ->andWhere('p2.id = :recipientId')
+            ->setParameter('recipientId', $recipient->getId())
+            ->setParameter('senderId', $sender->getId())
+            ->setMaxResults(1); // Limiter le résultat à un seul enregistrement
 
-    //    public function findOneBySomeField($value): ?Conversation
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
 }
