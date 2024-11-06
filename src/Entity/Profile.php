@@ -62,7 +62,6 @@ class Profile
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -74,7 +73,6 @@ class Profile
     public function setPostname(?string $postname): static
     {
         $this->postname = $postname;
-
         return $this;
     }
 
@@ -86,7 +84,6 @@ class Profile
     public function setFirstname(string $firstname): static
     {
         $this->firstname = $firstname;
-
         return $this;
     }
 
@@ -98,7 +95,6 @@ class Profile
     public function setGenre(?SexeEnum $genre): static
     {
         $this->genre = $genre;
-
         return $this;
     }
 
@@ -110,7 +106,6 @@ class Profile
     public function setPhone(string $phone): static
     {
         $this->phone = $phone;
-
         return $this;
     }
 
@@ -122,7 +117,6 @@ class Profile
     public function setAddress(string $address): static
     {
         $this->address = $address;
-
         return $this;
     }
 
@@ -134,7 +128,6 @@ class Profile
     public function setDateOfBirth(?\DateTimeInterface $date_of_birth): static
     {
         $this->date_of_birth = $date_of_birth;
-
         return $this;
     }
 
@@ -146,7 +139,6 @@ class Profile
     public function setDateCreation(?\DateTimeInterface $date_creation): static
     {
         $this->date_creation = $date_creation;
-
         return $this;
     }
 
@@ -158,7 +150,6 @@ class Profile
     public function setDateInscrit(?\DateTimeInterface $date_inscrit): static
     {
         $this->date_inscrit = $date_inscrit;
-
         return $this;
     }
 
@@ -167,14 +158,9 @@ class Profile
         return $this->user;
     }
 
-    public function setUser(User $user): static
+    public function setUser(?User $user): static
     {
-        if ($user->getProfile() !== $this) {
-            $user->setProfile($this);
-        }
-
         $this->user = $user;
-
         return $this;
     }
 
@@ -186,7 +172,6 @@ class Profile
     public function setPassport(Passport $passport): static
     {
         $this->passport = $passport;
-
         return $this;
     }
 }
