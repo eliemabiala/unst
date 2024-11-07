@@ -35,7 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $appointments;
 
     #[ORM\ManyToOne(targetEntity: Teams::class, inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: true)] // Permet de rendre l'équipe optionnelle
+    #[ORM\JoinColumn(nullable: true)] // Team is optional
     private ?Teams $teams = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Documents::class)]
@@ -47,9 +47,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Conversation::class, mappedBy: 'participants')]
     private Collection $conversations;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?profile $profile_id = null;
-
     public function __construct()
     {
         $this->appointments = new ArrayCollection();
@@ -57,7 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->conversations = new ArrayCollection();
     }
 
-    // Méthodes existantes
+    // Getters and Setters
 
     public function getId(): ?int
     {
@@ -83,8 +80,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        $roles[] = 'ROLE_USER';
-
+        $roles[] = 'ROLE_USER'; // Guarantees a minimum role
         return array_unique($roles);
     }
 
@@ -107,7 +103,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials(): void
     {
-        // Clear sensitive data
+        // Clear sensitive data if necessary
     }
 
     public function getProfile(): ?Profile
@@ -147,7 +143,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
     public function getTeams(): ?Teams
     {
         return $this->teams;
@@ -158,8 +153,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->teams = $teams;
         return $this;
     }
-
-    // Méthodes pour Documents
 
     public function getDocuments(): Collection
     {
@@ -210,18 +203,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->conversations->removeElement($conversation)) {
             $conversation->removeParticipant($this);
         }
-
-        return $this;
-    }
-
-    public function getProfileId(): ?profile
-    {
-        return $this->profile_id;
-    }
-
-    public function setProfileId(?profile $profile_id): static
-    {
-        $this->profile_id = $profile_id;
 
         return $this;
     }

@@ -17,26 +17,33 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, ['label' => 'Email'])
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
+            ])
             ->add('roles', ChoiceType::class, [
                 'label' => 'Choisissez un rôle',
-                'mapped' => false,
                 'choices' => [
                     'Administrateur' => 'ROLE_ADMIN',
                     'Coach' => 'ROLE_COACH',
                     'Etudiant' => 'ROLE_STUDENT',
                 ],
-                'placeholder' => '-- Sélectionnez un rôle --',
+                'multiple' => true,
+                'expanded' => true, // Pour rendre les choix comme des cases à cocher
             ])
             ->add('teams', EntityType::class, [
                 'class' => Teams::class,
-                'choice_label' => 'team',
+                'choice_label' => 'team', // Vérifiez que 'team' est une propriété correcte dans l'entité Teams
                 'label' => 'Team',
                 'placeholder' => '-- Sélectionnez une équipe --',
             ])
-            ->add('password', PasswordType::class, ['label' => 'Mot de passe'])
-            ->add('profile', ProfileType::class)
-        ;
+            ->add('password', PasswordType::class, [ // Correction ici : ajout de `->`
+                'label' => 'Mot de passe',
+                'required' => false, // Rendre optionnel
+                'empty_data' => '', // Pour éviter que null soit transmis
+            ])
+            ->add('profile', ProfileType::class, [
+                'label' => 'Profile',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
