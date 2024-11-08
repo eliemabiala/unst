@@ -8,12 +8,8 @@
 
 
 {% block body %}
-	<div class="container mx-auto p-4">
+	<div class="container mx-auto mt-40 p-4 min-h-screen">
 		<h1 class="text-3xl font-bold mb-4">Steps List</h1>
-
-		<a href="{{ path('app_step_new') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-			Create New Step
-		</a>
 
 		<table class="table-auto w-full mt-4">
 			<thead>
@@ -45,6 +41,11 @@
 				{% endfor %}
 			</tbody>
 		</table>
+		<a href="{{ path('app_step_new') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover">
+
+			Create New Step
+		</a>
+
+
 	</div>
 {% endblock %}
-

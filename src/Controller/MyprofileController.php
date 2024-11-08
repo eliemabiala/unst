@@ -21,7 +21,7 @@ class MyprofileController extends AbstractController
 
         // Get user roles
         $roles = $user->getRoles();
-        $role = !empty($roles) ? $roles[0] : null;  // Assuming a single role for simplicity
+        $rolesString = implode(', ', $roles); // Convertit le tableau de rôles en chaîne
 
         return $this->render('myprofile/index.html.twig', [
             'status_demarches' => $passport ? $passport->getStatusDemarches() : null,
@@ -32,7 +32,9 @@ class MyprofileController extends AbstractController
             'phone' => $profile ? $profile->getPhone() : null,
             'date_of_birth' => $profile ? $profile->getDateOfBirth() : null,
             'address' => $profile ? $profile->getAddress() : null,
-            'role' => $role,
+            'role' => $roles[0] ?? null, // Premier rôle pour la simplicité
+            'roles' => $rolesString, // Tous les rôles en tant que chaîne
         ]);
     }
+
 }
