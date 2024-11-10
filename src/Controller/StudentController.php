@@ -25,7 +25,7 @@ class StudentController extends AbstractController
         $passport = $profile ? $profile->getPassport() : null;
 
         return $this->render('student/index.html.twig', [
-            'status_demarches' => $passport ? $passport->getStatusDemarches() : null,
+            // 'status_demarches' => $passport ? $passport->getStatusDemarches() : null,
             'firstname' => $profile ? $profile->getFirstname() : null,
             'name' => $profile ? $profile->getName() : null,
             'postname' => $profile ? $profile->getPostname() : null,

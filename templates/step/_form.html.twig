@@ -19,24 +19,10 @@
     }) }}
 </div>
 
-{# <div class="mb-6">
-	{{ form_row(form.documents, {  // Utilisez "form.documents" au lieu de "form.email"
-        'attr': {
-            'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-        }
-    }) }}
-</div> #}
-<div class="mb-6">
-	{{ form_row(form.user, { // Utilisez "form.user" au lieu de "form.email"
-        'attr': {
-            'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-        }
-    }) }}
-</div>
 
 
+
+{{ form_end(form) }}
 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
 	{{ button_label|default('Save') }}
 </button>
-{{ form_end(form) }}
-
