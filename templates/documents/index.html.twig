@@ -10,7 +10,9 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mx-auto mt-20 min-h-screen">
+	<div
+		class="container mx-auto mt-20 min-h-screen px-4 sm:px-6 lg:px-8">
+		<!-- Added responsive padding -->
 		<h1 class="text-2xl font-bold text-center text-[#14213D] mb-6">Liste des documents</h1>
 
 		<div
@@ -64,19 +66,21 @@
 			</div>
 		</div>
 
-		<!-- Boutons en bas -->
-		<div class="flex justify-between items-center mb-10 px-4 mt-6">
-			{% set returnPath = is_granted('ROLE_ADMIN') ? path('app_adminpage') : is_granted('ROLE_COACH') ? path('app_coachepage') : is_granted('ROLE_STUDENT') ? path('app_student') : path('app_existing_conversations') %}
+<!-- Boutons en bas -->
+<div class="flex justify-between items-center mb-10 px-4 mt-6">
+	{% set returnPath = is_granted('ROLE_ADMIN') ? path('app_adminpage') : is_granted('ROLE_COACH') ? path('app_coachepage') : is_granted('ROLE_STUDENT') ? path('app_student') : path('app_existing_conversations') %}
 
-			<a href="{{ returnPath }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-				Retour
-			</a>
+	<!-- Bouton de retour aligné à gauche -->
+	<a href="{{ returnPath }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+		Retour
+	</a>
 
-			<a href="{{ path('app_documents_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-				Envoyer un document
-			</a>
-		</div>
+	<!-- Bouton pour envoyer un document aligné à droite -->
+	<a href="{{ path('app_documents_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
+		Envoyer un document
+	</a>
+</div>
+
 	</div>
-
 {% endblock %}
 

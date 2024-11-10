@@ -78,13 +78,11 @@
 		<div
 			class="mt-6 flex w-full justify-between items-center space-x-4">
 
-			<!-- "Retour" button aligned to the left -->
-			<a href="{% if is_granted('ROLE_ADMIN') %} {{ path('app_adminpage') }} {% elseif is_granted('ROLE_COACH') %} {{ path('app_coachepage') }} {% else %} {{ path('home') }} {% endif %}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-custom-sky-blue transition duration-300">
+			<a href="{% if is_granted('ROLE_ADMIN') %} {{ path('app_adminpage') }} {% elseif is_granted('ROLE_COACH') %} {{ path('app_coachepage') }} {% else %} {{ path('home') }} {% endif %}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">
 				Retour
 			</a>
-
-			<!-- "Ajouter un rendez-vous" button aligned to the right -->
-			<a href="{{ path('app_appointment_new') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-sky-blue transition duration-300">
+			
+			<a href="{{ path('app_appointment_new') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">
 
 				Ajouter un rendez-vous
 			</a>

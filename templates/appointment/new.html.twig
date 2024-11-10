@@ -9,26 +9,16 @@
 	{% endblock %}
 {% endblock %}
 
-
 {% block body %}
+	<!-- Conteneur avec marge en haut et en bas, occupant toute la hauteur de l'écran -->
+	<div class="container mx-auto min-h-screen mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-28 mb-12 sm:mb-16 md:mb-20 lg:mb-24 xl:mb-28 px-4 sm:px-6 md:px-8">
+		<!-- Marge en haut et en bas augmentée pour les écrans plus grands -->
+		<!-- Conteneur du formulaire avec ombre et coins arrondis -->
+			<div class="bg-white p-4 sm:p-6 rounded-lg shadow-md"> <h1 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-black text-center">Créer un nouveau rendez-vous</h1>
+			<!-- Taille de police et marge ajustées pour les mobiles -->
 
-	<!-- Ajout d'espace en haut de la page et centrage du titre -->
-	<div
-		class="mt-40">
-		<!-- Marge augmentée en haut -->
-		<h1 class="text-2xl font-bold mb-6 text-black text-center">Créer un nouveau rendez-vous</h1>
-		<!-- Titre centré -->
-
-		<div class="bg-white p-6 rounded-lg shadow-md">
 			{{ include('appointment/_form.html.twig') }}
 		</div>
-
-
-
-
-
-
-
-
 	</div>
-</div>{% endblock %}
+{% endblock %}
+

@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\ChangePasswordFormType;
 
 class MyprofileController extends AbstractController
 {
@@ -17,14 +21,10 @@ class MyprofileController extends AbstractController
         }
 
         $profile = $user->getProfile();
-        $passport = $profile ? $profile->getPassport() : null;
-
-        // Get user roles
         $roles = $user->getRoles();
-        $role = !empty($roles) ? $roles[0] : null;  // Assuming a single role for simplicity
+        $role = !empty($roles) ? $roles[0] : null;
 
         return $this->render('myprofile/index.html.twig', [
-            'status_demarches' => $passport ? $passport->getStatusDemarches() : null,
             'firstname' => $profile ? $profile->getFirstname() : null,
             'name' => $profile ? $profile->getName() : null,
             'postname' => $profile ? $profile->getPostname() : null,
@@ -33,6 +33,33 @@ class MyprofileController extends AbstractController
             'date_of_birth' => $profile ? $profile->getDateOfBirth() : null,
             'address' => $profile ? $profile->getAddress() : null,
             'role' => $role,
+        ]);
+    }
+
+    #[Route('/myprofile/edit-password', name: 'app_edit_password', methods: ['GET', 'POST'])]
+    public function editPassword(Request $request, UserInterface $user, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
+    {
+        if (!$user instanceof \App\Entity\User) {
+            throw new \LogicException('L\'utilisateur n\'est pas de type User.');
+        }
+
+        $form = $this->createForm(ChangePasswordFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $newPassword = $form->get('plainPassword')->getData();
+            $hashedPassword = $passwordHasher->hashPassword($user, $newPassword);
+            $user->setPassword($hashedPassword);
+
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre mot de passe a été changé avec succès.');
+
+            return $this->redirectToRoute('app_myprofile');
+        }
+
+        return $this->render('reset_password/editpassword.html.twig', [
+            'changePasswordForm' => $form->createView(),
         ]);
     }
 }

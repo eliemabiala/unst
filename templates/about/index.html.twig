@@ -2,42 +2,31 @@
 
 {% block title %}À propos
 {% endblock %}
+
 {% block javascripts %}
 	{% block importmap %}
 		{{ importmap(['app']) }}
 	{% endblock %}
 {% endblock %}
 
-
-
-
-
 {% block body %}
-
 	<section
-		class="bg-gray-100 p-8 mx-auto py-10 px-4 mt-16">
-		
-		<section
-			class="container mx-auto p-8">
-			
+		class="bg-gray-100 mx-auto py-10 px-4 mt-4 md:mt-8 lg:mt-12">
+		<!-- Responsive top margin -->
+		<section class="container mx-auto p-8">
 			<div class="text-center mb-8">
 				<h2 class="text-3xl font-bold">NOTRE ESPACE</h2>
 				<p class="text-lg mt-4">
-					Nous sommes présents dans la région de Paris (en France) et à Kinshasa (en Rép. Démocratique du Congo). 
+					Nous sommes présents dans la région de Paris (en France) et à Kinshasa (en Rép. Démocratique du Congo).
 					                    Nous avons acquis un empan considérable grâce aux compétences et aux performances démontrées face à nos clients au fil des années. Nous vous assurons que vous ne serez pas déçus en nouant une relation fiduciaire avec nous. Certes, avec ferme assurance, nous espérons avoir un bon témoignage de votre part après nous avoir fait confiance.
 				</p>
 			</div>
 
-			
-			<div
-				class="grid grid-cols-1 md:grid-cols-2 gap-0">
-				
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-0">
 				<div class="relative">
 					<img src="{{ asset('img/about/equipe.png') }}" alt="Équipe de direction" class="w-full h-auto">
 				</div>
-
-				
-				<div class="flex flex-col justify-center bg-[#14213D] p-6 text-white">
+				<div class="flex flex-col justify-center bg-custom-blue p-6 text-white">
 					<h3 class="text-xl font-bold mb-4">Message de la Direction</h3>
 					<p>
 						Nous accompagnons la société via le numérique et facilitons l'accès à l'emploi pour les chômeurs et les personnes éloignées de la vie professionnelle. Nous vulgarisons les connaissances dans divers domaines et aidons les étudiants à concrétiser leurs projets d'études en Europe. Nous offrons une médiathèque et une librairie en ligne, ainsi qu'un Centre de Coaching d'études pour les inscriptions universitaires et l'obtention de visas.
@@ -45,30 +34,24 @@
 				</div>
 			</div>
 
-			<div
-				class="grid grid-cols-1 md:grid-cols-2 gap-0 mt-8">
-	
-				<div class="flex flex-col justify-center bg-[#14213D] p-6 text-white">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-0 mt-8">
+				<div class="flex flex-col justify-center bg-custom-blue p-6 text-white">
 					<h3 class="text-xl font-bold mb-4">Vision et valeurs</h3>
 					<ul class="list-disc pl-5">
 						<li>Bienveillance</li>
 						<li>Respect</li>
 						<li>Responsabilité</li>
-						
 						<li>Divertissement</li>
 					</ul>
 				</div>
-
-				
 				<div class="relative">
 					<img src="{{ asset('img/about/equipes.png') }}" alt="Équipe au travail" class="w-full h-auto">
 				</div>
 			</div>
 		</section>
 
-	
-		<section class="p-8 bg-gray-50">
-			<h2 class="text-2xl font-bold mb-6">L'équipe</h2>
+		<section class="p-8 bg-gray-100">
+			<h2 class="text-2xl text-center font-bold mb-6">L'équipe</h2>
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 				<div class="bg-white p-4 rounded-lg shadow-md text-center">
 					<img src="{{ asset('img/about/plamedy.png') }}" alt="Plamedy BAKU - Président" class="w-24 h-24 object-cover mx-auto mb-2 rounded-full">

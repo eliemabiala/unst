@@ -26,11 +26,10 @@ class Passport
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $profession = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $status_demarches = null;
-
     #[ORM\OneToOne(mappedBy: 'passport', cascade: ['persist', 'remove'])]
     private ?Profile $profile = null;
+
+    // Getters et Setters
 
     public function getId(): ?int
     {
@@ -45,7 +44,6 @@ class Passport
     public function setNumberPassport(string $number_passport): static
     {
         $this->number_passport = $number_passport;
-
         return $this;
     }
 
@@ -57,7 +55,6 @@ class Passport
     public function setDateExpiration(?\DateTimeInterface $date_expiration): static
     {
         $this->date_expiration = $date_expiration;
-
         return $this;
     }
 
@@ -69,7 +66,6 @@ class Passport
     public function setNationalite(?string $nationalite): static
     {
         $this->nationalite = $nationalite;
-
         return $this;
     }
 
@@ -81,19 +77,6 @@ class Passport
     public function setProfession(?string $profession): static
     {
         $this->profession = $profession;
-
-        return $this;
-    }
-
-    public function getStatusDemarches(): ?string
-    {
-        return $this->status_demarches;
-    }
-
-    public function setStatusDemarches(?string $status_demarches): static
-    {
-        $this->status_demarches = $status_demarches;
-
         return $this;
     }
 
@@ -104,13 +87,11 @@ class Passport
 
     public function setProfile(Profile $profile): static
     {
-        // set the owning side of the relation if necessary
         if ($profile->getPassport() !== $this) {
             $profile->setPassport($this);
         }
 
         $this->profile = $profile;
-
         return $this;
     }
 }

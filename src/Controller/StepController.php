@@ -71,7 +71,8 @@ class StepController extends AbstractController
     #[Route('/{id}', name: 'app_step_delete', methods: ['POST'])]
     public function delete(Request $request, Step $step, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$step->getId(), $request->getPayload()->getString('_token'))) {
+        // Correction : Utilisation de $request->request->get('_token') pour récupérer le jeton CSRF
+        if ($this->isCsrfTokenValid('delete' . $step->getId(), $request->request->get('_token'))) {
             $entityManager->remove($step);
             $entityManager->flush();
         }

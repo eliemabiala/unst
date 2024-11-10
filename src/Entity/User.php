@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\Step; // Import de l'entité Step
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -41,20 +42,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Documents::class)]
     private Collection $documents;
 
-    /**
-     * @var Collection<int, Conversation>
-     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Step::class)] // Ajout de la relation avec Step
+    private Collection $steps;
+
     #[ORM\ManyToMany(targetEntity: Conversation::class, mappedBy: 'participants')]
     private Collection $conversations;
+
+    #[ORM\Column(type: 'datetime')]
+    private \DateTime $createdAt;
 
     public function __construct()
     {
         $this->appointments = new ArrayCollection();
         $this->documents = new ArrayCollection();
+        $this->steps = new ArrayCollection(); // Initialisation de steps
         $this->conversations = new ArrayCollection();
+        $this->createdAt = new \DateTime(); // Automatically set the creation date
     }
 
-    // Getters and Setters
+    // Getters et Setters
 
     public function getId(): ?int
     {
@@ -180,9 +186,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Conversation>
-     */
+    // Méthode pour obtenir les étapes
+    public function getSteps(): Collection
+    {
+        return $this->steps;
+    }
+
+    public function addStep(Step $step): static
+    {
+        if (!$this->steps->contains($step)) {
+            $this->steps->add($step);
+            $step->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStep(Step $step): static
+    {
+        if ($this->steps->removeElement($step)) {
+            if ($step->getUser() === $this) {
+                $step->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
     public function getConversations(): Collection
     {
         return $this->conversations;
@@ -204,6 +234,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $conversation->removeParticipant($this);
         }
 
+        return $this;
+    }
+
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTime $createdAt): static
+    {
+        $this->createdAt = $createdAt;
         return $this;
     }
 }

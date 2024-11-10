@@ -28,29 +28,50 @@ class UserFixtures extends Fixture
             throw new \RuntimeException('No teams found. Please load teams fixtures first.');
         }
 
+        // Garder une trace des e-mails générés pour assurer l'unicité
+        $usedEmails = [];
+
         for ($i = 1; $i <= 10; $i++) {
             $user = new User();
 
-            // Associez un profil à l'utilisateur
+            // Associer un profil à l'utilisateur
             $profile = $this->getReference('profile_' . $i);
-            if ($profile) {
-                $user->setProfile($profile);
-
-                // Crée un email basé sur le prénom et le nom du profil
-                $firstName = strtolower(str_replace(' ', '', $profile->getFirstname()));
-                $lastName = strtolower(str_replace(' ', '', $profile->getName()));
-                $user->setEmail($firstName . '.' . $lastName . '@exemple.com');
-            } else {
-                throw new \RuntimeException('Profile reference not found for user with index ' . $i);
+            if (!$profile) {
+                throw new \RuntimeException("Référence de profil introuvable pour l'utilisateur avec l'index " . $i);
             }
 
-            // Hachage du mot de passe
-            $hashedPassword = $this->passwordHasher->hashPassword(
-                $user,
-                'password' . $i
-            );
+            $user->setProfile($profile);
+
+            // Crée un email basé sur le nom et prénom du profil
+            $firstName = strtolower(str_replace(' ', '', $profile->getFirstname()));
+            $lastName = strtolower(str_replace(' ', '', $profile->getName()));
+            $email = $firstName . '.' . $lastName . '@gmail.com';
+
+            // Vérifier l'unicité de l'email et ajuster si nécessaire
+            $emailCount = 1;
+            while (in_array($email, $usedEmails)) {
+                $email = $firstName . '.' . $lastName . $emailCount . '@gmail.com';
+                $emailCount++;
+            }
+            $usedEmails[] = $email; // Ajouter l'email à la liste des e-mails utilisés
+            $user->setEmail($email);
+
+            // Créez un mot de passe et affichez-le pour les administrateurs
+            $plainPassword = 'password' . $i;
+            $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
             $user->setPassword($hashedPassword);
-            $user->setRoles(['ROLE_STUDENT']);
+
+            // Définir les rôles des utilisateurs
+            if ($i <= 2) {
+                // Les deux premiers utilisateurs sont des administrateurs
+                $user->setRoles(['ROLE_ADMIN']);
+                echo "Admin Email: " . $user->getEmail() . " | Mot de passe: " . $plainPassword . "\n";
+            } else {
+                // Les autres utilisateurs sont des étudiants
+                $user->setRoles(['ROLE_STUDENT']);
+            }
+
+            // Associer une équipe aléatoire
             $user->setTeams($teams[array_rand($teams)]);
 
             // Créez et associez des documents à l'utilisateur
