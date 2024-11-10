@@ -22,7 +22,7 @@ class MyprofileController extends AbstractController
 
         $profile = $user->getProfile();
         $roles = $user->getRoles();
-        $role = !empty($roles) ? $roles[0] : null;
+        $rolesString = implode(', ', $roles); // Convertit le tableau de rôles en chaîne
 
         return $this->render('myprofile/index.html.twig', [
             'firstname' => $profile ? $profile->getFirstname() : null,
@@ -32,34 +32,9 @@ class MyprofileController extends AbstractController
             'phone' => $profile ? $profile->getPhone() : null,
             'date_of_birth' => $profile ? $profile->getDateOfBirth() : null,
             'address' => $profile ? $profile->getAddress() : null,
-            'role' => $role,
+            'role' => $roles[0] ?? null, // Premier rôle pour la simplicité
+            'roles' => $rolesString, // Tous les rôles en tant que chaîne
         ]);
     }
 
-    #[Route('/myprofile/edit-password', name: 'app_edit_password', methods: ['GET', 'POST'])]
-    public function editPassword(Request $request, UserInterface $user, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
-    {
-        if (!$user instanceof \App\Entity\User) {
-            throw new \LogicException('L\'utilisateur n\'est pas de type User.');
-        }
-
-        $form = $this->createForm(ChangePasswordFormType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $newPassword = $form->get('plainPassword')->getData();
-            $hashedPassword = $passwordHasher->hashPassword($user, $newPassword);
-            $user->setPassword($hashedPassword);
-
-            $entityManager->flush();
-
-            $this->addFlash('success', 'Votre mot de passe a été changé avec succès.');
-
-            return $this->redirectToRoute('app_myprofile');
-        }
-
-        return $this->render('reset_password/editpassword.html.twig', [
-            'changePasswordForm' => $form->createView(),
-        ]);
-    }
 }
