@@ -133,9 +133,15 @@
 			</div>
 		</div>
 
-		<div class="mt-6 flex flex-col sm:flex-row justify-between items-center">
-			<a href="{{ path('app_adminpage') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300 mb-2 sm:mb-0">Retour</a>
-			<a href="{{ path('app_edit', { id: user.id }) }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">Modifier le Profil</a>
-		</div>
+<div class="mt-6 flex flex-col sm:flex-row justify-between items-center">
+	<a href="{{ path('app_adminpage') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300 mb-2 sm:mb-0 w-full sm:w-auto text-center">
+		Retour
+	</a>
+	<a href="{{ path('app_edit', { id: user.id }) }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300 w-full sm:w-auto text-center">
+		Modifier le Profil
+	</a>
+</div>
+
+
 	</div>
 {% endblock %}

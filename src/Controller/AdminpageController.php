@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class AdminpageController extends AbstractController
 {
     #[Route('/adminpage', name: 'app_adminpage')]
-    // #[IsGranted('ROLE_ADMIN')] // Décommentez cette ligne pour restreindre l'accès aux administrateurs uniquement
+    #[IsGranted('ROLE_ADMIN')] 
     public function index(UserRepository $userRepository): Response
     {
         // Récupérer les utilisateurs dans l'ordre décroissant de la date de création

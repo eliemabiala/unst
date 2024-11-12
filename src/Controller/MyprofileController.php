@@ -22,7 +22,7 @@ class MyprofileController extends AbstractController
 
         $profile = $user->getProfile();
         $roles = $user->getRoles();
-        $rolesString = implode(', ', $roles); // Convertit le tableau de rôles en chaîne
+        $rolesString = implode(', ', $roles); 
 
         return $this->render('myprofile/index.html.twig', [
             'firstname' => $profile ? $profile->getFirstname() : null,
@@ -32,8 +32,8 @@ class MyprofileController extends AbstractController
             'phone' => $profile ? $profile->getPhone() : null,
             'date_of_birth' => $profile ? $profile->getDateOfBirth() : null,
             'address' => $profile ? $profile->getAddress() : null,
-            'role' => $roles[0] ?? null, // Premier rôle pour la simplicité
-            'roles' => $rolesString, // Tous les rôles en tant que chaîne
+            'role' => $roles[0] ?? null, 
+            'roles' => $rolesString, 
         ]);
     }
 

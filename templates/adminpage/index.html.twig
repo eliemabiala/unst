@@ -38,14 +38,10 @@
 				<div class="bg-custom-blue text-white rounded-l-lg p-4">
 					<img src="{{ asset('img/admin/iconuser.png') }}" alt="Icon User" class="w-8 h-8">
 				</div>
-<div class="ml-4">
-	<p class="text-sm font-medium">Effectif STUDENT</p>
-	<p class="text-3xl font-bold">{{ totalStudent }}</p>
-	<!-- Utilisation correcte de totalStudent -->
-</div>
-
-
-
+				<div class="ml-4">
+					<p class="text-sm font-medium">Effectif STUDENT</p>
+					<p class="text-3xl font-bold">{{ totalStudent }}</p>
+				</div>
 
 
 			</div>
@@ -66,7 +62,8 @@
 		<div class="flex space-x-5 flex-col sm:flex-row justify-between items-center mb-6">
 			<h1 class="text-2xl font-bold mb-4 sm:mb-0 order-2 sm:order-1" aria-label="User List Header">Liste des utilisateurs</h1>
 			<div class="flex space-x-2 order-1 sm:order-2">
-				<a href="{{ path('app_existing_conversations') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300" aria-label="View messages">Messages</a>
+<a href="{{ path('app_step_index') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300" aria-label="View messages">Voir les Démarche</a>
+
 			</div>
 		</div>
 
@@ -104,24 +101,26 @@
 							<td class="py-2 px-4 hidden md:table-cell">{{ user.email }}</td>
 							<td class="py-2 px-4">
 								<div class="flex space-x-2">
-									<a href="{{ path('app_user_profile', { id: user.id }) }}" aria-label="View profile of {{ profile.name }}">
+									<a href="{{ path('app_user_profile', { id: user.id }) }}" class="hidden sm:inline" aria-label="View profile of {{ profile.name }}">
 										<img src="{{ asset('img/admin/invisible.png') }}" alt="View more" title="Voir plus" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
 									</a>
-									<a href="{{ path('app_edit', { id: user.id }) }}" aria-label="Edit profile of {{ profile.name }}">
+									<a href="{{ path('app_edit', { id: user.id }) }}" class="hidden sm:inline" aria-label="Edit profile of {{ profile.name }}">
 										<img src="{{ asset('img/admin/messager.png') }}" alt="Send message" title="Envoyer un message" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
 									</a>
-									<a href="{{ path('app_appointment_user', { id: user.id }) }}" aria-label="View appointments of {{ profile.name }}">
+									<a href="{{ path('app_appointment_user', { id: user.id }) }}" class="hidden sm:inline" aria-label="View appointments of {{ profile.name }}">
 										<img src="{{ asset('img/admin/addrdv.png') }}" alt="View appointments" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
 									</a>
-									<a href="{{ path('app_appointment_new', { id: user.id }) }}" aria-label="Schedule an appointment for {{ profile.name }}">
+									<a href="{{ path('app_appointment_new', { id: user.id }) }}" class="hidden sm:inline" aria-label="Schedule an appointment for {{ profile.name }}">
 										<img src="{{ asset('img/admin/edit.png') }}" alt="Edit" title="Modifier le profil" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
 									</a>
-									<form action="{{ path('app_user_delete', { id: user.id }) }}" method="post" style="display:inline;">
-										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-										<button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');" class="text-red-600" aria-label="Delete user {{ profile.name }}">
-											<img src="{{ asset('img/admin/delete.png') }}" alt="Delete" title="Supprimer l'utilisateur" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
-										</button>
-									</form>
+<form action="{{ path('app_user_delete', { id: user.id }) }}" method="post" class="inline-block">
+	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+	<button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');" class="text-red-600 flex items-center" aria-label="Delete user {{ profile.name }}">
+		<img src="{{ asset('img/admin/delete.png') }}" alt="Delete" title="Supprimer l'utilisateur" class="w-6 h-6 mx-1"/>
+	</button>
+</form>
+
+
 								</div>
 							</td>
 						</tr>

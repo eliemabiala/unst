@@ -18,8 +18,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class EditController extends AbstractController
 {
     #[Route('/edit/{id}', name: 'app_edit')]
-    // #[IsGranted('ROLE_ADMIN')]
-    // src/Controller/EditController.php
+    #[IsGranted('ROLE_ADMIN')]
+  
 
     public function edit(
         Request $request,

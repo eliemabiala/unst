@@ -153,4 +153,35 @@ class ResetPasswordController extends AbstractController
 
         return $this->redirectToRoute('app_check_email');
     }
+
+    #[Route('/editpassword', name: 'app_editpassword')]
+    public function changePassword(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+        if (!$user) {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour changer votre mot de passe.');
+        }
+
+        $form = $this->createForm(ChangePasswordFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $plainPassword = $form->get('plainPassword')->getData();
+            // $user->setPassword($passwordHasher->hashPassword($user, $plainPassword));
+
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre mot de passe a été changé avec succès.');
+
+            // Redirigez vers app_myprofile
+            return $this->redirectToRoute('app_myprofile');
+        }
+
+        return $this->render('reset_password/editpassword.html.twig', [
+            'changePasswordForm' => $form->createView(),
+        ]);
+
+    }
+
+
 }

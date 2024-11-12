@@ -53,29 +53,27 @@
 							<span class="w-2/3 text-gray-900">{{ status_demarches }}</span>
 						</div>
 					{% endif %} #}
-					<a href="{{ path('app_edit_password') }}" class=" text-red-600 py-2 px-4">
-
+<a href="{{ path('app_editpassword') }}" class="text-red-600 py-2 px-4">
 	Changer mon mot de passe
 </a>
+
+
 				</div>
-
-
-
 
 
 				<!-- Back Button with Conditional Redirection -->
 				<div class="mt-6 text-center">
 					{% if role == 'ROLE_COACH' %}
-						<a href="{{ path('app_coachepage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
+						<a href="{{ path('app_coachepage') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover">
 							Retour à la Page Coach
 						</a>
 					{% elseif role == 'ROLE_ADMIN' %}
-						<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
+						<a href="{{ path('app_adminpage') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover">
 							Retour à la Page Admin
 						</a>
 					{% elseif role == 'ROLE_STUDENT' %}
-						<a href="{{ path('app_student') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">
-							Retour à la Page Étudiant
+						<a href="{{ path('app_student') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover">
+							Retour à la Page profile
 						</a>
 					{% endif %}
 				</div>

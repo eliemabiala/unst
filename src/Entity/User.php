@@ -186,7 +186,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // Méthode pour obtenir les étapes
     public function getSteps(): Collection
     {
         return $this->steps;
