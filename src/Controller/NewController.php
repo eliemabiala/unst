@@ -19,7 +19,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class NewController extends AbstractController
 {
     #[Route('/new', name: 'app_new')]
-    // #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
         $user = new User();
@@ -28,7 +28,7 @@ class NewController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setRoles([$form->get('roles')->getData()]);
+            $user->setRoles($form->get('roles')->getData());
             $user->setPassword(
                 $userPasswordHasherInterface->hashPassword(
                     $user,

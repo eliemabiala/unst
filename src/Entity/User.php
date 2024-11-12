@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\Step; // Import de l'entité Step
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -35,29 +36,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $appointments;
 
     #[ORM\ManyToOne(targetEntity: Teams::class, inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: true)] // Permet de rendre l'équipe optionnelle
+    #[ORM\JoinColumn(nullable: true)] // Team is optional
     private ?Teams $teams = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Documents::class)]
     private Collection $documents;
 
-    /**
-     * @var Collection<int, Conversation>
-     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Step::class)] // Ajout de la relation avec Step
+    private Collection $steps;
+
     #[ORM\ManyToMany(targetEntity: Conversation::class, mappedBy: 'participants')]
     private Collection $conversations;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?profile $profile_id = null;
+    #[ORM\Column(type: 'datetime')]
+    private \DateTime $createdAt;
 
     public function __construct()
     {
         $this->appointments = new ArrayCollection();
         $this->documents = new ArrayCollection();
+        $this->steps = new ArrayCollection(); // Initialisation de steps
         $this->conversations = new ArrayCollection();
+        $this->createdAt = new \DateTime(); // Automatically set the creation date
     }
 
-    // Méthodes existantes
+    // Getters et Setters
 
     public function getId(): ?int
     {
@@ -83,8 +86,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        $roles[] = 'ROLE_USER';
-
+        $roles[] = 'ROLE_USER'; // Guarantees a minimum role
         return array_unique($roles);
     }
 
@@ -107,7 +109,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials(): void
     {
-        // Clear sensitive data
+        // Clear sensitive data if necessary
     }
 
     public function getProfile(): ?Profile
@@ -147,7 +149,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
     public function getTeams(): ?Teams
     {
         return $this->teams;
@@ -158,8 +159,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->teams = $teams;
         return $this;
     }
-
-    // Méthodes pour Documents
 
     public function getDocuments(): Collection
     {
@@ -187,9 +186,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Conversation>
-     */
+    public function getSteps(): Collection
+    {
+        return $this->steps;
+    }
+
+    public function addStep(Step $step): static
+    {
+        if (!$this->steps->contains($step)) {
+            $this->steps->add($step);
+            $step->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStep(Step $step): static
+    {
+        if ($this->steps->removeElement($step)) {
+            if ($step->getUser() === $this) {
+                $step->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
     public function getConversations(): Collection
     {
         return $this->conversations;
@@ -214,15 +236,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getProfileId(): ?profile
+    public function getCreatedAt(): \DateTime
     {
-        return $this->profile_id;
+        return $this->createdAt;
     }
 
-    public function setProfileId(?profile $profile_id): static
+    public function setCreatedAt(\DateTime $createdAt): static
     {
-        $this->profile_id = $profile_id;
-
+        $this->createdAt = $createdAt;
         return $this;
     }
 }

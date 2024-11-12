@@ -172,4 +172,10 @@ class Documents
 
         return $this;
     }
+
+    // Nouvelle méthode ajoutée pour obtenir l'e-mail de l'utilisateur
+    public function getUserEmail(): ?string
+    {
+        return $this->user ? $this->user->getEmail() : null;
+    }
 }

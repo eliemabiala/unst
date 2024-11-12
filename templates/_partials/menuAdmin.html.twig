@@ -1,5 +1,6 @@
 <div class="hidden md:flex flex-col sm:flex-row justify-between items-center mb-6 space-x-5 nav_liste_content_iconprofile">
 	<ul class="flex space-x-2 order-1 sm:order-2">
+
 		<li>
 			<a href="{{ path('app_documents_index') }}" class="bg-unst-blue text-white nav_link">
 				Mes Documents
@@ -56,8 +57,9 @@
 				</li>
 			{% elseif 'ROLE_USER' in app.user.roles %}
 				<li>
-					<a href="{{ path('app_student') }}" class="bg-unst-blue text-white nav_link">
-						Espace Étudiant
+					<a href="{{ path('app_myprofile') }}" class="bg-unst-blue text-white nav_link">
+
+						Mon profil
 					</a>
 
 				</li>

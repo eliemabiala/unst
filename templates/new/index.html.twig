@@ -6,120 +6,83 @@
 	{% endblock %}
 {% endblock %}
 
-
 {% block body %}
 	<div
-		class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-24 mb-12">
-		<!-- Ajout de 'mb-12' pour l'espace en bas -->
-		<h1 class="text-2xl text-center font-bold mb-6">Créer un nouvel utilisateur</h1>
+		class="max-w-2xl mx-auto p-8 bg-white shadow-lg rounded-lg mt-28 mb-16 px-4 sm:px-6 md:px-8">
+		<!-- Added responsive padding: px-4 for mobile, sm:px-6 for small screens, md:px-8 for medium screens -->
+		<h1 class="text-3xl text-center font-bold mb-8">Créer un nouvel utilisateur</h1>
+		<!-- Increased font size and spacing -->
 
-		{{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+		{{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+		<!-- Increased overall space between form elements -->
 
-		<div class="form-group">
-			{{ form_label(form.email, null, {'attr': {'class': 'block text-black font-medium mb-1'}}) }}
-			{{ form_widget(form.email, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-black'}}) }}
+		<!-- User Information Fields -->
+			<div
+			class="form-group space-y-2"> <!-- Added more space between form groups -->
+			{{ form_label(form.email, null, {'attr': {'class': 'block text-black font-medium mb-2'}}) }}
+			{{ form_widget(form.email, {'attr': {'class': 'w-full border border-bg-custom-blue rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-bg-custom-blue text-black'}}) }}
 			{{ form_errors(form.email) }}
 		</div>
 
-		<div class="form-group">
-			{{ form_label(form.roles, null, {'attr': {'class': 'block text-black font-medium mb-1'}}) }}
-			{{ form_widget(form.roles, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-black'}}) }}
+		<div class="form-group space-y-2">
+			{{ form_label(form.roles, null, {'attr': {'class': 'block text-black font-medium mb-2'}}) }}
+			{{ form_widget(form.roles, {'attr': {'class': 'w-full border border-bg-custom-blue rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-bg-custom-blue text-black'}}) }}
 			{{ form_errors(form.roles) }}
 		</div>
 
-		<div class="form-group">
-			{{ form_label(form.teams, null, {'attr': {'class': 'block text-black font-medium mb-1'}}) }}
-			{{ form_widget(form.teams, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-black'}}) }}
+		<div class="form-group space-y-2">
+			{{ form_label(form.teams, null, {'attr': {'class': 'block text-black font-medium mb-2'}}) }}
+			{{ form_widget(form.teams, {'attr': {'class': 'w-full border border-bg-custom-blue rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-bg-custom-blue text-black'}}) }}
 			{{ form_errors(form.teams) }}
 		</div>
 
-		<div class="form-group">
-			{{ form_label(form.password, null, {'attr': {'class': 'block text-black font-medium mb-1'}}) }}
-			{{ form_widget(form.password, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-black'}}) }}
+		<div class="form-group space-y-2">
+			{{ form_label(form.password, null, {'attr': {'class': 'block text-black font-medium mb-2'}}) }}
+			{{ form_widget(form.password, {'attr': {'class': 'w-full border border-bg-custom-blue rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-bg-custom-blue text-black'}}) }}
 			{{ form_errors(form.password) }}
 		</div>
 
-		<div class="space-y-6">
-			<div class="form-group">
-				{{ form_label(form.profile.name, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-				{{ form_widget(form.profile.name, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
-				{{ form_errors(form.profile.name) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_label(form.profile.postname, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-				{{ form_widget(form.profile.postname, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
-				{{ form_errors(form.profile.postname) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_label(form.profile.firstname, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-				{{ form_widget(form.profile.firstname, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
-				{{ form_errors(form.profile.firstname) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_label(form.profile.genre, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-				{{ form_widget(form.profile.genre, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
-				{{ form_errors(form.profile.genre) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_label(form.profile.phone, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-				{{ form_widget(form.profile.phone, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
-				{{ form_errors(form.profile.phone) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_label(form.profile.address, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-				{{ form_widget(form.profile.address, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
-				{{ form_errors(form.profile.address) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_label(form.profile.date_of_birth, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-				{{ form_widget(form.profile.date_of_birth, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
-				{{ form_errors(form.profile.date_of_birth) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_label(form.profile.date_inscrit, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-				{{ form_widget(form.profile.date_inscrit, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
-				{{ form_errors(form.profile.date_inscrit) }}
-			</div>
+		<!-- Profile Information Fields -->
+		<div
+			class="space-y-6 mt-8">
+			<!-- Added more top margin for better separation -->
+			{% for field in [form.profile.name, form.profile.postname, form.profile.firstname, form.profile.genre, form.profile.phone, form.profile.address, form.profile.date_of_birth, form.profile.date_inscrit] %}
+				<div
+					class="form-group space-y-2">
+					<!-- Added space between form groups -->
+					{{ form_label(field, null, {'attr': {'class': 'block text-gray-700 font-medium mb-2'}}) }}
+					{{ form_widget(field, {'attr': {'class': 'w-full border border-bg-custom-blue rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-bg-custom-blue text-gray-900'}}) }}
+					{{ form_errors(field) }}
+				</div>
+			{% endfor %}
 		</div>
 
-		<div class="space-y-6 mt-8">
-			<div class="form-group">
-				{{ form_label(form.profile.passport.number_passport, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-				{{ form_widget(form.profile.passport.number_passport, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
-				{{ form_errors(form.profile.passport.number_passport) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_label(form.profile.passport.date_expiration, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-				{{ form_widget(form.profile.passport.date_expiration, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
-				{{ form_errors(form.profile.passport.date_expiration) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_label(form.profile.passport.nationalite, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-				{{ form_widget(form.profile.passport.nationalite, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
-				{{ form_errors(form.profile.passport.nationalite) }}
-			</div>
-
-			<div class="form-group">
-				{{ form_label(form.profile.passport.profession, null, {'attr': {'class': 'block text-gray-700 font-medium mb-1'}}) }}
-				{{ form_widget(form.profile.passport.profession, {'attr': {'class': 'w-full border border-[#14213D] rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#14213D] text-gray-900'}}) }}
-				{{ form_errors(form.profile.passport.profession) }}
-			</div>
+		<!-- Passport Information Fields -->
+		<div
+			class="space-y-6 mt-8">
+			<!-- Added more top margin for better separation -->
+			{% for field in [form.profile.passport.number_passport, form.profile.passport.date_expiration, form.profile.passport.nationalite, form.profile.passport.profession] %}
+				<div
+					class="form-group space-y-2">
+					<!-- Added space between form groups -->
+					{{ form_label(field, null, {'attr': {'class': 'block text-gray-700 font-medium mb-2'}}) }}
+					{{ form_widget(field, {'attr': {'class': 'w-full border border-bg-custom-blue rounded-md p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-bg-custom-blue text-gray-900'}}) }}
+					{{ form_errors(field) }}
+				</div>
+			{% endfor %}
 		</div>
 
-		<div class="flex justify-between mt-6">
-			<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">Annuler</a>
-			<button type="submit" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047]">Ajouter</button>
+		<!-- Action Buttons -->
+		<div
+			class="flex justify-between mt-8">
+			<!-- Added more top margin for better separation -->
+<a href="{{ path('app_adminpage') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">Annuler</a>
+
+<button type="submit" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">Ajouter</button>
+
 		</div>
 
 		{{ form_end(form) }}
 	</div>
 {% endblock %}
+

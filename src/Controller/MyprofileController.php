@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\ChangePasswordFormType;
 
 class MyprofileController extends AbstractController
 {
@@ -17,14 +21,10 @@ class MyprofileController extends AbstractController
         }
 
         $profile = $user->getProfile();
-        $passport = $profile ? $profile->getPassport() : null;
-
-        // Get user roles
         $roles = $user->getRoles();
-        $role = !empty($roles) ? $roles[0] : null;  // Assuming a single role for simplicity
+        $rolesString = implode(', ', $roles); 
 
         return $this->render('myprofile/index.html.twig', [
-            'status_demarches' => $passport ? $passport->getStatusDemarches() : null,
             'firstname' => $profile ? $profile->getFirstname() : null,
             'name' => $profile ? $profile->getName() : null,
             'postname' => $profile ? $profile->getPostname() : null,
@@ -32,7 +32,9 @@ class MyprofileController extends AbstractController
             'phone' => $profile ? $profile->getPhone() : null,
             'date_of_birth' => $profile ? $profile->getDateOfBirth() : null,
             'address' => $profile ? $profile->getAddress() : null,
-            'role' => $role,
+            'role' => $roles[0] ?? null, 
+            'roles' => $rolesString, 
         ]);
     }
+
 }

@@ -19,6 +19,8 @@ class EditController extends AbstractController
 {
     #[Route('/edit/{id}', name: 'app_edit')]
     #[IsGranted('ROLE_ADMIN')]
+  
+
     public function edit(
         Request $request,
         EntityManagerInterface $entityManager,
@@ -36,21 +38,27 @@ class EditController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setRoles([$form->get('roles')->getData()]);
-            $user->setPassword(
-                $userPasswordHasherInterface->hashPassword(
-                    $user,
-                    $form->get('password')->getData()
-                )
-            );
+            // Gérer les rôles
+            $roles = $form->get('roles')->getData();
+            $user->setRoles(is_array($roles) ? $roles : [$roles]);
+
+            // Hacher et définir le mot de passe seulement si une nouvelle valeur est fournie
+            $newPassword = $form->get('password')->getData();
+            if (!empty($newPassword)) {
+                $hashedPassword = $userPasswordHasherInterface->hashPassword($user, $newPassword);
+                $user->setPassword($hashedPassword);
+            }
 
             $entityManager->persist($user);
             $entityManager->flush();
+
             $this->addFlash('success', [
-                'title' => 'Votre',
-                'message'=> 'utilisateur a été modifié'
+                'title' => 'Succès',
+                'message' => 'L\'utilisateur a été modifié avec succès.'
             ]);
 
+
+            // Envoi d'un email de notification
             $email = (new Email())
                 ->from('mabialaelie4@gmail.com')
                 ->to('endiepro4@gmail.com')

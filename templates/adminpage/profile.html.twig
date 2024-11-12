@@ -2,14 +2,12 @@
 
 {% block title %}Profil de l'utilisateur
 {% endblock %}
+
 {% block javascripts %}
 	{% block importmap %}
 		{{ importmap(['app', 'faq']) }}
-
-
 	{% endblock %}
 {% endblock %}
-
 
 {% block body %}
 	{% for label, messages in app.flashes %}
@@ -18,19 +16,11 @@
 		{% endfor %}
 	{% endfor %}
 
-	<div
-		class="container mx-auto px-4 py-12 mt-8">
-		<!-- Marge supérieure ajoutée ici -->
+	<div class="container mx-auto px-4 py-12 mt-8">
 		<h1 class="text-3xl font-bold mb-6 text-center text-black">Profil de l'utilisateur</h1>
-		<!-- Couleur et taille du titre -->
 
-		<div
-			class="bg-gray-100 p-6 rounded-lg shadow-lg space-y-4">
-			<!-- Espace entre les paragraphes -->
-			{% set labelColor = '#14213D' %}
-			<!-- Couleur pour les labels -->
+		<div class="bg-gray-100 p-6 rounded-lg shadow-lg space-y-4">
 			{% set valueColor = 'text-gray-800' %}
-			<!-- Couleur pour les valeurs avec une nuance plus foncée -->
 
 			<p>
 				<strong class="text-black">Nom :</strong>
@@ -44,6 +34,30 @@
 				<strong class="text-black">Prénom :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.firstname }}</span>
 			</p>
+
+			<!-- Affichage des étapes -->
+			<div class="mt-8">
+				{% if steps is not empty %}
+					<ul class="space-y-4">
+						{% for step in steps %}
+							<li class="bg-white p-4 rounded-md shadow-md">
+								<p>
+									<strong class="text-black">Titre :</strong>
+									{{ step.title }}
+								</p>
+								<p>
+									<strong class="text-black">Description :</strong>
+									{{ step.description }}
+								</p>
+							</li>
+						{% endfor %}
+					</ul>
+				{% else %}
+					<p class="text-gray-500">Aucune étape trouvée.</p>
+				{% endif %}
+			</div>
+
+
 			<p>
 				<strong class="text-black">Date de naissance :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.dateOfBirth ? user.profile.dateOfBirth|date('d-m-Y') : 'Non renseigné' }}</span>
@@ -89,10 +103,6 @@
 				<span class="{{ valueColor }}">{{ user.profile.address }}</span>
 			</p>
 			<p>
-				<strong class="text-black">Status des démarches :</strong>
-				<span class="{{ valueColor }}">{{ user.profile.passport.statusDemarches ?? 'Non renseigné' }}</span>
-			</p>
-			<p>
 				<strong class="text-black">Date de création :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.dateCreation ? user.profile.dateCreation|date('d-m-Y') : 'Non renseigné' }}</span>
 			</p>
@@ -100,9 +110,10 @@
 				<strong class="text-black">Date d'inscription :</strong>
 				<span class="{{ valueColor }}">{{ user.profile.dateInscrit ? user.profile.dateInscrit|date('d-m-Y') : 'Non renseigné' }}</span>
 			</p>
+
+			<!-- Affichage des rendez-vous -->
 			<div class="mt-8">
 				<h2 class="text-2xl font-bold text-black">Rendez-vous</h2>
-
 				{% if user.appointments is not empty %}
 					<ul class="space-y-4">
 						{% for appointment in user.appointments %}
@@ -120,19 +131,17 @@
 					<p class="text-gray-500">Aucun rendez-vous trouvé.</p>
 				{% endif %}
 			</div>
-
-
 		</div>
 
-		<div
-			class="mt-6 flex flex-col sm:flex-row justify-between items-center">
-			<!-- Flex pour aligner les boutons -->
-			<a href="{{ path('app_adminpage') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300 mb-2 sm:mb-0">
-				Retour
-			</a>
-			<a href="{{ path('app_edit', { id: user.id }) }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-				Modifier le Profil
-			</a>
-		</div>
+<div class="mt-6 flex flex-col sm:flex-row justify-between items-center">
+	<a href="{{ path('app_adminpage') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300 mb-2 sm:mb-0 w-full sm:w-auto text-center">
+		Retour
+	</a>
+	<a href="{{ path('app_edit', { id: user.id }) }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300 w-full sm:w-auto text-center">
+		Modifier le Profil
+	</a>
+</div>
+
+
 	</div>
 {% endblock %}

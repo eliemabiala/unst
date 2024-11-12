@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use App\Form\ChangePasswordFormType;
 
 class StudentController extends AbstractController
 {
@@ -25,7 +26,7 @@ class StudentController extends AbstractController
         $passport = $profile ? $profile->getPassport() : null;
 
         return $this->render('student/index.html.twig', [
-            'status_demarches' => $passport ? $passport->getStatusDemarches() : null,
+            // 'status_demarches' => $passport ? $passport->getStatusDemarches() : null,
             'firstname' => $profile ? $profile->getFirstname() : null,
             'name' => $profile ? $profile->getName() : null,
             'postname' => $profile ? $profile->getPostname() : null,
