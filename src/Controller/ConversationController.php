@@ -13,10 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+
 
 class ConversationController extends AbstractController
 {
     #[Route('/conversation/new/{id}', name: 'app_conversation_create')]
+    #[IsGranted('ROLE_USER')]
     public function createConversation(
         User $recipient,
         EntityManagerInterface $entityManager,
@@ -48,6 +51,7 @@ class ConversationController extends AbstractController
     }
 
     #[Route('/conversation/{id}', name: 'app_conversation_show', requirements: ['id' => '\d+'])]
+    #[IsGranted('ROLE_USER')]
     public function showConversation(
         Request $request,
         int $id,
@@ -100,6 +104,7 @@ class ConversationController extends AbstractController
     }
 
     #[Route('/conversation/list', name: 'app_conversation_list')]
+    #[IsGranted('ROLE_USER')]
     public function listConversations(EntityManagerInterface $entityManager): Response
     {
         // Récupérer l'utilisateur connecté
@@ -127,6 +132,7 @@ class ConversationController extends AbstractController
     }
 
     #[Route('/conversation/existing', name: 'app_existing_conversations')]
+    #[IsGranted('ROLE_USER')]
     public function listExistingConversations(
         EntityManagerInterface $entityManager,
         ConversationRepository $conversationRepository

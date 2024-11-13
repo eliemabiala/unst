@@ -52,8 +52,6 @@ class ProfileFixtures extends Fixture
             $passport->setDateExpiration($faker->dateTimeBetween('+5 years', '+10 years'));
             $passport->setNationalite('Congolais');
             $passport->setProfession($faker->jobTitle);
-            $passport->setStatusDemarches($faker->randomElement(['En cours', 'Valider', 'En attente']));
-
             $manager->persist($passport);
 
             $profile->setPassport($passport);
