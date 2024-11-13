@@ -44,15 +44,18 @@
 </div>
 
 <!-- Boutons avec espacement et flexibilité pour le positionnement -->
-<div class="flex justify-between mt-8 mb-8">
-	<button class="bg-custom-blue text-white py-2 px-6 rounded hover:text-custom-hover transition duration-300">
-		{{ button_label|default('Sauvegarder') }}
+<div class="flex flex-col sm:flex-row justify-between mt-8 mb-8 space-y-4 sm:space-y-0 sm:space-x-4">
+	<!-- Utilisation de flex-col pour empiler verticalement en mobile, et flex-row pour aligner horizontalement sur les écrans sm et plus -->
+	<!-- Ajout de space-y-4 pour créer un espace vertical entre les boutons en mobile, et space-x-4 pour un espace horizontal sur les écrans sm et plus -->
+		<button class="bg-custom-blue text-white py-2 px-6 rounded hover:text-custom-hover transition duration-300"> {{ button_label|default('Sauvegarder') }}
 	</button>
 
-	<a href="{{ path('app_appointment_index') }}" class="bg-custom-blue text-white py-2 px-6 rounded hover:text-custom-hover transition duration-300">
+	<a href="{{ path('app_appointment_index') }}" class="bg-custom-blue text-center text-white py-2 px-6 rounded hover:text-custom-hover transition duration-300">
 		Retour à la liste de Rdv
 	</a>
 </div>
+
+
 
 {{ form_end(form) }}
 

@@ -13,14 +13,14 @@
 	<div
 		class="container mx-auto mt-20 min-h-screen px-4 sm:px-6 lg:px-8">
 		<!-- Added responsive padding -->
-		<h1 class="text-2xl font-bold text-center text-[#14213D] mb-6">Liste des documents</h1>
+		<h1 class="text-2xl font-bold text-center text-custbg-custom-blue mb-6">Liste des documents</h1>
 
 		<div
 			class="overflow-x-auto bg-white shadow-md rounded">
 			<!-- Limite la hauteur et permet le défilement interne pour fixer l'en-tête -->
 			<div class="max-h-[500px] overflow-y-auto">
 				<table class="min-w-full bg-white">
-					<thead class="bg-[#14213D] text-white sticky top-0 z-10">
+					<thead class="bg-custom-blue text-white sticky top-0 z-10">
 						<tr>
 							<th class="px-6 py-3 text-left font-semibold">Nom du fichier</th>
 							{% if not is_granted('ROLE_STUDENT') %}
@@ -66,21 +66,22 @@
 			</div>
 		</div>
 
-<!-- Boutons en bas -->
-<div class="flex justify-between items-center mb-10 px-4 mt-6">
-	{% set returnPath = is_granted('ROLE_ADMIN') ? path('app_adminpage') : is_granted('ROLE_COACH') ? path('app_coachepage') : is_granted('ROLE_STUDENT') ? path('app_student') : path('app_existing_conversations') %}
+		<div class="flex flex-col items-center space-y-4 sm:flex-row sm:justify-between sm:space-y-0 sm:space-x-4 mb-10 px-4 mt-6">
 
-	<!-- Bouton de retour aligné à gauche -->
-	<a href="{{ returnPath }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-		Retour
-	</a>
 
-	<!-- Bouton pour envoyer un document aligné à droite -->
-	<a href="{{ path('app_documents_new') }}" class="bg-[#14213D] text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300">
-		Envoyer un document
-	</a>
-</div>
+			{% set returnPath = is_granted('ROLE_ADMIN') ? path('app_adminpage') : is_granted('ROLE_COACH') ? path('app_coachepage') : is_granted('ROLE_STUDENT') ? path('app_student') : path('app_existing_conversations') %}
+
+
+			<a href="{{ returnPath }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300 text-center w-full sm:w-auto">
+				Retour
+			</a>
+
+
+			<a href="{{ path('app_documents_new') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300 text-center w-full sm:w-auto">
+				Envoyer un document
+			</a>
+		</div>
+
 
 	</div>
 {% endblock %}
-

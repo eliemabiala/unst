@@ -35,19 +35,22 @@
 									<img src="{{ asset('img/admin/invisible.png') }}" alt="Voir" class="w-6 h-6 hover:opacity-80"/>
 								</a>
 
-								<!-- Icône "Modifier" -->
-								<a href="{{ path('app_step_edit', {id: step.id}) }}" aria-label="Modifier l'étape">
-									<img src="{{ asset('img/admin/edit.png') }}" alt="Modifier" class="w-6 h-6 hover:opacity-80"/>
-								</a>
+								{% if not is_granted('ROLE_STUDENT') %}
+									<!-- Afficher "Modifier" et "Supprimer" seulement si l'utilisateur n'est pas un étudiant -->
 
-								<!-- Formulaire de suppression avec Icône "Supprimer" -->
-								<form action="{{ path('app_step_delete', {id: step.id}) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette étape ?');" class="inline-block">
-									<input type="hidden" name="_method" value="DELETE">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ step.id) }}">
-									<button type="submit" aria-label="Supprimer l'étape">
-										<img src="{{ asset('img/admin/delete.png') }}" alt="Supprimer" class="w-6 h-6 hover:opacity-80"/>
-									</button>
-								</form>
+									<!-- Icône "Modifier" -->
+										<a href="{{ path('app_step_edit', {id: step.id}) }}" aria-label="Modifier l'étape"> <img src="{{ asset('img/admin/edit.png') }}" alt="Modifier" class="w-6 h-6 hover:opacity-80"/>
+									</a>
+
+									<!-- Formulaire de suppression avec Icône "Supprimer" -->
+									<form action="{{ path('app_step_delete', {id: step.id}) }}" method="post" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette étape ?');" class="inline-block">
+										<input type="hidden" name="_method" value="DELETE">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ step.id) }}">
+										<button type="submit" aria-label="Supprimer l'étape">
+											<img src="{{ asset('img/admin/delete.png') }}" alt="Supprimer" class="w-6 h-6 hover:opacity-80"/>
+										</button>
+									</form>
+								{% endif %}
 							</div>
 						</td>
 					</tr>
@@ -59,13 +62,17 @@
 			</tbody>
 		</table>
 
-		<div class="mt-6 flex w-full justify-between items-center space-x-4">
+		<div class="mt-6 text-center flex flex-col w-full space-y-4 sm:flex-row sm:justify-between sm:items-center sm:space-y-0 sm:space-x-4">
 			<a href="{% if is_granted('ROLE_ADMIN') %}{{ path('app_adminpage') }}{% elseif is_granted('ROLE_COACH') %}{{ path('app_coachepage') }}{% else %}{{ path('home') }}{% endif %}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">
 				Retour
 			</a>
-			<a href="{{ path('app_step_new') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover mt-6 inline-block">
-				Créer une Nouvelle Étape
-			</a>
+
+			{% if not is_granted('ROLE_STUDENT') %}
+				<!-- Afficher le bouton "Créer une Nouvelle Étape" seulement si l'utilisateur n'est pas un étudiant -->
+				<a href="{{ path('app_step_new') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">
+					Créer une Nouvelle Étape
+				</a>
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}

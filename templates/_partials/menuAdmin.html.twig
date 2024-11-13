@@ -7,13 +7,15 @@
 			</a>
 		</li>
 
-		{% if app.user and 'ROLE_ADMIN' in app.user.roles %}
-			<li>
-				<a href="{{ path('app_new') }}" class="bg-unst-blue text-white nav_link">
-					Ajouter un utilisateur
-				</a>
-			</li>
-		{% endif %}
+
+		<li>
+			<a href="{{ path('app_step_index') }}" class="bg-unst-blue text-white nav_link">
+				Voir les Démarche
+
+
+			</a>
+		</li>
+
 
 		<li>
 			{% if app.user and 'ROLE_STUDENT' in app.user.roles %}

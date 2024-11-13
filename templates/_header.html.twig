@@ -71,11 +71,18 @@
 				<li>
 					<a href="{{ path('app_documents_index') }}" aria-label="Mes Documents">Mes Documents</a>
 				</li>
-				{% if 'ROLE_ADMIN' in app.user.roles %}
+				
 					<li>
-						<a href="{{ path('app_new') }}" aria-label="Ajouter un utilisateur">Ajouter un utilisateur</a>
+<a href="{{ path('app_step_index') }}" aria-label="Voir les Démarche">
+
+
+	Voir les Démarche
+
+
+</a>
+
 					</li>
-				{% endif %}
+				
 				<li>
 					{% if 'ROLE_STUDENT' in app.user.roles %}
 						<a href="{{ path('app_student_appointments') }}" aria-label="Mes rendez-vous">Mes rendez-vous</a>
