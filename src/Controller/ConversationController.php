@@ -96,7 +96,7 @@ class ConversationController extends AbstractController
             return $this->redirectToRoute('app_conversation_show', ['id' => $conversation->getId()]);
         }
 
-        return $this->render('conversation/show.html.twig', [
+        return $this->render('Conversation/show.html.twig', [
             'conversation' => $conversation,
             'messages' => $conversation->getMessages(),
             'form' => $form->createView(),
@@ -126,7 +126,7 @@ class ConversationController extends AbstractController
 
         $users = $qb->getQuery()->getResult();
 
-        return $this->render('conversation/list.html.twig', [
+        return $this->render('Conversation/list.html.twig', [
             'users' => $users,
         ]);
     }
@@ -139,6 +139,8 @@ class ConversationController extends AbstractController
     ): Response {
         // Récupérer l'utilisateur connecté
         $currentUser = $this->getUser();
+        dump($currentUser);
+        die();
 
         // Récupérer les conversations auxquelles l'utilisateur participe
         $conversations = $conversationRepository->createQueryBuilder('c')
@@ -148,12 +150,8 @@ class ConversationController extends AbstractController
             ->getQuery()
             ->getResult();
 
-        return $this->render('conversation/existing.html.twig', [
+        return $this->render('Conversation/existing.html.twig', [
             'conversations' => $conversations,
         ]);
     }
-
-
-
-
 }
