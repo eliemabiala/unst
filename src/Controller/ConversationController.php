@@ -139,8 +139,8 @@ class ConversationController extends AbstractController
     ): Response {
         // Récupérer l'utilisateur connecté
         $currentUser = $this->getUser();
-        dump($currentUser);
-        die();
+        // dump($currentUser);
+        // die();
 
         // Récupérer les conversations auxquelles l'utilisateur participe
         $conversations = $conversationRepository->createQueryBuilder('c')
