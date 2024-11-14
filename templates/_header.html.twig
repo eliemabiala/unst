@@ -71,18 +71,18 @@
 				<li>
 					<a href="{{ path('app_documents_index') }}" aria-label="Mes Documents">Mes Documents</a>
 				</li>
-				
-					<li>
-<a href="{{ path('app_step_index') }}" aria-label="Voir les Démarche">
+
+				<li>
+					<a href="{{ path('app_step_index') }}" aria-label="Voir les Démarche">
 
 
-	Voir les Démarche
+						Voir les Démarche
 
 
-</a>
+					</a>
 
-					</li>
-				
+				</li>
+
 				<li>
 					{% if 'ROLE_STUDENT' in app.user.roles %}
 						<a href="{{ path('app_student_appointments') }}" aria-label="Mes rendez-vous">Mes rendez-vous</a>
@@ -103,7 +103,8 @@
 					</li>
 				{% elseif 'ROLE_USER' in app.user.roles %}
 					<li>
-<a href="{{ path('home') }}" aria-label="Espace Étudiant">Espace Étudiant</a>
+						<a href="{{ path('app_myprofile') }}" aria-label="Mon profil">Mon profil</a>
+
 
 					</li>
 				{% endif %}
@@ -120,4 +121,3 @@
 		</ul>
 	</nav>
 </header>
-

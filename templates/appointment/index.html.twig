@@ -75,18 +75,19 @@
 		</div>
 
 
-		<div
-			class="mt-6 flex w-full justify-between items-center space-x-4">
+<div class="mt-6 text-center flex flex-col w-full space-y-4 sm:flex-row sm:justify-between sm:items-center sm:space-y-0 sm:space-x-4">
 
-			<a href="{% if is_granted('ROLE_ADMIN') %} {{ path('app_adminpage') }} {% elseif is_granted('ROLE_COACH') %} {{ path('app_coachepage') }} {% else %} {{ path('home') }} {% endif %}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">
-				Retour
-			</a>
-			
-			<a href="{{ path('app_appointment_new') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">
+	<a href="{% if is_granted('ROLE_ADMIN') %} {{ path('app_adminpage') }} {% elseif is_granted('ROLE_COACH') %} {{ path('app_coachepage') }} {% else %} {{ path('home') }} {% endif %}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">
+		Retour
+	</a>
 
-				Ajouter un rendez-vous
-			</a>
-		</div>
+	<a href="{{ path('app_appointment_new') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300">
+		Ajouter un rendez-vous
+	</a>
+
+</div>
+
+
 
 		<div class="mt-24"></div>
 
