@@ -62,8 +62,7 @@
 		<div class="flex space-x-5 flex-col sm:flex-row justify-between items-center mb-6">
 			<h1 class="text-2xl font-bold mb-4 sm:mb-0 order-2 sm:order-1" aria-label="User List Header">Liste des utilisateurs</h1>
 			<div class="flex space-x-2 order-1 sm:order-2">
-<a href="{{ path('app_new') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300" aria-label="View messages">Ajouter un utilisateur</a>
-
+				<a href="{{ path('app_new') }}" class="bg-custom-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300" aria-label="View messages">Ajouter un utilisateur</a>
 
 
 			</div>
@@ -80,7 +79,7 @@
 						<th class="py-4 px-4 text-left text-black hidden md:table-cell" aria-label="Phone column">Téléphone</th>
 						<th class="py-4 px-4 text-left text-black hidden md:table-cell" aria-label="Email column">Email</th>
 						<th class="py-2 px-4" aria-label="Search user">
-							<form class="max-w-xs mx-auto" aria-label="Search form">
+							{# <form class="max-w-xs mx-auto" aria-label="Search form">
 								<label for="default-search" class="mb-1 text-sm font-medium sr-only">Search</label>
 								<div class="relative">
 									<input type="search" id="default-search" class="w-full p-1 text-black rounded-lg border border-custom-blue focus:outline-none" placeholder="Nom d'utilisateur" aria-label="Search by username" required/>
@@ -88,7 +87,7 @@
 										Search
 									</button>
 								</div>
-							</form>
+							</form> #}
 						</th>
 					</tr>
 				</thead>
@@ -115,12 +114,12 @@
 									<a href="{{ path('app_appointment_new', { id: user.id }) }}" class="hidden sm:inline" aria-label="Schedule an appointment for {{ profile.name }}">
 										<img src="{{ asset('img/admin/edit.png') }}" alt="Edit" title="Modifier le profil" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
 									</a>
-<form action="{{ path('app_user_delete', { id: user.id }) }}" method="post" class="inline-block">
-	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-	<button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');" class="text-red-600 flex items-center" aria-label="Delete user {{ profile.name }}">
-		<img src="{{ asset('img/admin/delete.png') }}" alt="Delete" title="Supprimer l'utilisateur" class="w-6 h-6 mx-1"/>
-	</button>
-</form>
+									<form action="{{ path('app_user_delete', { id: user.id }) }}" method="post" class="inline-block">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+										<button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');" class="text-red-600 flex items-center" aria-label="Delete user {{ profile.name }}">
+											<img src="{{ asset('img/admin/delete.png') }}" alt="Delete" title="Supprimer l'utilisateur" class="w-6 h-6 mx-1"/>
+										</button>
+									</form>
 
 
 								</div>

@@ -74,10 +74,10 @@
 
 		<!-- Boutons d'actions -->
 		<div class="mt-6 flex justify-center space-x-4">
-			<a href="{{ path('app_appointment_index') }}" class="bg-[#14213D] hover:bg-[#b49047] text-white font-bold py-2 px-4 rounded">Retour à la liste</a>
-			<a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}" class="bg-[#14213D] hover:bg-[#b49047] text-white font-bold py-2 px-4 rounded">Modifier</a>
+			<a href="{{ path('app_appointment_index') }}" class="bg-custom-blue hover:bg-custom-hover text-white font-bold py-2 px-4 rounded">Retour à la liste</a>
+			<a href="{{ path('app_appointment_edit', {'id': appointment.id}) }}" class="bg-custom-blue hover:bg-custom-hover text-white font-bold py-2 px-4 rounded">Modifier</a>
 			{{ include('appointment/_delete_form.html.twig') }}
-			<a href="{{ path('app_appointment_new') }}" class="bg-[#14213D] hover:bg-[#b49047] text-white font-bold py-2 px-4 rounded">Ajouter un nouveau rendez-vous</a>
+			<a href="{{ path('app_appointment_new') }}" class="bg-custom-blue hover:bg-custom-hover text-white font-bold py-2 px-4 rounded">Ajouter un nouveau rendez-vous</a>
 		</div>
 	</div>
 {% endblock %}

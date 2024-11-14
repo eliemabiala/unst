@@ -2,32 +2,27 @@
 <div
 	class="space-y-4">
 
-	<!-- Champ Utilisateur -->
 	<div class="form-group">
 		{{ form_label(form.user, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
 		{{ form_widget(form.user, {'attr': {'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500', 'aria-label': 'Utilisateur'}}) }}
 		{{ form_errors(form.user, {'attr': {'class': 'text-red-500 text-sm'}}) }}
 	</div>
 
-	<!-- Champ Sélection Coach -->
 	<div class="form-group">
 		{{ form_label(form.coach, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
 		{{ form_widget(form.coach, {'attr': {'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500', 'aria-label': 'Coach'}}) }}
 		{{ form_errors(form.coach, {'attr': {'class': 'text-red-500 text-sm'}}) }}
 	</div>
 
-	<!-- Grille pour Date et Heure (Alignés côte à côte sur les écrans larges) -->
 	<div
 		class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-		<!-- Champ Date du rendez-vous -->
 		<div class="form-group">
 			{{ form_label(form.appointment_date, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
 			{{ form_widget(form.appointment_date, {'attr': {'type': 'date', 'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500', 'aria-label': 'Date du rendez-vous'}}) }}
 			{{ form_errors(form.appointment_date, {'attr': {'class': 'text-red-500 text-sm'}}) }}
 		</div>
 
-		<!-- Champ Heure du rendez-vous -->
 		<div class="form-group">
 			{{ form_label(form.appointment_time, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
 			{{ form_widget(form.appointment_time, {'attr': {'type': 'time', 'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500', 'aria-label': 'Heure du rendez-vous'}}) }}
@@ -35,7 +30,6 @@
 		</div>
 	</div>
 
-	<!-- Champ Objet -->
 	<div class="form-group">
 		{{ form_label(form.object, null, {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
 		{{ form_widget(form.object, {'attr': {'class': 'form-input block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500', 'aria-label': 'Objet'}}) }}
@@ -43,10 +37,7 @@
 	</div>
 </div>
 
-<!-- Boutons avec espacement et flexibilité pour le positionnement -->
 <div class="flex flex-col sm:flex-row justify-between mt-8 mb-8 space-y-4 sm:space-y-0 sm:space-x-4">
-	<!-- Utilisation de flex-col pour empiler verticalement en mobile, et flex-row pour aligner horizontalement sur les écrans sm et plus -->
-	<!-- Ajout de space-y-4 pour créer un espace vertical entre les boutons en mobile, et space-x-4 pour un espace horizontal sur les écrans sm et plus -->
 		<button class="bg-custom-blue text-white py-2 px-6 rounded hover:text-custom-hover transition duration-300"> {{ button_label|default('Sauvegarder') }}
 	</button>
 

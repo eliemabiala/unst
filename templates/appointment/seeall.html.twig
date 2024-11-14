@@ -13,7 +13,7 @@
 
 
 {% block body %}
-	<!-- Contenu principal -->
+	
 	<div class="flex flex-col justify-center items-center min-h-screen mt-40 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<h1 class="text-2xl font-bold mb-10 text-black text-center">
 			{% if appointments is not empty %}
@@ -55,11 +55,11 @@
 
 						<div
 							class="flex justify-between mt-auto w-full">
-							<!-- Bouton pour modifier -->
+							
 							<a href="{{ path('app_appointment_new', {'id': user.id}) }}">
 								<img src="{{ asset('img/admin/edit.png') }}" alt="Icon edit" title="Modifier le profil" aria-label="Modifier le profil" class="inline w-6 h-6 sm:w-4 sm:h-4 mx-1"/>
 							</a>
-							<!-- Bouton pour supprimer -->
+
 							<form action="{{ path('app_appointment_delete', {'id': appointment.id}) }}" method="post" style="display:inline;">
 								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appointment.id) }}">
 								<button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');" class="text-red-600">
@@ -75,9 +75,9 @@
 		{% endif %}
 
 
-		<!-- Bouton Retour -->
+	
 		<div class="mt-6 flex flex-col sm:flex-row justify-between items-center">
-			<a href="{{ path('app_adminpage') }}" class="bg-unst-blue text-white py-2 px-4 rounded hover:text-[#b49047] transition duration-300 mb-2 sm:mb-0">
+			<a href="{{ path('app_adminpage') }}" class="bg-unst-blue text-white py-2 px-4 rounded hover:text-custom-hover transition duration-300 mb-2 sm:mb-0">
 
 				Retour
 			</a>
