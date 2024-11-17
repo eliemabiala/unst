@@ -36,7 +36,7 @@ class RegistrationType extends AbstractType
                 'label' => 'Team',
                 'placeholder' => '-- Sélectionnez une équipe --',
             ])
-            ->add('password', PasswordType::class, [ // Correction ici : ajout de `->`
+            ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
                 'required' => false, // Rendre optionnel
                 'empty_data' => '', // Pour éviter que null soit transmis
