@@ -14,8 +14,6 @@ use App\Entity\User;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 
-
-
 class NewController extends AbstractController
 {
     #[Route('/new', name: 'app_new')]
@@ -28,6 +26,20 @@ class NewController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Vérifier si l'email existe déjà dans la base de données
+            $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
+
+            if ($existingUser) {
+                // Ajouter un message flash pour informer que l'email existe déjà
+                $this->addFlash('error', 'Ces information son déjà utilisée.');
+
+                // Rendre à nouveau la vue avec le formulaire et le message flash
+                return $this->render('new/index.html.twig', [
+                    'form' => $form->createView(),
+                ]);
+            }
+
+            // Si l'email n'existe pas, continuer avec l'enregistrement de l'utilisateur
             $user->setRoles($form->get('roles')->getData());
             $user->setPassword(
                 $userPasswordHasherInterface->hashPassword(
@@ -36,19 +48,10 @@ class NewController extends AbstractController
                 )
             );
 
-            // // Handle file upload
-            // $file = $form->get('file_upload')->getData();
-            // if ($file) {
-            //     $newFilename = uniqid() . '.' . $file->guessExtension();
-            //     $file->move($params->get('uploads_directory'), $newFilename);
-            //     $documents = new Documents();
-            //     $documents->setFileName($newFilename);
-            //     $documents->setFilePath($params->get('uploads_directory') . '/' . $newFilename);
-            // }
-
             $entityManager->persist($user);
             $entityManager->flush();
 
+            // Envoyer un email de notification
             $email = (new Email())
                 ->from('mabialaelie4@gmail.com')
                 ->to('endiepro4@gmail.com')
