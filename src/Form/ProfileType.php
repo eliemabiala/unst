@@ -44,10 +44,10 @@ class ProfileType extends AbstractType
                     'Féminin' => SexeEnum::Female,
                     'Autre' => SexeEnum::Other,
                 ],
-                'expanded' => true,  
+                'expanded' => true,
                 'multiple' => false,
                 'attr' => [
-                    'class' => 'form-control', 
+                    'class' => 'form-control',
                 ],
             ])
             ->add('phone', TextType::class, [

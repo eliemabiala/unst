@@ -15,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-
 class ConversationController extends AbstractController
 {
     #[Route('/conversation/new/{id}', name: 'app_conversation_create')]

@@ -32,5 +32,4 @@ class ConversationRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getOneOrNullResult();
     }
-
 }
