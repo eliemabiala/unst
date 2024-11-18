@@ -19,7 +19,7 @@ class EditController extends AbstractController
 {
     #[Route('/edit/{id}', name: 'app_edit')]
     #[IsGranted('ROLE_ADMIN')]
-  
+
 
     public function edit(
         Request $request,

@@ -36,10 +36,9 @@ class AppointmentController extends AbstractController
             $appointments = $appointmentRepository->createQueryBuilder('a')
                 ->where('a.user = :user')
                 ->setParameter('user', $currentUser)
-                ->orderBy('a.appointment_date', 'ASC')  
+                ->orderBy('a.appointment_date', 'ASC')
                 ->getQuery()
                 ->getResult();
-
         }
 
         return $this->render('appointment/index.html.twig', [
@@ -125,5 +124,4 @@ class AppointmentController extends AbstractController
             'user' => $user,
         ]);
     }
-
 }

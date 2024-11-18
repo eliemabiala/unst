@@ -28,7 +28,8 @@ class ResetPasswordController extends AbstractController
     public function __construct(
         private ResetPasswordHelperInterface $resetPasswordHelper,
         private EntityManagerInterface $entityManager
-    ) {}
+    ) {
+    }
 
     /**
      * Affiche et traite le formulaire de demande de réinitialisation de mot de passe.
@@ -180,8 +181,5 @@ class ResetPasswordController extends AbstractController
         return $this->render('reset_password/editpassword.html.twig', [
             'changePasswordForm' => $form->createView(),
         ]);
-
     }
-
-
 }

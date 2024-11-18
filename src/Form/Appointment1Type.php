@@ -20,7 +20,7 @@ class Appointment1Type extends AbstractType
         $builder
             ->add('coach', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'email', 
+                'choice_label' => 'email',
                 'label' => 'Sélectionnez le coach pour le rendez-vous',
                 'placeholder' => 'Sélectionnez un coach',
                 'query_builder' => function (UserRepository $repo) {
@@ -32,7 +32,7 @@ class Appointment1Type extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            
+
             // Champ pour sélectionner l'étudiant
             ->add('user', EntityType::class, [
                 'class' => User::class,
@@ -98,4 +98,4 @@ class Appointment1Type extends AbstractType
             //     $postname = $user->getProfile() ? $user->getProfile()->getPostname() : 'No Postname';
             //     return $name . ' ' . $postname;
             // ])
-            // }, 
+            // },

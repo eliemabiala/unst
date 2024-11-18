@@ -10,6 +10,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use Symfony\Component\Validator\Constraints\File;
+
 
 class DocumentsType extends AbstractType
 {
@@ -21,6 +23,17 @@ class DocumentsType extends AbstractType
                 'required' => true,
                 'allow_delete' => false,
                 'download_uri' => true, // Afficher le lien de téléchargement si le fichier existe déjà
+            'constraints' => [
+                new File([
+                    'maxSize' => '10M', // Ajustez la taille ici, par exemple 10 MiB
+                    'mimeTypes' => [
+                        'application/pdf',
+                        'image/jpeg',
+                        'image/png',
+                    ],
+                    'mimeTypesMessage' => 'Please upload a valid file (PDF, JPEG, or PNG).',
+                ]),
+            ],
             ])
             ->add('coach', EntityType::class, [
                 'class' => User::class,
