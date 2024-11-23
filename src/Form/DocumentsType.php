@@ -23,8 +23,19 @@ class DocumentsType extends AbstractType
                 'required' => true,
                 'allow_delete' => false,
                 'download_uri' => true, // Afficher le lien de téléchargement si le fichier existe déjà
+            'constraints' => [
+                new File([
+                    'maxSize' => '1000M', // Ajustez la taille ici, par exemple 10 MiB
+                    'mimeTypes' => [
+                        'application/pdf',
+                        'image/jpeg',
+                        'image/png',
+                    ],
+                    'mimeTypesMessage' => 'Please upload a valid file (PDF, JPEG, or PNG).',
+                    'maxSizeMessage' => 'Le fichier est trop volumineux. La taille maximale autorisée est de 50 MiB.', 
+                ]),
+            ],
             ])
-            
             ->add('coach', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'email',
