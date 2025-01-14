@@ -17,9 +17,13 @@ use Doctrine\ORM\EntityManagerInterface;
 class NewController extends AbstractController
 {
     #[Route('/new', name: 'app_new')]
-    #[IsGranted('ROLE_ADMIN')]
-    public function index(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer, UserPasswordHasherInterface $userPasswordHasherInterface): Response
-    {
+    // #[IsGranted('ROLE_ADMIN')]
+    public function index(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        MailerInterface $mailer,
+        UserPasswordHasherInterface $userPasswordHasherInterface
+    ): Response {
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
 
@@ -30,39 +34,44 @@ class NewController extends AbstractController
             $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
 
             if ($existingUser) {
-                // Ajouter un message flash pour informer que l'email existe déjà
-                $this->addFlash('error', 'Ces information son déjà utilisée.');
+                $this->addFlash('error', 'Cet email est déjà utilisé.');
 
-                // Rendre à nouveau la vue avec le formulaire et le message flash
                 return $this->render('new/index.html.twig', [
                     'form' => $form->createView(),
                 ]);
             }
 
-            // Si l'email n'existe pas, continuer avec l'enregistrement de l'utilisateur
-            $user->setRoles($form->get('roles')->getData());
-            $user->setPassword(
-                $userPasswordHasherInterface->hashPassword(
-                    $user,
-                    $form->get('password')->getData()
-                )
-            );
+            // Récupérer le mot de passe en clair
+            $plainPassword = $form->get('password')->getData();
 
+            // Hacher le mot de passe avant de l'enregistrer
+            $hashedPassword = $userPasswordHasherInterface->hashPassword($user, $plainPassword);
+            $user->setPassword($hashedPassword);
+
+            // Attribuer les rôles
+            $roles = $form->get('roles')->getData();
+            $user->setRoles($roles);
+
+            // Enregistrer l'utilisateur dans la base de données
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Envoyer un email de notification
+            // Envoi de l'email de bienvenue avec le mot de passe non haché
             $email = (new Email())
-                ->from('mabialaelie4@gmail.com')
-                ->to('endiepro4@gmail.com')
-                ->subject('Nouveau utilisateur ajouté')
+                ->from('mabialaelie4@gmail.com') // Adresse expéditeur
+                ->to($user->getEmail()) // Adresse destinataire
+                ->subject('Bienvenue dans notre plateforme')
                 ->html(
-                    $this->renderView('emails/notification.html.twig', [
-                        'user' => $user
+                    $this->renderView('emails/welcome.html.twig', [
+                        'email' => $user->getEmail(),
+                        'password' => $plainPassword, // Mot de passe non haché
                     ])
                 );
+
             $mailer->send($email);
 
+            // Redirection après ajout réussi
+            $this->addFlash('success', 'L\'utilisateur a été ajouté avec succès.');
             return $this->redirectToRoute('app_adminpage');
         }
 

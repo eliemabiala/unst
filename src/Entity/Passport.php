@@ -5,8 +5,15 @@ namespace App\Entity;
 use App\Repository\PassportRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: PassportRepository::class)]
+#[UniqueEntity(
+    fields: ['number_passport'],
+    message: 'Ce numéro de passeport est déjà utilisé.'
+)]
 class Passport
 {
     #[ORM\Id]
@@ -14,7 +21,9 @@ class Passport
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, unique: true)] // Ajout de unique: true au niveau de la DB
+    #[Assert\NotBlank(message: 'Le numéro de passeport ne peut pas être vide.')]
+    #[Assert\Callback]
     private ?string $number_passport = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
@@ -29,8 +38,24 @@ class Passport
     #[ORM\OneToOne(mappedBy: 'passport', cascade: ['persist', 'remove'])]
     private ?Profile $profile = null;
 
-    // Getters et Setters
+    // Validation personnalisée pour vérifier l'unicité conditionnelle
+    public function validateUniqueNumberPassport(ExecutionContextInterface $context): void
+    {
+        $entityManager = $context->getRoot()->getConfig()->getOption('entity_manager');
 
+        if ($this->number_passport) {
+            $existingPassport = $entityManager->getRepository(Passport::class)
+                ->findOneBy(['number_passport' => $this->number_passport]);
+
+            if ($existingPassport && $existingPassport->getId() !== $this->getId()) {
+                $context->buildViolation('Ce numéro de passeport est déjà utilisé.')
+                    ->atPath('number_passport')
+                    ->addViolation();
+            }
+        }
+    }
+
+    // Getters et Setters
     public function getId(): ?int
     {
         return $this->id;

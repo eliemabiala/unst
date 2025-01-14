@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ProfileType extends AbstractType
 {
@@ -72,6 +74,15 @@ class ProfileType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'AAAA-MM-JJ',
                 ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'La date de naissance est obligatoire.',
+                    ]),
+                    new LessThanOrEqual([
+                        'value' => (new \DateTime())->modify('-16 years'), // Date maximale pour avoir au moins 16 ans
+                        'message' => 'L\'utilisateur doit avoir au moins 16 ans.',
+                    ]),
+                ],
             ])
             ->add('date_inscrit', DateType::class, [
                 'label' => 'Date d\'inscription',
@@ -80,12 +91,21 @@ class ProfileType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'AAAA-MM-JJ',
+                    'max' => (new \DateTime())->format('Y-m-d'), // HTML5 validation côté client
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'La date d\'inscription est obligatoire.',
+                    ]),
+                    new LessThanOrEqual([
+                        'value' => new \DateTime(), // Date actuelle
+                        'message' => 'La date d\'inscription ne peut pas être supérieure à aujourd\'hui.',
+                    ]),
                 ],
             ])
             ->add('passport', PassportType::class, [
                 'label' => 'Passeport',
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
