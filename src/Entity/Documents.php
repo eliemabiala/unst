@@ -19,7 +19,7 @@ class Documents
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 255)] // Augmente la longueur à 255 caractères
     private ?string $file_name = null;
 
     #[Vich\UploadableField(mapping: 'documents', fileNameProperty: 'file_name')]
@@ -173,7 +173,6 @@ class Documents
         return $this;
     }
 
-    // Nouvelle méthode ajoutée pour obtenir l'e-mail de l'utilisateur
     public function getUserEmail(): ?string
     {
         return $this->user ? $this->user->getEmail() : null;
