@@ -45,7 +45,7 @@ class ContactController extends AbstractController
             $mailer->send($email);
 
             // Ajout d'un message flash de succès après soumission
-            $this->addFlash('success', 'Votre message a bien été envoyé.');
+            $this->addFlash('success', 'Votre message a bien été envoyé. ');
 
             // Redirection vers la même page pour éviter la soumission multiple du formulaire
             return $this->redirectToRoute('app_contact');
