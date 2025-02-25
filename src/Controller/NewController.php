@@ -52,16 +52,16 @@ class NewController extends AbstractController
             $entityManager->flush();
 
             // Envoyer un email de notification
-            $email = (new Email())
-                ->from('mabialaelie4@gmail.com')
-                ->to('endiepro4@gmail.com')
-                ->subject('Nouveau utilisateur ajouté')
-                ->html(
-                    $this->renderView('emails/notification.html.twig', [
-                        'user' => $user
-                    ])
-                );
-            $mailer->send($email);
+            // $email = (new Email())
+            //     ->from('mabialaelie4@gmail.com')
+            //     ->to('endiepro4@gmail.com')
+            //     ->subject('Nouveau utilisateur ajouté')
+            //     ->html(
+            //         $this->renderView('emails/notification.html.twig', [
+            //             'user' => $user
+            //         ])
+            //     );
+            // $mailer->send($email);
 
             return $this->redirectToRoute('app_adminpage');
         }
