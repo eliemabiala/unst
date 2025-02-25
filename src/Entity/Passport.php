@@ -5,8 +5,14 @@ namespace App\Entity;
 use App\Repository\PassportRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PassportRepository::class)]
+#[UniqueEntity(
+    fields: ['number_passport'],
+    message: 'Ce numéro de passeport est déjà utilisé.'
+)]
 class Passport
 {
     #[ORM\Id]
@@ -14,7 +20,8 @@ class Passport
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, unique: true)]
+    #[Assert\NotBlank(message: 'Le numéro de passeport ne peut pas être vide.')]
     private ?string $number_passport = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
@@ -30,7 +37,6 @@ class Passport
     private ?Profile $profile = null;
 
     // Getters et Setters
-
     public function getId(): ?int
     {
         return $this->id;
