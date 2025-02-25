@@ -56,19 +56,19 @@ class NewController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Envoi de l'email de bienvenue avec le mot de passe non haché
-            // $email = (new Email())
-            //     ->from('mabialaelie4@gmail.com') // Adresse expéditeur
-            //     ->to($user->getEmail()) // Adresse destinataire
-            //     ->subject('Bienvenue dans notre plateforme')
-            //     ->html(
-            //         $this->renderView('emails/welcome.html.twig', [
-            //             'email' => $user->getEmail(),
-            //             'password' => $plainPassword, // Mot de passe non haché
-            //         ])
-            //     );
+           // Envoi de l'email de bienvenue avec le mot de passe non haché
+            $email = (new Email())
+                ->from('mabialaelie4@gmail.com') // Adresse expéditeur
+                ->to($user->getEmail()) // Adresse destinataire
+                ->subject('Bienvenue dans notre plateforme')
+                ->html(
+                    $this->renderView('emails/welcome.html.twig', [
+                        'email' => $user->getEmail(),
+                        'password' => $plainPassword, // Mot de passe non haché
+                    ])
+                );
 
-            // $mailer->send($email);
+            $mailer->send($email);
 
             // Redirection après ajout réussi
             $this->addFlash('success', 'L\'utilisateur a été ajouté avec succès.');
